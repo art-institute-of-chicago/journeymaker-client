@@ -1,0 +1,48 @@
+[
+
+	{ "char": "Q", "col": 0, "row": 0, "width": 1 },
+	{ "char": "W", "col": 1, "row": 0, "width": 1 },
+	{ "char": "E", "col": 2, "row": 0, "width": 1 },
+	{ "char": "R", "col": 3, "row": 0, "width": 1 },
+	{ "char": "T", "col": 4, "row": 0, "width": 1 },
+	{ "char": "Y", "col": 5, "row": 0, "width": 1 },
+	{ "char": "U", "col": 6, "row": 0, "width": 1 },
+	{ "char": "I", "col": 7, "row": 0, "width": 1 },
+	{ "char": "O", "col": 8, "row": 0, "width": 1 },
+	{ "char": "P", "col": 9, "row": 0, "width": 1 },
+
+	{ "char": "A", "col": 0.5, "row": 1, "width": 1 },
+	{ "char": "S", "col": 1.5, "row": 1, "width": 1 },
+	{ "char": "D", "col": 2.5, "row": 1, "width": 1 },
+	{ "char": "F", "col": 3.5, "row": 1, "width": 1 },
+	{ "char": "G", "col": 4.5, "row": 1, "width": 1 },
+	{ "char": "H", "col": 5.5, "row": 1, "width": 1 },
+	{ "char": "J", "col": 6.5, "row": 1, "width": 1 },
+	{ "char": "K", "col": 7.5, "row": 1, "width": 1 },
+	{ "char": "L", "col": 8.5, "row": 1, "width": 1 },
+
+	{ "char": "Z", "col": 1, "row": 2, "width": 1 },
+	{ "char": "X", "col": 2, "row": 2, "width": 1 },
+	{ "char": "C", "col": 3, "row": 2, "width": 1 },
+	{ "char": "V", "col": 4, "row": 2, "width": 1 },
+	{ "char": "B", "col": 5, "row": 2, "width": 1 },
+	{ "char": "N", "col": 6, "row": 2, "width": 1 },
+	{ "char": "M", "col": 7, "row": 2, "width": 1 },
+
+	{ "char": ".", "col": 0, "row": 3, "width": 1 },
+	{ "char": ",", "col": 1, "row": 3, "width": 1 },
+	{ "char": "&nbsp;", "col": 2, "row": 3, "width": 6 },
+	{ "char": "-", "col": 8, "row": 3, "width": 1 },
+	{ "char": "’", "col": 9, "row": 3, "width": 1 },
+	{ "char": "@", "col": 10, "row": 3, "width": 1 },
+
+
+	{
+		"func": "backspace",
+		"class": "backspace",
+		"col": 8,
+		"row": 2,
+		"width": 1.5
+	}
+
+]

@@ -1,0 +1,154 @@
+#wrap-sections section#spin {
+
+	div.panel {
+		position: absolute;
+		bottom: 100px;
+		left: 50%;
+		width: 585px;
+		margin-left: -585px / 2;
+
+		&.spinning {
+			div.panel-top {
+				div.wrap-title {
+					border-color: white;
+					.transition(~"border-color 400ms ease 300ms");
+				}
+				div.wrap-info {
+					height: 0px;
+					padding-top: 0px;
+					padding-bottom: 0px;
+					.transition(~"padding-top 400ms ease, padding-bottom 400ms ease, height 400ms ease");
+				}
+			}
+		}
+
+		div.panel-top {
+			background: white;
+			.round(10px 10px 0px 0px);
+			.transition(~"opacity 600ms ease 250ms");
+
+			div.wrap-title {
+				border-bottom: 2px solid #ccc;
+				padding: 30px 35px 25px 35px;
+				.transition(~"border-color 400ms ease 500ms");
+
+				div.icon {
+					float: left;
+					margin-right: 10px;
+					margin-top: -4px;
+					margin-left: -5px;
+
+					img {
+						width: 50px;
+						height: 50px;
+					}
+
+				}
+
+				h3 {
+					font-family: @anchor;
+					font-weight: normal;
+					letter-spacing: 0.04em;
+					color: #4f4f4f;
+					font-size: 45px;
+					text-transform: uppercase;
+					line-height: 47px;
+					margin: 0px;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+
+			}
+
+			div.wrap-info {
+				position: relative;
+				padding: 25px 35px 0px 35px;
+				height: 180px;
+				overflow: hidden;
+				.transition(~"padding-top 400ms ease 500ms, padding-bottom 400ms ease 500ms, height 400ms ease 500ms");
+
+				p {
+					position: absolute;
+					top: 50%;
+					.translate(0px, -50%);
+					font: normal normal 300 20px/31px @ideal;
+					color: #333;
+					margin: 0px;
+					width: 515px;
+				}
+
+			}
+
+		}
+
+		div.panel-divider {
+			height: 4px;
+			.translucent-bg(#9b9b9b, 0.65);
+			.transition(~"opacity 600ms ease 250ms");
+		}
+
+		div.panel-bottom {
+			position: relative;
+			height: 550px;
+			.round(0px 0px 10px 10px);
+			.translucent-bg(#fff, 0.8);
+			.transition(~"background-color 600ms ease 250ms");
+
+			div.wrap-continue {
+				position: absolute;
+				width: 585px;
+				bottom: 0px;
+				padding: 25px 25px;
+
+				button.continue {
+					width: 100%;
+					height: 55px;
+					background: @articBlue;
+					.round(8px);
+					font-family: @anchor;
+					font-size: 24px;
+					text-transform: uppercase;
+					letter-spacing: 0.045em;
+					color: white;
+					.transition(~"opacity 600ms ease 250ms");
+
+					&.active {
+						width: 529px;
+						height: 49px;
+						margin: 3px;
+					}
+
+				}
+
+			}
+
+			.help-item {
+				position: absolute;
+				left: -440px;
+				bottom: 2px;
+
+				p.home {
+					display: none;
+				}
+
+				div.stem {
+					position: absolute;
+					width: 85px;
+					height: 3px;
+					right: -85px;
+					top: 50%;
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+body.help-on section#spin .help-item {
+	visibility: visible;
+	opacity: 1;
+}
+

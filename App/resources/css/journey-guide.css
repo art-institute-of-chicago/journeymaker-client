@@ -1,0 +1,495 @@
+@font-face {
+  font-family: "Anchor-Medium";
+  src: url("../fonts/Anchor-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IdealSans-Light";
+  src: url("../fonts/IdealSans-Light.woff") format("woff");
+  font-style: normal;
+}
+@font-face {
+  font-family: "IdealSans-Semibold";
+  src: url("../fonts/IdealSans-Semibold.woff") format("woff");
+  font-style: normal;
+}
+@font-face {
+  font-family: "IdealSans-Bold";
+  src: url("../fonts/IdealSans-Bold.woff") format("woff");
+  font-style: normal;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+body * {
+  font-weight: normal;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+#journey-guide {
+  width: 1224px;
+  height: 792px;
+}
+#journey-guide ul {
+  list-style: none;
+}
+#journey-guide section {
+  width: 306px;
+  height: 396px;
+  position: absolute;
+}
+#journey-guide section#cover {
+  background-size: 270px 360px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+#journey-guide section#cover h1 {
+  margin-top: 36px;
+  font-family: "Anchor-Medium";
+  font-size: 22px;
+  line-height: 25px;
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+  color: white;
+  text-align: center;
+  margin-left: 25.2px;
+  margin-right: 25.2px;
+  max-height: 50px;
+  overflow: hidden;
+}
+#journey-guide section.page div.numeral {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 20.52px;
+  height: 36.9px;
+  border-radius: 2px;
+  z-index: 10;
+  overflow: hidden;
+}
+#journey-guide section.page div.numeral div.shadow {
+  width: 50%;
+  height: 100%;
+}
+#journey-guide section.page div.numeral p {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  font-family: "Anchor-Medium";
+  font-size: 34px;
+  color: white;
+  text-align: center;
+}
+#journey-guide section.page div.top div.img {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  width: 84px;
+  height: 76px;
+  background-size: cover;
+  background-position: top center;
+}
+#journey-guide section.page div.top div.text h2 {
+  position: absolute;
+  left: 45px;
+  top: 19.8px;
+  width: 151.2px;
+  font-family: "IdealSans-Light";
+  font-size: 10px;
+  line-height: 12.5px;
+  letter-spacing: 0.01em;
+}
+#journey-guide section.page div.top div.text h2 .prompt-title {
+  font-family: "IdealSans-Bold";
+}
+#journey-guide section.page div.top div.text p.instructions {
+  position: absolute;
+  left: 18px;
+  top: 64.8px;
+  width: 176.4px;
+  font-family: "IdealSans-Semibold";
+  font-size: 8px;
+  letter-spacing: 0.01em;
+  line-height: 10.5px;
+  color: #666666;
+  max-height: 42px;
+  overflow: hidden;
+}
+#journey-guide section.page div.activity {
+  position: absolute;
+  left: 10.8px;
+  top: 104.4px;
+  width: 284.4px;
+  height: 241.2px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+#journey-guide section.page div.closer-look {
+  position: absolute;
+  left: 16.2px;
+  top: 357px;
+  width: 273.6px;
+  font-family: "IdealSans-Semibold";
+  font-size: 8.25px;
+  line-height: 11.5px;
+  text-align: center;
+  max-height: 23px;
+  overflow: hidden;
+}
+#journey-guide section.page#page-1 div.numeral {
+  background-color: #089bcf;
+}
+#journey-guide section.page#page-1 div.numeral div.shadow {
+  background-color: #1285b3;
+}
+#journey-guide section.page#page-1 div.top div.text h2,
+#journey-guide section.page#page-1 div.closer-look {
+  color: #089bcf;
+}
+#journey-guide section.page#page-1 div.activity svg {
+  stroke: #089bcf;
+}
+#journey-guide section.page#page-2 div.numeral {
+  background-color: #abbc39;
+}
+#journey-guide section.page#page-2 div.numeral div.shadow {
+  background-color: #8ea132;
+}
+#journey-guide section.page#page-2 div.top div.text h2,
+#journey-guide section.page#page-2 div.closer-look {
+  color: #abbc39;
+}
+#journey-guide section.page#page-2 div.activity svg {
+  stroke: #abbc39;
+}
+#journey-guide section.page#page-3 div.numeral {
+  background-color: #fd56ab;
+}
+#journey-guide section.page#page-3 div.numeral div.shadow {
+  background-color: #e64b98;
+}
+#journey-guide section.page#page-3 div.top div.text h2,
+#journey-guide section.page#page-3 div.closer-look {
+  color: #fd56ab;
+}
+#journey-guide section.page#page-3 div.activity svg {
+  stroke: #fd56ab;
+}
+#journey-guide section.page#page-4 div.numeral {
+  background-color: #e23a43;
+}
+#journey-guide section.page#page-4 div.numeral div.shadow {
+  background-color: #ca2f37;
+}
+#journey-guide section.page#page-4 div.top div.text h2,
+#journey-guide section.page#page-4 div.closer-look {
+  color: #e23a43;
+}
+#journey-guide section.page#page-4 div.activity svg {
+  stroke: #e23a43;
+}
+#journey-guide section.page#page-5 div.numeral {
+  background-color: #f59120;
+}
+#journey-guide section.page#page-5 div.numeral div.shadow {
+  background-color: #ec803c;
+}
+#journey-guide section.page#page-5 div.top div.text h2,
+#journey-guide section.page#page-5 div.closer-look {
+  color: #f59120;
+}
+#journey-guide section.page#page-5 div.activity svg {
+  stroke: #f59120;
+}
+#journey-guide section.gallery-index ul li {
+  position: relative;
+  height: 126px;
+}
+#journey-guide section.gallery-index ul li div.img {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  width: 108px;
+  height: 108px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+#journey-guide section.gallery-index ul li div.text {
+  position: absolute;
+  left: 138.96px;
+  top: 28.08px;
+}
+#journey-guide section.gallery-index ul li div.text div.numeral {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 20.52px;
+  height: 36.9px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+#journey-guide section.gallery-index ul li div.text div.numeral div.shadow {
+  width: 50%;
+  height: 100%;
+}
+#journey-guide section.gallery-index ul li div.text div.numeral p {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  font-family: "Anchor-Medium";
+  font-size: 34px;
+  color: white;
+  text-align: center;
+}
+#journey-guide section.gallery-index ul li div.text h2.gallery-name {
+  margin-top: -2px;
+  margin-left: 28.8px;
+  margin-bottom: 1px;
+  width: 115.2px;
+  min-height: 12px;
+  font-family: "Anchor-Medium";
+  font-size: 10px;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+#journey-guide section.gallery-index ul li div.text p.artwork-info {
+  margin-left: 28.8px;
+  width: 122.4px;
+  font-family: "IdealSans-Semibold";
+  font-size: 6.5px;
+  line-height: 9px;
+  letter-spacing: 0.001em;
+  min-height: 30px;
+  max-height: 36px;
+  overflow: hidden;
+  margin-bottom: 5px;
+  color: #4f4f4f;
+}
+#journey-guide section.gallery-index ul li div.text p.location-directions {
+  width: 144px;
+  font-family: "IdealSans-Light";
+  color: #4f4f4f;
+  font-size: 8.5px;
+  letter-spacing: 0.01em;
+  line-height: 11px;
+  max-height: 44px;
+  overflow: hidden;
+}
+#journey-guide section.gallery-index#index-a ul li:nth-child(1) div.numeral {
+  background-color: #089bcf;
+}
+#journey-guide section.gallery-index#index-a ul li:nth-child(1) div.numeral div.shadow {
+  background-color: #1285b3;
+}
+#journey-guide section.gallery-index#index-a ul li:nth-child(1) h2.gallery-name {
+  color: #089bcf;
+}
+#journey-guide section.gallery-index#index-a ul li:nth-child(2) div.numeral {
+  background-color: #abbc39;
+}
+#journey-guide section.gallery-index#index-a ul li:nth-child(2) div.numeral div.shadow {
+  background-color: #8ea132;
+}
+#journey-guide section.gallery-index#index-a ul li:nth-child(2) h2.gallery-name {
+  color: #abbc39;
+}
+#journey-guide section.gallery-index#index-a ul li:nth-child(3) div.numeral {
+  background-color: #fd56ab;
+}
+#journey-guide section.gallery-index#index-a ul li:nth-child(3) div.numeral div.shadow {
+  background-color: #e64b98;
+}
+#journey-guide section.gallery-index#index-a ul li:nth-child(3) h2.gallery-name {
+  color: #fd56ab;
+}
+#journey-guide section.gallery-index#index-b ul li:nth-child(1) div.numeral {
+  background-color: #e23a43;
+}
+#journey-guide section.gallery-index#index-b ul li:nth-child(1) div.numeral div.shadow {
+  background-color: #ca2f37;
+}
+#journey-guide section.gallery-index#index-b ul li:nth-child(1) h2.gallery-name {
+  color: #e23a43;
+}
+#journey-guide section.gallery-index#index-b ul li:nth-child(2) div.numeral {
+  background-color: #f59120;
+}
+#journey-guide section.gallery-index#index-b ul li:nth-child(2) div.numeral div.shadow {
+  background-color: #ec803c;
+}
+#journey-guide section.gallery-index#index-b ul li:nth-child(2) h2.gallery-name {
+  color: #f59120;
+}
+#journey-guide section.gallery-index#index-b ul li:nth-child(3) div.img {
+  background-image: url("../images/journey-guide-family-room.jpg");
+}
+#journey-guide section.gallery-index#index-b ul li:nth-child(3) div.numeral {
+  background-color: #939598;
+}
+#journey-guide section.gallery-index#index-b ul li:nth-child(3) div.numeral div.shadow {
+  background-color: #848588;
+}
+#journey-guide section.gallery-index#index-b ul li:nth-child(3) h2.gallery-name {
+  color: #939598;
+}
+#journey-guide section#instructions {
+  display: none;
+}
+#journey-guide section#page-1 {
+  left: 918px;
+  top: 0px;
+  -webkit-transform: scale(1, 1) rotate(180deg);
+}
+#journey-guide section#page-2 {
+  left: 612px;
+  top: 0px;
+  -webkit-transform: scale(1, 1) rotate(180deg);
+}
+#journey-guide section#page-3 {
+  left: 306px;
+  top: 0px;
+  -webkit-transform: scale(1, 1) rotate(180deg);
+}
+#journey-guide section#page-4 {
+  left: 0px;
+  top: 0px;
+  -webkit-transform: scale(1, 1) rotate(180deg);
+}
+#journey-guide section#page-5 {
+  left: 0px;
+  top: 396px;
+  -webkit-transform: scale(1, 1) rotate(0deg);
+}
+#journey-guide section#cover {
+  left: 306px;
+  top: 396px;
+  -webkit-transform: scale(1, 1) rotate(0deg);
+}
+#journey-guide section#index-a {
+  left: 612px;
+  top: 396px;
+  -webkit-transform: scale(1, 1) rotate(0deg);
+}
+#journey-guide section#index-b {
+  left: 918px;
+  top: 396px;
+  -webkit-transform: scale(1, 1) rotate(0deg);
+}
+#journey-guide ul.page-dividers {
+  display: none;
+}
+#journey-guide.home-companion {
+  width: 612px;
+  height: 792px;
+}
+#journey-guide.home-companion section#instructions {
+  display: block;
+  left: 0px;
+  top: 1584px;
+  width: 612px;
+  height: 792px;
+  background-image: url("../images/journey-guide-instructions.png");
+  background-position: center center;
+  background-size: contain;
+}
+#journey-guide.home-companion section#page-1 {
+  left: 0px;
+  top: 1188px;
+  -webkit-transform: scale(0.97, 0.97) rotate(0deg);
+}
+#journey-guide.home-companion section#page-2 {
+  left: 306px;
+  top: 1188px;
+  -webkit-transform: scale(0.97, 0.97) rotate(0deg);
+}
+#journey-guide.home-companion section#page-3 {
+  left: 306px;
+  top: 792px;
+  -webkit-transform: scale(0.97, 0.97) rotate(180deg);
+}
+#journey-guide.home-companion section#page-4 {
+  left: 306px;
+  top: 396px;
+  -webkit-transform: scale(0.97, 0.97) rotate(0deg);
+}
+#journey-guide.home-companion section#page-5 {
+  left: 306px;
+  top: 0px;
+  -webkit-transform: scale(0.97, 0.97) rotate(180deg);
+}
+#journey-guide.home-companion section#cover {
+  left: 0px;
+  top: 0px;
+  -webkit-transform: scale(0.97, 0.97) rotate(180deg);
+}
+#journey-guide.home-companion section#index-a {
+  left: 0px;
+  top: 396px;
+  -webkit-transform: scale(0.97, 0.97) rotate(0deg);
+}
+#journey-guide.home-companion section#index-b {
+  left: 0px;
+  top: 792px;
+  -webkit-transform: scale(0.97, 0.97) rotate(180deg);
+}
+#journey-guide.home-companion ul.page-dividers {
+  position: absolute;
+  display: block;
+  top: 0px;
+  left: 0px;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+#journey-guide.home-companion ul.page-dividers li {
+  width: 306px;
+  height: 396px;
+  position: absolute;
+}
+#journey-guide.home-companion ul.page-dividers li:nth-child(1) {
+  left: 0px;
+  top: 0px;
+  border-right: 1px dashed #eee;
+  border-bottom: 1px dashed #eee;
+}
+#journey-guide.home-companion ul.page-dividers li:nth-child(2) {
+  left: 306px;
+  top: 0px;
+  border-bottom: 1px dashed #eee;
+}
+#journey-guide.home-companion ul.page-dividers li:nth-child(3) {
+  left: 0px;
+  top: 396px;
+  border-right: 1px dashed #eee;
+}
+#journey-guide.home-companion ul.page-dividers li:nth-child(4) {
+  left: 306px;
+  top: 396px;
+}
+#journey-guide.home-companion ul.page-dividers li:nth-child(5) {
+  left: 0px;
+  top: 792px;
+  border-right: 1px dashed #eee;
+  border-bottom: 1px dashed #eee;
+}
+#journey-guide.home-companion ul.page-dividers li:nth-child(6) {
+  left: 306px;
+  top: 792px;
+  border-bottom: 1px dashed #eee;
+}
+#journey-guide.home-companion ul.page-dividers li:nth-child(7) {
+  left: 0px;
+  top: 1188px;
+  border-right: 1px dashed #eee;
+}
+#journey-guide.home-companion ul.page-dividers li:nth-child(8) {
+  left: 306px;
+  top: 1188px;
+}

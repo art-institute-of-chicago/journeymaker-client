@@ -1,0 +1,481 @@
+#wrap-sections section#print {
+
+	&.assembling {
+		div.top {
+			top: 250px;
+		}
+		div.name-form {
+			display: none;
+		}
+		div.top {
+			ul.tiles {
+				li {
+					height: 255px;
+				}
+			}
+		}
+	}
+	&.rearranging {
+		div.top {
+			top: 250px;
+		}
+		div.name-form {
+			display: none;
+		}
+		div.top {
+			ul.tiles {
+				li {
+					height: 255px;
+				}
+			}
+		}
+	}
+	&.unnamed {
+		div.top {
+			top: 250px;
+		}
+		div.name-form {
+			top: 800px;
+			div.name-field {
+				p.text {
+					display: none;
+				}
+				div.cursor {
+					display: none;
+				}
+				div.help-item div.unnamed {
+					display: block;
+				}
+			}
+		}
+	}
+	&.keyboard-on {
+		div.name-form {
+			top: 555px;
+			div.name-field {
+				p.default-label {
+					display: none;
+				}
+				div.help-item div.keyboard-on {
+					display: block;
+				}
+			}
+			div.keyboard {
+				height: 400px;
+			}
+		}
+		div.top {
+			top: 130px;
+			ul.tiles {
+				li {
+					height: 255px;
+				}
+			}
+		}
+	}
+	&.named {
+		div.top {
+			top: 250px;
+		}
+		div.name-form {
+			top: 800px;
+			div.name-field {
+				p.default-label {
+					display: none;
+				}
+				div.cursor {
+					display: none;
+				}
+				div.help-item div.named {
+					display: block;
+				}
+			}
+			div.keyboard {
+				height: 0px
+			}
+		}
+	}
+	&.printing {
+		div.top {
+			top: 250px;
+		}
+		div.name-form {
+			display: none;
+		}
+		div.btm {
+			display: block;
+			button.exit {
+				display: none;
+			}
+		}
+	}
+	&.printed {
+		div.top {
+			top: 250px;
+		}
+		div.name-form {
+			display: none;
+		}
+		div.btm {
+			display: block;
+			div.print-progress {
+				display: none;
+			}
+			p.progress-label {
+				display: none;
+			}
+			p.btns {
+				display: block;
+			}
+		}
+	}
+
+	div.top {
+		position: absolute;
+		top: 150px;
+		width: 100%;
+		.transition(~"top 400ms ease, opacity 500ms ease");
+
+		h3 {
+			font-size: 60px;
+			font-family: @anchor;
+			text-align: center;
+			color: white;
+			letter-spacing: 0.04em;
+			margin: 0px;
+			text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+			text-transform: uppercase;
+
+		}
+
+		ul.tiles {
+			list-style: none;
+			padding: 0px;
+			position: absolute;
+			left: 50%;
+			top: 100px;
+
+			li {
+				position: absolute;
+				background-image: url("../images/print-tiles-bg.png");
+				margin: 0px;
+				width: 280px;
+				height: 370px;
+				overflow: hidden;
+				.transition(~"height 300ms ease");
+
+				div.img {
+					background-size: contain;
+					background-position: center center;
+					background-repeat: no-repeat;
+					width: 240px;
+					height: 215px;
+					margin: 20px 0px 0px 20px;
+				}
+
+				div.narrative {
+					position: absolute;
+					top: 255px;
+					width: 100%;
+					height: 115px;
+					background: white;
+					border-top: 5px solid #999;
+
+					p {
+						position: absolute;
+						top: 50%;
+						padding: 20px 35px;
+						font: normal normal 500 16px/21px @ideal;
+						text-align: center;
+						color: #222;
+						margin: 0px;
+						width: 280px;
+						.translate(0px, -55%);
+					}
+
+				}
+
+			}
+		}
+
+	}
+
+	div.name-form {
+		position: absolute;
+		left: 50%;
+		top: 600px;
+		width: 720px;
+		.translate(-50%, 0px);
+		.transition(~"top 300ms ease");
+
+		div.name-field {
+			width: 100%;
+			height: 85px;
+			.translucent-bg(white, 0.75);
+			margin-bottom: 15px;
+			.round(8px);
+			padding: 12px;
+			position: relative;
+
+			input.home-input {
+				display: none;
+			}
+
+			div.hit-area {
+				position: absolute;
+				width: 550px;
+				height: 60px;
+			}
+
+			> p {
+				display: inline-block;
+				vertical-align: top;
+				font: normal normal 500 26px/30px @ideal;
+				padding: 15px 25px 15px 20px;
+				margin: 0px;
+
+				&.text {
+					color: @articRed;
+					white-space: pre;
+				}
+
+				&.default-label {
+					color: #444;
+				}
+			}
+
+			div.cursor {
+				display: inline-block;
+				width: 2px;
+				height: 45px;
+				margin-top: 8px;
+				margin-left: -25px;
+				background-color: #888;
+
+				&.off {
+					background-color: transparent;
+				}
+
+			}
+
+			button {
+				position: absolute;
+				top: 12px;
+				right: 12px;
+				background-color: @articBlue;
+				width: 135px;
+				height: 61px;
+				.round(8px);
+				font-family: @anchor;
+				font-size: 24px;
+				text-transform: uppercase;
+				letter-spacing: 0.045em;
+				color: white;
+
+				&.active {
+					color: @articBlue;
+					background-color: white;
+				}
+
+				&.disabled {
+					background-color: #aaa;
+					color: #ddd;
+				}
+
+			}
+
+			div.help-item {
+
+				> div {
+					display: none;
+
+					&.unnamed,
+					&.named {
+						position: absolute;
+						right: -110px;
+						bottom: -142px;
+						div.stem {
+							width: 3px;
+							height: 50px;
+							position: absolute;
+							top: -50px;
+							left: 50%;
+						}
+						p.home {
+							display: none;
+						}
+					}
+					&.keyboard-on {
+						position: absolute;
+						right: -450px;
+						top: -10px;
+						div.stem {
+							width: 77px;
+							height: 3px;
+							position: absolute;
+							top: 50%;
+							left: -77px;
+						}
+					}
+				}
+
+			}
+
+		}
+
+		div.keyboard {
+			position: relative;
+			height: 0px;
+			overflow: hidden;
+			.transition(~"height 300ms ease");
+
+			&.shift-on {
+				button {
+					text-transform: uppercase;
+
+					&.shift {
+						background-image: url("../images/keyboard-key-shift-active.png");
+						background-color: @articRed;
+						&.active {
+							background-image: url("../images/keyboard-key-shift-active.png");
+						}
+					}
+
+				}
+			}
+
+			button {
+				position: absolute;
+				display: inline-block;
+				vertical-align: top;
+				background: white;
+				.round(8px);
+				color: @articRed;
+				font-family: @anchor;
+				font-size: 22px;
+				width: 60px;
+				height: 60px;
+				background-repeat: no-repeat;
+				background-position: center center;
+
+				&.active {
+					background-color: @articRed;
+					color: white;
+				}
+
+				&.backspace {
+					background-image: url("../images/keyboard-key-backspace.png");
+					&.active {
+						background-image: url("../images/keyboard-key-backspace-active.png");
+					}
+				}
+
+				&.shift {
+					background-image: url("../images/keyboard-key-shift.png");
+					&.active {
+						background-image: url("../images/keyboard-key-shift-active.png");
+					}
+				}
+
+			}
+		}
+
+	}
+
+	div.btm {
+		position: absolute;
+		top: 790px;
+		width: 1432px;
+		left: 50%;
+		.translate(-50%, 0px);
+		display: none;
+
+		div.print-progress {
+			width: 100%;
+			height: 8px;
+			background: #ccc;
+
+			div.progress-bar {
+				background: @articRed;
+				width: 25%;
+				height: 100%;
+			}
+
+		}
+
+		p.progress-label {
+			font-family: @anchor;
+			text-align: center;
+			color: white;
+			font-size: 24px;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+
+		p.btns {
+			display: none;
+			text-align: center;
+
+			button {
+				background-color: @articBlue;
+				height: 61px;
+				padding: 0px 20px;
+				.round(8px);
+				font-family: @anchor;
+				font-size: 24px;
+				text-transform: uppercase;
+				letter-spacing: 0.045em;
+				color: white;
+
+				&.active {
+					background-color: white;
+					color: @articBlue;
+				}
+
+				&.kiosk {
+					&.exit {
+						width: 90px;
+					}
+				}
+				&.home {
+					display: none;
+				}
+
+			}
+
+		}
+
+		> .help-item {
+			position: absolute;
+			top: -8px;
+			left: 875px;
+
+			p {
+				width: 550px;
+				&.home {
+					display: none;
+				}
+			}
+
+			div.stem {
+				position: absolute;
+				top: 50%;
+				left: -114px;
+				width: 114px;
+				height: 3px;
+			}
+
+		}
+
+
+	}
+
+}
+
+body.help-on #wrap-sections section#print {
+
+	div.top {
+		opacity: 0.2;
+	}
+
+}

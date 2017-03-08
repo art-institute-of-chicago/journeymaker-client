@@ -1,0 +1,58 @@
+
+<html>
+<head> 
+ <script type="text/javascript">
+ 
+ 		  var ws;
+ 
+         function WebSocketTest()
+         {
+            if ("WebSocket" in window)
+            {
+               ws = new WebSocket("ws://localhost:8080","echo-protocol");
+				
+               ws.onopen = function()
+               {
+            		 document.getElementById('log').innerHTML += '<br>' + "Connected to Prox Sensor";
+               } ;
+				
+               ws.onmessage = function (evt) 
+               { 
+                  var received_msg = evt.data;
+                  document.getElementById('log').innerHTML += '<br>' + received_msg;
+               };
+				
+               ws.onclose = function()
+               { 
+                  // websocket is closed.
+                   document.getElementById('log').innerHTML += '<br>' + "Disconnected to Prox Sensor";
+               };
+            }
+            
+            else
+            {
+               // The browser doesn't support WebSocket
+               alert("WebSocket NOT supported by your Browser!");
+            }
+         }
+         
+         function WebSocketSend()
+         {
+         
+         	ws.send("<html> <head> <!-- Meta --> <meta charset='UTF-8'> <title>Art Institute of Chicago | PDF test</title> <!-- Styles --> <style type='text/css'> @font-face { font-family: 'Anchor'; src: url('Anchor-Medium.woff') format('woff'); font-weight: 500; font-style: normal; } .anchor { font-family: 'Anchor', fantasy; } h2 { font-size: 72px; margin: 0px; font-weight: normal; } p { font-size: 20px; margin: 0px 0px 20px 0px; } </style> </head> <!-- Body --> <body> <div class='anchor'> <h2>Anchor</h2> <p>Loaded from web-font file with the socket server</p> </div> </body> </html> ");	
+         
+         }
+      </script>
+
+</head>
+<body>Hello There
+
+ <div id="sse">
+         <a href="javascript:WebSocketTest()">Run WebSocket</a>
+           <a href="javascript:WebSocketSend()">Send HTML</a>
+      </div>
+      
+	<div id="log">
+	</div>
+</body>
+</html>

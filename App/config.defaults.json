@@ -1,0 +1,68 @@
+{
+
+	"baseURL": "http://localhost:80",
+
+	"isHomeCompanion": false,
+	"contentOrigin": null,
+	"contentPath": null,
+
+	"keyboardLayoutPath": "resources/data/keyboard-layout.json",
+	"spriteSheetsPath": "resources/data/sprite-sheets.json",
+
+	"timeoutSecs": 180,
+
+	"enableDebugKeys": false,
+
+	"enableLogging": false,
+	"loggingSocketHost": "ws://localhost:8085",
+	"loggingSocketProtocol": "echo-protocol",
+
+	"enableMouse": true,
+
+	"enableTuio": false,
+	"tuioHost": "http://localhost:5000",
+	"tuioArea": {
+		"x": 0,
+		"y": 0,
+		"width": 1,
+		"height": 1
+	},
+
+	"enablePrintSocket": false,
+	"printSocketHost": "ws://localhost:8080",
+	"printSocketProtocol": "echo-protocol",
+	"printTimeoutSecs": 60,
+	"printOutputPath": "/tmp",
+
+	"printValidPrinters": null,
+	"printPreferredPrinter": null,
+
+	"enableWebPdfGeneration": false,
+	"webPdfGeneratorPath": null,
+
+	"priorityGalleryIds": null,
+
+	"themeIds": null,
+
+	"activityTemplateIds": {
+		"sequence": 608,
+		"verbal-response": 610,
+		"writing-and-drawing": 609,
+		"pose": 1,
+		"dialogue": 622
+	},
+
+	"guideStartX": 41.880591,
+	"guideStartY": -87.62172,
+	"guideStartFloor": 1,
+	"guideFloorOffsetMeters": 60,
+
+	"enableAnalytics": false,
+	"analyticsId": null,
+	"analyticsPrefix": null,
+	"analyticsDebug": false,
+
+	"buyTicketsUrl": "javascript:;",
+	"visitUrl": "javascript:;"
+
+}

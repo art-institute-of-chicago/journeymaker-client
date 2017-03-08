@@ -1,0 +1,11 @@
+{
+  "name": "artic-journeymaker-tuio",
+  "version": "1.0.0",
+  "engines": {
+    "node": "0.12.7"
+  },
+  "dependencies": {
+    "express": "2.5.10",
+    "tuio": "^1.0.0"
+  }
+}

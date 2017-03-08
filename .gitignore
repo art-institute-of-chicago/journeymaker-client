@@ -1,0 +1,7 @@
+.DS_Store
+node_modules
+config.auto.json
+config.custom.json
+install.log
+App/assets
+Kiosk

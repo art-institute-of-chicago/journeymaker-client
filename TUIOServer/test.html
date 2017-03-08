@@ -1,0 +1,51 @@
+<html>
+<head></head>
+<body>
+<script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/0.1.0/lodash.min.js" type="text/javascript">></script>
+<script src="https://raw.githubusercontent.com/fe9lix/Tuio.js/master/dist/Tuio.js" type="text/javascript">></script>
+<script>
+var client = new Tuio.Client({
+    host: "http://127.0.0.1:5000"
+}),
+
+onAddTuioCursor = function(addCursor) {
+  console.log(addCursor);
+},
+
+onUpdateTuioCursor = function(updateCursor) {
+  console.log(updateCursor);
+},
+
+onRemoveTuioCursor = function(removeCursor) {
+  console.log(removeCursor);
+},
+
+onAddTuioObject = function(addObject) {
+    console.log(addObject);
+},
+
+onUpdateTuioObject = function(updateObject) {
+    console.log(updateObject);
+},
+
+onRemoveTuioObject = function(removeObject) {
+    console.log(removeObject);
+},
+
+onRefresh = function(time) {
+  console.log(time);
+};
+
+client.on("addTuioCursor", onAddTuioCursor);
+client.on("updateTuioCursor", onUpdateTuioCursor);
+client.on("removeTuioCursor", onRemoveTuioCursor);
+client.on("addTuioObject", onAddTuioObject);
+client.on("updateTuioObject", onUpdateTuioObject);
+client.on("removeTuioObject", onRemoveTuioObject);
+client.on("refresh", onRefresh);
+client.connect();
+
+
+</script></body>
+</html>

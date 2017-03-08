@@ -1,0 +1,49 @@
+// Polyhedron
+/////////////////////////////////////////////
+
+#wrap-polyhedron {
+	position: absolute;
+	left: 50%;
+	top: 430px;
+	margin-left: -290px;
+	background: url("../images/shape-shadow.png") center center no-repeat;
+	.opacity(1);
+	.transition(~"opacity 0.5s ease 500ms");
+
+	&.off {
+		.opacity(0);
+		.transition(~"opacity 0.5s ease");
+	}
+
+}
+
+#polyhedron {
+	width: 580px;
+	height: 470px;
+}
+
+#wrap-anims {
+	position: absolute;
+	top: 97px;
+	left: 130px;
+	width: 316px;
+	height: 274px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	overflow: hidden;
+	opacity: 0;
+	visibility: hidden;
+	.transition(~"visibility 0ms, opacity 250ms ease");
+
+	&.parked {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	div.anim {
+		width: 100%;
+		height: 100%;
+	}
+
+}
+

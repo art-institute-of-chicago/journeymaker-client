@@ -1,0 +1,159 @@
+
+body.attract {
+
+	#header {
+
+		div.nav-left {
+			left: -180px;
+		}
+		div.nav-right {
+			right: -180px;
+		}
+
+		ul.nav {
+			left: 0px;
+			width: 1920px;
+
+			li {
+				width: 480px;
+
+				div.attract-intro {
+					height: 300px;
+					.transition(~"height 300ms ease 750ms, opacity 1200ms ease");
+					.opacity(0.5);
+
+					div.icon {
+						.transition(~"opacity 300ms ease");
+						.opacity(0.9);
+					}
+
+				}
+
+				&.selected {
+					background-color: @articBlue;
+					div.item {
+						span.bullet {
+							border-color: white;
+							color: white;
+						}
+						span.title {
+							color: white;
+							em {
+								color: white;
+							}
+						}
+					}
+
+					div.attract-intro {
+						.opacity(1);
+						div.icon {
+							.opacity(1);
+						}
+					}
+				}
+
+			}
+		}
+
+		div.attract-shadow {
+			height: 5px;
+		}
+
+	}
+
+	#bg {
+		.opacity(0);
+	}
+
+	#bgs {
+		ul {
+			.opacity(0.5);
+		}
+	}
+
+	#wrap-sections {
+
+		section#spin {
+
+			div.panel {
+
+				div.panel-top {
+					.opacity(0);
+
+					div.wrap-title {
+						border-color: white;
+					}
+					div.wrap-info {
+						height: 0px;
+						padding-top: 0px;
+						padding-bottom: 0px;
+					}
+
+				}
+
+				div.panel-divider {
+					.opacity(0);
+				}
+
+				div.panel-bottom {
+					.translucent-bg(#fff, 0);
+
+					div.wrap-continue {
+						button.continue {
+							.opacity(0);
+						}
+					}
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+section#attract {
+
+	h1 {
+		.hide-text();
+		position: absolute;
+		top: 60%;
+		left: 50%;
+		.translate(-50%, -50%);
+		width: 843px;
+		height: 152px;
+		background-image: url("../images/attract-logo.png");
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center center;
+	}
+
+	&.idle {
+		button.begin {
+			padding: 0px 25px;
+			height: 61px;
+			bottom: 220px;
+		}
+	}
+
+	button.begin {
+		display: inline-block;
+		position: absolute;
+		left: 50%;
+		.translate(-50%, -50%);
+
+		background-color: @articBlue;
+		height: 55px;
+		bottom: 226px;
+		padding: 0px 19px;
+		.round(8px);
+		font-family: @anchor;
+		font-size: 24px;
+		text-transform: uppercase;
+		letter-spacing: 0.045em;
+		color: white;
+
+	}
+
+}

@@ -1,0 +1,12 @@
+{
+  "name": "artic-journeymaker-logger",
+  "version": "1.0.0",
+  "engines": {
+    "node": "0.12.7"
+  },
+  "dependencies": {
+    "http": "0.0.0",
+    "websocket": "1.0.23",
+    "winston": "2.2.0"
+  }
+}
