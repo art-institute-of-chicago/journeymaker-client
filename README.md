@@ -1,4 +1,5 @@
-![Art Institute of Chicago](https://raw.githubusercontent.com/Art-Institute-of-Chicago/template/master/aic-logo.gif)
+![Art Institute of Chicago](https://raw.githubusercontent.com/art-institute-of-chicago/template/master/aic-logo.gif)
+<img src=journeymaker-logo.png alt="JourneyMaker: Your Journey Begins Here" width=75% style="float: right"/>
 
 # JourneyMaker Client
 > A JavaScript app that digests data from the JourneyMaker CMS
