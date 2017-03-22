@@ -16,6 +16,11 @@ Outside contributors can ignore Redmine references.
 
 1.2.0 - Multiple language support (in progress by Belle & Wissel Co.)
 
+1.1.1 - Tweaks to documentation
+
+* Update spacing of images in README
+* Make corrections to README
+
 1.1.0 - Changes for open source release:
 
 * Lint whitespace for consistency [#1462]
