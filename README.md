@@ -262,7 +262,7 @@ We like to use [git-flow](https://github.com/nvie/gitflow) to make this process 
 
 ```bash
 # Clone the repo to your computer
-git clone git@github.com:your-github-account/journeymaker-client.git
+git clone https://github.com/your-github-account/journeymaker-client.git
 
 # Enter the folder that was created by the clone
 cd journeymaker-client
