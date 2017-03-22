@@ -208,7 +208,7 @@ fi
 echo "${G}JourneyMaker Client install complete!${W}"
 
 echo "${G}Congrats! You've successfully installed the JourneyMaker Client. You need to adjust some${W}"
-echo "${G}configurations personally in App/config.custom.js, in particular the baseURL and${W}"
+echo "${G}configurations personally in App/config.custom.json, in particular the baseURL and${W}"
 echo "${G}contentOrigin. See README.md and README.KIOSK.md for the config options.${W}"
 if [ "$MODE" == "kiosk" ]; then
     echo
