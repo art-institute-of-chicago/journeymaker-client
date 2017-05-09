@@ -53,32 +53,6 @@ body.home-companion {
 	}
 
 
-	// Logo
-	/////////////////////////////////////////////
-
-	#artic-logo {
-		top: auto;
-		bottom: 36px;
-		left: 36px;
-		width: 72px;
-		height: 72px;
-		margin-top: 0px;
-		pointer-events: auto !important;
-		cursor: pointer !important;
-		.transition(opacity 200ms);
-
-		p {
-			top: 0px;
-			left: 0px;
-		}
-
-		&:hover {
-			opacity: 0.7;
-		}
-
-	}
-
-
 	// Header
 	/////////////////////////////////////////////
 
@@ -200,6 +174,16 @@ body.home-companion {
 
 		}
 
+		&.theme-locked {
+
+			div.theme {
+				div.theme-heading {
+					padding-right: 310px;
+				}
+			}
+
+		}
+
 		div.theme {
 			padding: 13px 25px 0px 15px;
 
@@ -251,7 +235,7 @@ body.home-companion {
 
 				}
 
-				button.change {
+				button {
 					top: 15px;
 					right: 15px;
 					width: 85px;
@@ -546,25 +530,66 @@ body.home-companion {
 	section#attract {
 
 		h1 {
-			top: 55%;
-			left: 50%;
-			.translate(-50%, -50%);
-			width: 766px;
-			height: 119px;
+			width: 530px;
+			height: 72px;
+			top: 52.5%;
+			left: 46.25%;
 		}
 
-		&.idle {
-			button.begin {
-				.translate(-50%, 0px);
-			}
+		h2 {
+			top: 55%;
+			font-size: 30px;
 		}
 
 		button.begin {
 			top: 70%;
 			left: 50%;
+			bottom: auto;
 			.translate(-50%, 3px);
-
 			font-size: 20px;
+			height: 55px;
+
+			&.active {
+				height: 49px;
+				bottom: auto;
+				margin-top: 3px;
+				padding: 0px 19px;
+			}
+
+		}
+
+		.artic-logo {
+			pointer-events: auto !important;
+			cursor: pointer !important;
+
+			&:hover {
+				opacity: 0.7;
+			}
+
+		}
+
+		.language-select {
+			right: 36px;
+			bottom: 36px;
+			width: 200px;
+
+			ul {
+				li {
+					& + li {
+						margin-top: 14px;
+					}
+				}
+			}
+
+			button {
+				height: 55px;
+				font-size: 20px;
+
+				&.select {
+					background-position: right 22px center;
+				}
+
+			}
 
 		}
 
@@ -794,7 +819,7 @@ body.home-companion {
 				margin-top: -25px;
 				top: 50%;
 				width: 400px;
-				padding: 30px;
+				padding: 30px 30px 110px 30px;
 
 				p {
 					margin: 0px;
@@ -810,7 +835,7 @@ body.home-companion {
 						font: normal normal 500 14px/20px @ideal;
 						letter-spacing: 0.01em;
 						color: #9b9b9b;
-						margin-bottom: 100px;
+						margin-bottom: 0px;
 					}
 
 				}
@@ -916,14 +941,28 @@ body.home-companion {
 
 		}
 
+		&.named {
+			div.name-form {
+				width:auto;
+				div.name-field {
+					padding: 10px;
+					div.hit-area,
+					input.home-input,
+					p.text {
+						display: none;
+					}
+				}
+			}
+		}
+
 		div.name-form {
 			top: ~"calc(40% + 215px)";
 			width: 550px;
 
 			div.name-field {
-				height: 70px;
+				height: 75px;
 				margin-bottom: 15px;
-				padding: 0px;
+				padding: 10px;
 
 				input.home-input {
 					position: absolute;
@@ -931,7 +970,7 @@ body.home-companion {
 					vertical-align: top;
 					font: normal normal 500 20px/25px @ideal;
 					width: 400px;
-					padding: 22px 0px 23px 20px;
+					padding: 16px 0px 23px 20px;
 					margin: 0px;
 					border: none;
 					background: none;
@@ -945,7 +984,7 @@ body.home-companion {
 						display: none;
 					}
 					&.default-label {
-						padding-top: 22px;
+						padding-top: 16px;
 						font: normal normal 500 20px/25px @ideal;
 					}
 				}
@@ -956,11 +995,11 @@ body.home-companion {
 				}
 
 				button {
-					top: 12px;
-					right: 12px;
 					width: 125px;
-					height: 45px;
+					height: 55px;
 					font-size: 19px;
+					line-height: 20px;
+					padding-top: 4px;
 				}
 
 				div.help-item {

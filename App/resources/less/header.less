@@ -184,6 +184,13 @@
 		border: 2px solid @articBlue;
 		.round(6px);
 
+		span.on {
+			display: none;
+		}
+		span.off {
+			display: inline;
+		}
+
 		&.active {
 			width: 86px;
 			height: 41px;
@@ -193,6 +200,14 @@
 		&.on {
 			background-color: @articBlue;
 			color: white;
+
+			span.off {
+				display: none;
+			}
+			span.on {
+				display: inline;
+			}
+
 		}
 
 		&#help-btn {
