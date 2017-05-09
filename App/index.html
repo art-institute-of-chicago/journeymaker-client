@@ -13,7 +13,220 @@
 		<link rel="stylesheet" type="text/css" href="https://cloud.typography.com/742192/6425352/css/fonts.css" />
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css">
 
-		<script id="template-obj" type="text/x-jsrender">
+		<script type="text/x-jsrender" id="template-header">
+
+					<div class="nav-left">
+						<button id="help-btn">
+							<span class="off">{{:strings.headerBtnHelp}}</span>
+							<span class="on">{{:strings.btnLabelClose}}</span>
+						</button>
+					</div>
+
+					<ul class="nav">
+						<li class="step-1">
+							<div class="item">
+								<span class="bullet step-1">1</span>
+								<span class="title"><em>{{:strings.headerStep1TitleA}}</em> {{:strings.headerStep1TitleB}}</span>
+							</div>
+							<div class="description"><p>{{:strings.headerStep1Description}}</p></div>
+							<div class="attract-intro">
+								<div class="icon"></div>
+							</div>
+						</li>
+						<li class="step-2">
+							<div class="item">
+								<span class="bullet">2</span>
+								<span class="title"><em>{{:strings.headerStep2TitleA}}</em> {{:strings.headerStep2TitleB}}</span>
+							</div>
+							<div class="description"><p>{{:strings.headerStep2Description}}</p></div>
+							<div class="attract-intro">
+								<div class="icon"></div>
+							</div>
+						</li>
+						<li class="step-3">
+							<div class="item">
+								<span class="bullet">3</span>
+								<span class="title"><em>{{:strings.headerStep3TitleA}}</em> {{:strings.headerStep3TitleB}}</span>
+							</div>
+							<div class="description"><p>{{:strings.headerStep3Description}}</p></div>
+							<div class="attract-intro">
+								<div class="icon"></div>
+							</div>
+						</li>
+						<li class="step-4">
+							<div class="item">
+								<span class="bullet">4</span>
+								<span class="title"><em>{{:strings.headerStep4TitleA}}</em> {{:strings.headerStep4TitleB}}</span>
+							</div>
+							<div class="description"><p>{{:strings.headerStep4Description}}</p></div>
+							<div class="attract-intro">
+								<div class="icon"></div>
+							</div>
+						</li>
+					</ul>
+
+					<div class="nav-right">
+						<button id="credits-btn">
+							<span class="off">{{:strings.headerBtnCredits}}</span>
+							<span class="on">{{:strings.btnLabelClose}}</span>
+						</button>
+					</div>
+
+					<div class="attract-shadow"></div>
+
+				</script>
+				<script type="text/x-jsrender" id="template-footer">
+
+					<div class="theme-change-screen"></div>
+
+					<div class="theme">
+						<div class="theme-change-bg"></div>
+						<div class="spacer"></div>
+						<div class="theme-heading">
+							<div class="icon"></div>
+							<div class="wrap-titles">
+								<h5>{{:strings.footerTitle}}</h5>
+								<h2 class="title"></h2>
+							</div>
+							<button class="change">
+								<span class="label-change">{{:strings.footerBtnChange}}</span>
+								<span class="label-close">{{:strings.btnLabelClose}}</span>
+								<span class="label-back">{{:strings.footerBtnGoBack}}</span>
+							</button>
+							<div class="help-item">
+								<p>{{:strings.footerHelpChange}}</p>
+								<div class="stem"></div>
+							</div>
+						</div>
+						<div class="theme-expanded">
+							<div class="help-item">
+								<p>{{:strings.footerHelpClose}}</p>
+								<div class="stem"></div>
+							</div>
+							<div class="wrap-info">
+								<p></p>
+							</div>
+							<div class="change-theme">
+								<div class="wrap-polyhedron"></div>
+								<div class="btn-btm">
+									<button class="accept disabled">{{:strings.footerBtnExpandedChange}}</button>
+								</div>
+								<div class="help-item">
+									<p>{{:strings.footerHelpSelect}}</p>
+									<div class="stem"></div>
+									<div class="area"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<ol class="tray">
+						<li>
+							<div class="bg-pattern"></div>
+							<div class="object">
+								<div class="wrap-img"></div>
+								<button class="close">{{:strings.btnLabelClose}}</button>
+							</div>
+							<p class="prompt-title"></p>
+						</li>
+						<li>
+							<div class="bg-pattern"></div>
+							<div class="object">
+								<div class="wrap-img"></div>
+								<button class="close">{{:strings.btnLabelClose}}</button>
+							</div>
+							<p class="prompt-title"></p>
+						</li>
+						<li>
+							<div class="bg-pattern"></div>
+							<div class="object">
+								<div class="wrap-img"></div>
+								<button class="close">{{:strings.btnLabelClose}}</button>
+							</div>
+							<p class="prompt-title"></p>
+						</li>
+						<li>
+							<div class="bg-pattern"></div>
+							<div class="object">
+								<div class="wrap-img"></div>
+								<button class="close">{{:strings.btnLabelClose}}</button>
+							</div>
+							<p class="prompt-title"></p>
+						</li>
+						<li>
+							<div class="bg-pattern"></div>
+							<div class="object">
+								<div class="wrap-img"></div>
+								<button class="close">{{:strings.btnLabelClose}}</button>
+							</div>
+							<p class="prompt-title"></p>
+						</li>
+					</ol>
+
+					<div class="wrap-continue">
+						<div class="help-item">
+							<p>{{:strings.footerHelpContinue}}</p>
+							<div class="stem"></div>
+						</div>
+						<button class="continue">{{:strings.footerBtnContinue}}</button>
+					</div>
+
+				</script>
+
+				<script type="text/x-jsrender" id="template-attract">
+
+					<h1>JourneyMaker</h1>
+					<h2>{{:strings.attractTagline}}</h2>
+
+					<button class="begin">{{:strings.attractBeginBtn}}</button>
+
+					<div class="artic-logo">
+						<p>Art Institute of Chicago</p>
+					</div>
+
+					<div class="language-select">
+						<ul>
+							{{for langs}}
+							<li data-lang="{{:code}}"><button>{{:label}}</button></li>
+							{{/for}}
+						</ul>
+						<button class="select">{{:strings.attractLanguageBtn}}</button>
+					</div>
+
+				</script>
+
+				<script type="text/x-jsrender" id="template-spin">
+
+					<div class="panel">
+
+						<div class="panel-top">
+							<div class="wrap-title">
+								<div class="icon"></div>
+								<h3></h3>
+							</div>
+							<div class="wrap-info">
+								<p></p>
+							</div>
+						</div>
+
+						<div class="panel-divider"></div>
+
+						<div class="panel-bottom">
+							<div class="wrap-continue">
+								<button class="continue">{{:strings.spinContinueBtn}}</button>
+							</div>
+							<div class="help-item">
+								<p>{{:strings.spinHelpContinue}}</p>
+								<div class="stem"></div>
+							</div>
+						</div>
+
+					</div>
+
+				</script>
+
+				<script type="text/x-jsrender" id="template-build-obj">
+
 			<div data-id="{{:id}}" class="obj unloaded">
 				{{if data.img && data.img.url}}<img src="{{:data.img.url}}">{{/if}}
 				<div class="help-item">
@@ -21,20 +234,160 @@
 				</div>
 			</div>
 		</script>
-		<script id="template-prompt-title" type="text/x-jsrender">
+
+		<script type="text/x-jsrender" id="template-build-prompt-title">
+
 			<div class="prompt-title unloaded">
 				<h2><span>{{:title}}</span></h2>
 				<h4><span>{{:subtitle}}</span></h4>
 			</div>
 		</script>
-		<script id="template-keyboard-key" type="text/x-jsrender">
-			{{if char}}
-				<button {{if class}}class="{{:class}}" {{/if}}data-char="{{:char}}" data-col="{{:col}}" data-row="{{:row}}" data-width="{{:width}}">{{:char}}</button>
-			{{else func}}
-				<button {{if class}}class="{{:class}}" {{/if}}data-func="{{:func}}" data-col="{{:col}}" data-row="{{:row}}" data-width="{{:width}}"></button>
-			{{/if}}
-		</script>
-		<script id="template-journey-guide-pdf" type="text/x-jsrender">
+
+		<script type="text/x-jsrender" id="template-build-obj-detail">
+
+					<div class="wrap-selected-obj"></div>
+					<div class="multitouch-area"></div>
+					<div class="detail-panel">
+						<div class="panel-tail"></div>
+						<div class="wrap-top-text">
+							<p class="description"></p>
+							<p class="meta-info"></p>
+						</div>
+						<div class="wrap-credits at-top">
+							<button class="expand-collapse">Expand/Collapse</button>
+							<div class="wrap-credits-text">
+								<p></p>
+							</div>
+							<div class="overflow-fade top"></div>
+							<div class="overflow-fade btm"></div>
+							<div class="drag"></div>
+						</div>
+						<div class="btn-btm">
+							<button class="add"></button>
+						</div>
+						<button class="close">Close</button>
+						<div class="help-item">
+							<p>{{:strings.buildHelpAdd}}</p>
+							<div class="stem"></div>
+						</div>
+					</div>
+
+				</script>
+
+				<script type="text/x-jsrender" id="template-print-keyboard-key">
+					<button {{if class}}class="{{:class}}" {{/if}}>{{if label}}{{:label}}{{else char}}{{:char}}{{/if}}</button>
+				</script>
+				<script type="text/x-jsrender" id="template-print">
+
+					<div class="top">
+
+						<h3></h3>
+
+						<ul class="tiles">
+							<li>
+								<div class="img"></div>
+								<div class="narrative"><p></p></div>
+							</li>
+							<li>
+								<div class="img"></div>
+								<div class="narrative"><p></p></div>
+							</li>
+							<li>
+								<div class="img"></div>
+								<div class="narrative"><p></p></div>
+							</li>
+							<li>
+								<div class="img"></div>
+								<div class="narrative"><p></p></div>
+							</li>
+							<li>
+								<div class="img"></div>
+								<div class="narrative"><p></p></div>
+							</li>
+						</ul>
+
+					</div>
+
+					<div class="name-form">
+
+						<div class="name-field">
+
+							<div class="hit-area"></div>
+							<input type="text" class="home-input">
+							<p class="text"></p>
+							<p class="default-label">{{:strings.printInputDefaultLabel}}</p>
+							<div class="cursor"></div>
+
+							<button class="edit">{{:strings.printBtnEditUnnamed}}</button>
+							<button class="submit">{{:strings.printBtnSubmit}}</button>
+							<button class="create">{{:strings.printBtnCreate}}</button>
+							<button class="restart">{{:strings.printBtnRestart}}</button>
+
+							<div class="help-item">
+								<div class="unnamed">
+									<p>{{:strings.printHelpUnnamed}}</p>
+									<div class="stem"></div>
+								</div>
+								<div class="keyboard-on">
+									<p>{{:strings.printHelpKeyboardOn}}</p>
+									<div class="stem"></div>
+								</div>
+								<div class="named">
+									<p>{{:strings.printHelpNamed}}</p>
+									<div class="stem"></div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="keyboard"></div>
+
+					</div>
+
+					<div class="btm">
+						<div class="print-progress">
+							<div class="progress-bar"></div>
+						</div>
+						<p class="progress-label"></p>
+						<p class="btns">
+							<button class="kiosk exit">{{:strings.printBtnExit}}</button>
+							<button class="home visit">{{:strings.printBtnHomeVisit}}</button>
+							<button class="home buy">{{:strings.printBtnHomeBuy}}</button>
+							<button class="home redo">{{:strings.printBtnHomeRedo}}</button>
+							<button class="home download">{{:strings.printBtnHomeDownload}}</button>
+						</p>
+						<div class="help-item">
+							<p>{{:strings.printHelpEnd}}</p>
+							<div class="stem"></div>
+						</div>
+					</div>
+
+				</script>
+
+				<script type="text/x-jsrender" id="template-credits">
+
+					<div class="screen"></div>
+
+					<div class="panel">
+						<button class="close">{{:strings.btnLabelClose}}</button>
+						<div class="top">
+							<p>{{:strings.creditsTitleA}}</p>
+							<p class="logo">
+								<a target="_blank" href="http://artic.edu"><img src="resources/images/credits-logo-womans-board.png"></a>
+							</p>
+						</div>
+						<div class="btm">
+							<p>{{:strings.creditsTitleB}}</p>
+							<p class="logo">
+								<a target="_blank" href="http://bwco.info"><img src="resources/images/credits-logo-bwco.png"></a>
+							</p>
+						</div>
+					</div>
+
+		 </script>
+
+		 <script type="text/x-jsrender" id="template-tour-journey-guide-pdf">
+
 			<html>
 				<head>
 					<meta charset="UTF-8">
@@ -203,102 +556,13 @@
 				<ul></ul>
 			</div>
 
-			<div id="header">
-
-				<div class="nav-left">
-					<button id="help-btn">Help</button>
-				</div>
-
-				<ul class="nav">
-					<li class="step-1">
-						<div class="item">
-							<span class="bullet step-1">1</span>
-							<span class="title"></span>
-						</div>
-						<div class="description"></div>
-						<div class="attract-intro">
-							<div class="icon"></div>
-						</div>
-					</li>
-					<li class="step-2">
-						<div class="item">
-							<span class="bullet">2</span>
-							<span class="title"></span>
-						</div>
-						<div class="description"></div>
-						<div class="attract-intro">
-							<div class="icon"></div>
-						</div>
-					</li>
-					<li class="step-3">
-						<div class="item">
-							<span class="bullet">3</span>
-							<span class="title"></span>
-						</div>
-						<div class="description"></div>
-						<div class="attract-intro">
-							<div class="icon"></div>
-						</div>
-					</li>
-					<li class="step-4">
-						<div class="item">
-							<span class="bullet">4</span>
-							<span class="title"></span>
-						</div>
-						<div class="description"></div>
-						<div class="attract-intro">
-							<div class="icon"></div>
-						</div>
-					</li>
-				</ul>
-
-				<div class="nav-right">
-					<button id="credits-btn">Credits</button>
-				</div>
-
-				<div class="attract-shadow"></div>
-
-			</div>
+			<div id="header"></div>
 
 			<div id="wrap-sections">
 
-				<section id="attract">
+				<section id="attract"></section>
 
-					<h1>JourneyMaker</h1>
-					<button class="begin">Touch to Begin</button>
-
-				</section>
-
-				<section id="spin">
-
-					<div class="panel">
-
-						<div class="panel-top">
-							<div class="wrap-title">
-								<div class="icon"></div>
-								<h3></h3>
-							</div>
-							<div class="wrap-info">
-								<p></p>
-							</div>
-						</div>
-
-						<div class="panel-divider"></div>
-
-						<div class="panel-bottom">
-							<div class="wrap-continue">
-								<button class="continue">Select theme</button>
-							</div>
-							<div class="help-item">
-								<p class="kiosk">Touch to select this theme or swipe the shape to explore other themes.</p>
-								<p class="home">Click to select this theme or swipe the shape to explore other themes.</p>
-								<div class="stem"></div>
-							</div>
-						</div>
-
-					</div>
-
-				</section>
+				<section id="spin"></section>
 
 				<section id="build">
 
@@ -308,132 +572,11 @@
 
 					<div class="wrap-prompt-titles"></div>
 
-					<div class="wrap-obj-detail">
-						<div class="wrap-selected-obj"></div>
-						<div class="multitouch-area"></div>
-						<div class="detail-panel">
-							<div class="panel-tail"></div>
-							<div class="wrap-top-text">
-								<p class="description"></p>
-								<p class="meta-info"></p>
-							</div>
-							<div class="wrap-credits">
-								<button class="expand-collapse">Expand/Collapse</button>
-								<p></p>
-							</div>
-							<div class="btn-btm">
-								<button class="add"></button>
-							</div>
-							<button class="close">Close</button>
-							<div class="help-item">
-								<p>Select to add this artwork to your journey.</p>
-								<div class="stem"></div>
-							</div>
-						</div>
-					</div>
+					<div class="wrap-obj-detail"></div>
 
 				</section>
 
-				<section id="print">
-
-					<div class="top">
-
-						<h3></h3>
-
-						<ul class="tiles">
-							<li>
-								<div class="img"></div>
-								<div class="narrative">
-									<p></p>
-								</div>
-							</li>
-							<li>
-								<div class="img"></div>
-								<div class="narrative">
-									<p></p>
-								</div>
-							</li>
-							<li>
-								<div class="img"></div>
-								<div class="narrative">
-									<p></p>
-								</div>
-							</li>
-							<li>
-								<div class="img"></div>
-								<div class="narrative">
-									<p></p>
-								</div>
-							</li>
-							<li>
-								<div class="img"></div>
-								<div class="narrative">
-									<p></p>
-								</div>
-							</li>
-						</ul>
-
-					</div>
-
-					<div class="name-form">
-
-						<div class="name-field">
-							<div class="hit-area"></div>
-							<input type="text" class="home-input">
-							<p class="text"></p>
-							<p class="default-label">Your Name Here</p>
-							<div class="cursor"></div>
-							<button>Enter</button>
-
-							<div class="help-item">
-								<div class="unnamed">
-									<p>Select to personalize your Journey Guide by adding your name(s).</p>
-									<div class="stem"></div>
-								</div>
-								<div class="keyboard-on">
-									<p>Select after entering your name(s) to finish building your Journey Guide.</p>
-									<div class="stem"></div>
-								</div>
-								<div class="named">
-									<p class="kiosk">
-										Select to send your Journey Guide to the printer.
-									</p>
-									<p class="home">
-										Select to send your Journey Guide to your printer.
-									</p>
-									<div class="stem"></div>
-								</div>
-							</div>
-
-						</div>
-						<div class="keyboard"></div>
-
-					</div>
-
-					<div class="btm">
-						<div class="print-progress">
-							<div class="progress-bar"></div>
-						</div>
-						<p class="progress-label"></p>
-						<p class="btns">
-							<button class="kiosk exit">Exit</button>
-							<button class="home visit">Visit</button>
-							<button class="home buy">Buy Tickets</button>
-							<button class="home redo">Create Another</button>
-							<button class="home download">Download & Print Your Journey Guide</button>
-						</p>
-						<div class="help-item">
-							<p class="kiosk">
-								You did it! Touch “exit” and go pick up your Journey Guide from the printer mentioned above.
-							</p>
-							<p class="home">
-								You did it! Click “Download” to open the printable PDF. You may need to disable your browser's pop-up blocker.
-							</p>
-							<div class="stem"></div>
-						</div>
-					</div>
-
-				</section>
+				<section id="print"></section>
 
 			</div>
 
@@ -445,129 +588,14 @@
 
 			</div>
 
-			<div id="footer" class="hidden">
-
-				<div class="theme-change-screen"></div>
-
-				<div class="theme">
-					<div class="theme-change-bg"></div>
-					<div class="spacer"></div>
-					<div class="theme-heading">
-						<div class="icon"></div>
-						<div class="wrap-titles">
-							<h5>Selected theme</h5>
-							<h2 class="title"></h2>
-						</div>
-						<button class="change">
-							<span class="label-change">Change</span>
-							<span class="label-close">Close</span>
-							<span class="label-back">Go Back</span>
-						</button>
-						<div class="help-item">
-							<p>Select to change your selected theme.</p>
-							<div class="stem"></div>
-						</div>
-					</div>
-					<div class="theme-expanded">
-						<div class="help-item">
-							<p>Select to keep your current theme selection.</p>
-							<div class="stem"></div>
-						</div>
-						<div class="wrap-info">
-							<p></p>
-						</div>
-						<div class="change-theme">
-							<div class="wrap-polyhedron"></div>
-							<div class="btn-btm">
-								<button class="accept disabled">Change Theme</button>
-							</div>
-							<div class="help-item">
-								<p>Want to try a different theme? Spin to browse and select a new theme.</p>
-								<div class="stem"></div>
-								<div class="area"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<ol class="tray">
-					<li>
-						<div class="bg-pattern"></div>
-						<div class="object">
-							<div class="wrap-img"></div>
-							<button class="close">Close</button>
-						</div>
-						<p class="prompt-title"></p>
-					</li>
-					<li>
-						<div class="bg-pattern"></div>
-						<div class="object">
-							<div class="wrap-img"></div>
-							<button class="close">Close</button>
-						</div>
-						<p class="prompt-title"></p>
-					</li>
-					<li>
-						<div class="bg-pattern"></div>
-						<div class="object">
-							<div class="wrap-img"></div>
-							<button class="close">Close</button>
-						</div>
-						<p class="prompt-title"></p>
-					</li>
-					<li>
-						<div class="bg-pattern"></div>
-						<div class="object">
-							<div class="wrap-img"></div>
-							<button class="close">Close</button>
-						</div>
-						<p class="prompt-title"></p>
-					</li>
-					<li>
-						<div class="bg-pattern"></div>
-						<div class="object">
-							<div class="wrap-img"></div>
-							<button class="close">Close</button>
-						</div>
-						<p class="prompt-title"></p>
-					</li>
-				</ol>
-
-				<div class="wrap-continue">
-					<div class="help-item">
-						<p>Happy with your selections? Select continue to move forward, or take some time to change any of your selections.</p>
-						<div class="stem"></div>
-					</div>
-					<button class="continue">Continue</button>
-				</div>
-
-			</div>
+			<div id="footer" class="hidden"></div>
 
 			<div id="wrap-transitioning-obj"></div>
 
-			<div id="credits">
-				<div class="screen"></div>
-				<div class="panel">
-					<button class="close">Close</button>
-					<div class="top">
-						<p>JourneyMaker is generously supported by...</p>
-						<p class="logo">
-							<a target="_blank" href="http://your.museum"><img src="resources/images/credits-logo-museum.png"></a>
-						</p>
-					</div>
-					<div class="btm">
-						<p>JourneyMaker was designed and developed by:</p>
-						<p class="logo">
-							<a target="_blank" href="http://bwco.info"><img src="resources/images/credits-logo-bwco.png"></a>
-						</p>
-					</div>
-				</div>
-			</div>
+			<div id="credits"></div>
 
-		</div>
+		<div id="ghost-hand"></div>
 
-		<div id="artic-logo">
-			<p>Your museum</p>
 		</div>
 
 		<div id="unsupported-browser">
