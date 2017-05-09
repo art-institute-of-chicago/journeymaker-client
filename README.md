@@ -1,5 +1,4 @@
-![Art Institute of Chicago](https://raw.githubusercontent.com/art-institute-of-chicago/template/master/aic-logo.gif)
-<img src=journeymaker-logo.png alt="JourneyMaker: Your Journey Begins Here" width=75% style="float: right"/>
+<img src=https://raw.githubusercontent.com/Art-Institute-of-Chicago/template/master/aic-logo.gif alt="Art Institute of Chicago" width=20% /><img src=journeymaker-logo.png alt="JourneyMaker: Your Journey Begins Here" width=75% style="float: right"/>
 
 # JourneyMaker Client
 > A JavaScript app that digests data from the JourneyMaker CMS
@@ -262,7 +261,7 @@ We like to use [git-flow](https://github.com/nvie/gitflow) to make this process 
 
 ```bash
 # Clone the repo to your computer
-git clone git@github.com:your-github-account/journeymaker-client.git
+git clone https://github.com/your-github-account/journeymaker-client.git
 
 # Enter the folder that was created by the clone
 cd journeymaker-client
