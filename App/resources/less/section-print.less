@@ -36,6 +36,7 @@
 		}
 		div.name-form {
 			top: 800px;
+
 			div.name-field {
 				p.text {
 					display: none;
@@ -45,6 +46,17 @@
 				}
 				div.help-item div.unnamed {
 					display: block;
+				}
+				button {
+					&.submit,
+					&.create,
+					&.restart {
+						display: none;
+					}
+					&.edit {
+						display: block;
+						float: right;
+					}
 				}
 			}
 		}
@@ -58,6 +70,17 @@
 				}
 				div.help-item div.keyboard-on {
 					display: block;
+				}
+				button {
+					&.submit {
+						float: right;
+						display: block;
+					}
+					&.edit,
+					&.create,
+					&.restart {
+						display: none;
+					}
 				}
 			}
 			div.keyboard {
@@ -79,7 +102,14 @@
 		}
 		div.name-form {
 			top: 800px;
+			width: auto;
 			div.name-field {
+				div.hit-area {
+					display: none;
+				}
+				p.text {
+					display: none;
+				}
 				p.default-label {
 					display: none;
 				}
@@ -88,6 +118,27 @@
 				}
 				div.help-item div.named {
 					display: block;
+				}
+				button {
+					&.edit,
+					&.create,
+					&.restart {
+						display: inline-block;
+					}
+					&.edit {
+						display: inline-block;
+						background-color: transparent;
+						border: 3px solid @articBlue;
+						color: @articBlue;
+						&.active {
+							border-color: white;
+							background-color: white;
+							color: @articBlue;
+						}
+					}
+					&.submit {
+						display: none;
+					}
 				}
 			}
 			div.keyboard {
@@ -214,7 +265,7 @@
 			.translucent-bg(white, 0.75);
 			margin-bottom: 15px;
 			.round(8px);
-			padding: 12px;
+			padding: 12px 7px 12px 12px;
 			position: relative;
 
 			input.home-input {
@@ -259,11 +310,12 @@
 			}
 
 			button {
-				position: absolute;
-				top: 12px;
-				right: 12px;
+				//float: right;
+				margin-right: 5px;
+				vertical-align: top;
 				background-color: @articBlue;
-				width: 135px;
+				min-width: 135px;
+				padding: 0px 20px;
 				height: 61px;
 				.round(8px);
 				font-family: @anchor;
@@ -271,6 +323,10 @@
 				text-transform: uppercase;
 				letter-spacing: 0.045em;
 				color: white;
+
+				&.edit {
+					margin-left: 0px;
+				}
 
 				&.active {
 					color: @articBlue;
@@ -280,6 +336,12 @@
 				&.disabled {
 					background-color: #aaa;
 					color: #ddd;
+				}
+
+				&.submit,
+				&.create,
+				&.restart {
+					display: none;
 				}
 
 			}
@@ -377,6 +439,16 @@
 					}
 				}
 
+				&.selected {
+					background-color: @articRed;
+					color: white;
+				}
+
+				&.empty {
+					.translucent-bg(white, 0.75);
+					pointer-events: none !important;
+				}
+
 			}
 		}
 
@@ -432,11 +504,6 @@
 					color: @articBlue;
 				}
 
-				&.kiosk {
-					&.exit {
-						width: 90px;
-					}
-				}
 				&.home {
 					display: none;
 				}

@@ -139,7 +139,7 @@
 			top: 510px;
 			left: 0px;
 			margin-left: 45px;
-			padding: 45px 45px 160px 45px;
+			padding: 45px 45px 140px 45px;
 			width: 486px;
 			height: auto;
 			background: white;
@@ -157,15 +157,50 @@
 
 				div.wrap-credits.expandable {
 					margin-top: 0px;
+					position: relative;
+
+					&.at-top {
+						div.overflow-fade.top {
+							opacity: 0;
+						}
+					}
+
+					&.at-bottom {
+						div.overflow-fade.btm {
+							opacity: 0;
+						}
+					}
 
 					button.expand-collapse {
 						background-image: url(../images/detail-credits-collapse-btn.png);
 					}
-					p {
-						.transition(~"max-height 750ms ease");
-						white-space: normal;
-						max-height: 800px;
+					div.overflow-fade {
+						position: absolute;
+						left: 30px;
+						width: 90%;
+						height: 25px;
+						.transition(~"opacity 300ms ease");
+						&.top {
+							top: 0px;
+							background: url(../images/detail-credits-overflow-fade-top.png);
+						}
+						&.btm {
+							bottom: 0px;
+							background: url(../images/detail-credits-overflow-fade-btm.png);
+						}
 					}
+					div.drag {
+						position: absolute;
+						top: 0px;
+						left: 30px;
+						width: 95%;
+						height: 250px;
+					}
+					div.wrap-credits-text {
+						.transition(~"max-height 500ms ease");
+						max-height: 250px;
+					}
+
 				}
 
 			}
@@ -206,7 +241,7 @@
 			}
 
 			div.wrap-credits {
-				margin-top: 15px;
+				margin-top: 25px;
 				display: none;
 
 				&.on {
@@ -229,6 +264,7 @@
 					.transition(~"margin-top 500ms");
 
 					button.expand-collapse {
+						display: inline;
 						.hide-text();
 						border: 1.25px solid #bcbcbc;
 						width: 27px;
@@ -244,14 +280,14 @@
 						}
 					}
 
-					p {
+					div.wrap-credits-text {
 						margin: 0px 0px 0px 35px;
 						max-height: 22px;
 						overflow: hidden;
-						//white-space: nowrap;
-						text-overflow: ellipsis;
 						.transition(~"max-height 400ms ease");
+
 					}
+
 				}
 
 			}
@@ -388,4 +424,5 @@ body.help-on #wrap-sections section#build {
 	}
 
 }
+
 
