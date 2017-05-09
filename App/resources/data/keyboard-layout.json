@@ -34,8 +34,6 @@
 	{ "char": "&nbsp;", "col": 2, "row": 3, "width": 6 },
 	{ "char": "-", "col": 8, "row": 3, "width": 1 },
 	{ "char": "’", "col": 9, "row": 3, "width": 1 },
-	{ "char": "@", "col": 10, "row": 3, "width": 1 },
-
 
 	{
 		"func": "backspace",
