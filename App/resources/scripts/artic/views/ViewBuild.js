@@ -639,12 +639,12 @@ function ViewBuild($) {
 
 	function generateTitleEl(data) {
 
-		return $($.templates("#template-prompt-title").render(data));
+		return $($.templates("#template-build-prompt-title").render(data));
 
 	}
 	function generateObjEl(id, data) {
 
-		return $($.templates("#template-obj").render({
+		return $($.templates("#template-build-obj").render({
 			id: id,
 			data: data
 		}));

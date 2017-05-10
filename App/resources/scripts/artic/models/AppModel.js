@@ -18,6 +18,8 @@ function AppModel() {
 	// Constants
 	/////////////////////////////////////////////
 
+	var DEFAULT_LANG_CODE			= "en";
+
 	var PROMPT_COUNT				= 5;
 
 	var CHICAGO_METERS_PER_DEGREE	= 111071;
@@ -41,11 +43,15 @@ function AppModel() {
 		_prevThemeIndex		= -1,
 		_prevPromptIndex	= -1;
 
+	var _langCode			= App.getUrlParam("lang");
+
 	var _objs				= [],
 		_sortedObjs			= [],
 		_visitorName		= "";
 
-	var _spriteSheetData	= {};
+	var _spriteSheetData	= {},
+		_keyboardLayouts	= [],
+		_strings			= {};
 
 	var _creditsOn			= false;
 
@@ -155,6 +161,52 @@ function AppModel() {
 			}
 		},
 
+		"lang": {
+			get: function() {
+				var langs	= _config.val("languages");
+
+				for (var i = 0; i < langs.length; i++) {
+					var lang	= langs[i];
+					if (lang && lang.code && lang.code == _langCode) {
+						return lang;
+					}
+				}
+				return null;
+			}
+		},
+		"langCode": {
+			get: function() {
+				return _langCode;
+			},
+			set: function(val) {
+				if (val != _langCode && _self.isSupportedLang(val)) {
+
+					_langCode	= val;
+
+					_self.dispatch(ModelEvent.LANGUAGE_UPDATE, {
+						lang: _langCode
+					});
+
+				}
+			}
+		},
+		"langCodes": {
+			get: function() {
+
+				var a		= [],
+					langs	= _config.val("languages");
+
+				for (var i = 0; i < langs.length; i++) {
+					if (langs[i] && langs[i].code) {
+						a.push(langs[i].code);
+					}
+				}
+
+				return a;
+
+			}
+		},
+
 		"objs": {
 			get: function() {
 				return _objs;
@@ -187,9 +239,29 @@ function AppModel() {
 			}
 		},
 
+		"keyboardLayouts": {
+			get: function() {
+				return _keyboardLayouts;
+			},
+			set: function(val) {
+				_keyboardLayouts	= val;
+			}
+		},
+
 		"creditsOn": {
 			get: function() {
 				return _creditsOn;
+			}
+		},
+
+		"stringsData": {
+			set: function(val) {
+				_strings	= processStrings(val);
+			}
+		},
+		"strings": {
+			get: function() {
+				return _strings[_langCode] || _strings["en"] || { };
 			}
 		}
 
@@ -263,6 +335,44 @@ function AppModel() {
 
 			App.log("AppModel::closeCredits()");
 			_self.dispatch(ModelEvent.CREDITS_UPDATE);
+		}
+
+	}
+
+	this.getKeyboardLayout = function(id) {
+
+		for (var i = 0; i < _keyboardLayouts.length; i++) {
+			if (_keyboardLayouts[i] && _keyboardLayouts[i].id == id) {
+				return _keyboardLayouts[i];
+			}
+		}
+
+	}
+
+	this.getString = function(id) {
+		return this.strings[id];
+	}
+
+	this.isSupportedLang = function(code) {
+
+		var langs		= _config.val("languages"),
+			langFound	= false;
+
+		for (var i = 0; i < langs.length; i++) {
+			if (langs[i].code == code) {
+				langFound	= true;
+				break;
+			}
+		}
+
+		return langFound;
+
+	}
+
+	this.validateLang = function() {
+
+		if (!_self.isSupportedLang(_langCode)) {
+			_langCode	= DEFAULT_LANG_CODE;
 		}
 
 	}
@@ -358,6 +468,29 @@ function AppModel() {
 
 		}
 		App.log("AppModel::updateSortedObjs...while end");
+
+	}
+
+	function processStrings(data) {
+
+		// If this is the home companion, replace all strings
+		// with -home suffixed alternatives, if they exist
+
+		var homeSuffix	= _config.val("stringsHomeAlternativeSuffix");
+
+		if (App.isHomeCompanion) {
+			for (var lang in data) {
+
+				for (var label in data[lang]) {
+					if (data[lang][label + homeSuffix]) {
+						data[lang][label]	= data[lang][label + homeSuffix];
+					}
+				}
+
+			}
+		}
+
+		return data;
 
 	}
 

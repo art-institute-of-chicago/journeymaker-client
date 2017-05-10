@@ -20,8 +20,8 @@ function ViewCredits($view) {
 	// Elements
 	/////////////////////////////////////////////
 
-	var $screen			= $view.find("div.screen"),
-		$closeBtn		= $view.find("button.close");
+	var $screen,
+		$closeBtn;
 
 
 	// Vars
@@ -81,7 +81,20 @@ function ViewCredits($view) {
 		_appModel.addListener(ModelEvent.CREDITS_UPDATE, onCreditsUpdate);
 
 	}
+	function initTemplate() {
 
+		var html		= $.templates({
+			markup: "#template-credits"
+		}).render({
+			strings: _appModel.strings
+		});
+
+		$view.html(html);
+
+		$screen			= $view.find("div.screen");
+		$closeBtn		= $view.find("button.close");
+
+	}
 	function initBtns() {
 
 		_screenBtn	= new TouchBtn($screen);
@@ -99,6 +112,7 @@ function ViewCredits($view) {
 	/////////////////////////////////////////////
 
 	initModels();
+	initTemplate();
 	initBtns();
 
 

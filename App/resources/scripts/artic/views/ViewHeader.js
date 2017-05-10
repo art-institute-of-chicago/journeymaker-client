@@ -1,5 +1,5 @@
 
-function ViewHeader($header) {
+function ViewHeader($view) {
 
 	// Imports
 	/////////////////////////////////////////////
@@ -16,67 +16,17 @@ function ViewHeader($header) {
 	// Constants
 	/////////////////////////////////////////////
 
-	var ATTRACT_INTERVAL		= 5000;
-
-	var NAV_TEXT				= [
-
-		{
-			"kiosk": {
-				"title": "<em>Spin</em> to select a theme",
-				"description": "<p>Begin your journey by choosing a theme.<br>Swipe the shape to see the options!</p>"
-			},
-			"home": {
-				"title": "<em>Spin</em> to select a theme",
-				"description": "<p>Begin your journey by choosing a theme.<br>Drag the shape to see the options!</p>"
-			}
-		},
-
-		{
-			"kiosk": {
-				"title": "<em>Build</em> a journey",
-				"description": "<p>Explore these artworks. Select the ones<br>you want to take on your journey.</p>"
-			},
-			"home": {
-				"title": "<em>Build</em> a journey",
-				"description": "<p>Explore these artworks. Select the ones<br>you want to take on your journey.</p>"
-			}
-		},
-
-		{
-			"kiosk": {
-				"title": "<em>Print</em> your custom guide",
-				"description": "<p>Give your Journey Guide a personal touch by adding your name. Then send it to the printer!</p>"
-			},
-			"home": {
-				"title": "<em>Print</em> your custom guide",
-				"description": "<p>Give your Journey Guide a personal touch by adding your name. Then send it to the printer!</p>"
-			}
-		},
-
-		{
-			"kiosk": {
-				"title": "<em>Tour</em> the galleries",
-				"description": "<p>Grab your family, Journey Guide, and museum admission ticket or member card and start exploring the galleries!</p>"
-			},
-			"home": {
-				"title": "<em>Visit</em> the Museum",
-				"description": "<p>Grab your family, Journey Guide, and museum admission ticket or member card and start exploring the galleries!</p>"
-			}
-		}
-
-	];
+	var ATTRACT_INTERVAL	= 5000;
 
 
 	// Elements
 	/////////////////////////////////////////////
 
-	var $nav				= $header.find("ul.nav"),
-		$navItems			= $nav.find("li");
-
-	var $attractIcons		= $header.find("ul.nav li div.attract-intro div.icon");
-
-	var $helpBtn			= $header.find("#help-btn"),
-		$creditsBtn			= $header.find("#credits-btn");
+	var $nav,
+		$navItems,
+		$attractIcons,
+		$helpBtn,
+		$creditsBtn;
 
 
 	// Vars
@@ -116,30 +66,16 @@ function ViewHeader($header) {
 		}
 
 	}
-	function onPromptIndexUpdate(e) {
-
-	}
+	function onPromptIndexUpdate(e) { }
 
 	function onHelpModelUpdate(e) {
 
 		$helpBtn.toggleClass("on", _helpModel.on);
 
-		if (_helpModel.on) {
-			$helpBtn.html("Close");
-		} else {
-			$helpBtn.html("Help");
-		}
-
 	}
 	function onCreditsUpdate(e) {
 
 		$creditsBtn.toggleClass("on", _appModel.creditsOn);
-
-		if (_appModel.creditsOn) {
-			$creditsBtn.html("Close");
-		} else {
-			$creditsBtn.html("Credits");
-		}
 
 	}
 
@@ -199,6 +135,23 @@ function ViewHeader($header) {
 		_helpModel.addListener(ModelEvent.UPDATE, onHelpModelUpdate);
 
 	}
+	function initTemplate() {
+
+		var html		= $.templates({
+			markup: "#template-header"
+		}).render({
+			strings: _appModel.strings
+		});
+
+		$view.html(html);
+
+		$nav				= $view.find("ul.nav");
+		$navItems			= $nav.find("li");
+		$attractIcons		= $view.find("ul.nav li div.attract-intro div.icon");
+		$helpBtn			= $view.find("#help-btn");
+		$creditsBtn			= $view.find("#credits-btn");
+
+	}
 	function initEvents() {
 
 		_appModel.addListener(ModelEvent.APP_STATE_UPDATE, onAppStateUpdate);
@@ -212,20 +165,6 @@ function ViewHeader($header) {
 
 		_creditsBtn	= new TouchBtn($creditsBtn);
 		_creditsBtn.addListener(TouchBtn.TAP, onCreditsTap);
-
-	}
-	function initTexts() {
-
-		$navItems.each(function(i) {
-
-			var texts	= App.isKiosk ? NAV_TEXT[i].kiosk : NAV_TEXT[i].home,
-				$title	= $(this).find("div.item span.title"),
-				$desc	= $(this).find("div.description");
-
-			$title.html(texts.title);
-			$desc.html(texts.description);
-
-		});
 
 	}
 	function initAttractAnims() {
@@ -325,9 +264,9 @@ function ViewHeader($header) {
 	/////////////////////////////////////////////
 
 	initModels();
+	initTemplate();
 	initEvents();
 	initBtns();
-	initTexts();
 	initAttractAnims();
 
 

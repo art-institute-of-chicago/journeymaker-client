@@ -5,7 +5,7 @@ var ViewEvent	= Object.freeze({
 	/////////////////////////////////////////////
 
 	FINISH_EXIT_TAP:				"ViewEvent.FINISH_EXIT_TAP",
-	FINISH_DOWNLOAD_TAP:				"ViewEvent.FINISH_DOWNLOAD_TAP",
+	FINISH_DOWNLOAD_TAP:			"ViewEvent.FINISH_DOWNLOAD_TAP",
 	FINISH_REDO_TAP:				"ViewEvent.FINISH_REDO_TAP",
 	FINISH_BUY_TAP:					"ViewEvent.FINISH_BUY_TAP",
 	FINISH_VISIT_TAP:				"ViewEvent.FINISH_VISIT_TAP",
@@ -20,10 +20,18 @@ var ViewEvent	= Object.freeze({
 	POLYHEDRON_SPIN_END:			"ViewEvent.POLYHEDRON_SPIN_END",
 
 
-	// Theme
+	// Attract
+	/////////////////////////////////////////////
+
+	ATTRACT_BEGIN_TAP:				"ViewEvent.ATTRACT_BEGIN_TAP",
+	ATTRACT_LANGUAGE_CHANGE:		"ViewEvent.ATTRACT_LANGUAGE_CHANGE",
+
+
+	// Spin
 	/////////////////////////////////////////////
 
 	SPIN_CONTINUE_TAP:				"ViewEvent.SPIN_CONTINUE_TAP",
+	SPIN_GHOST_SPIN:				"ViewEvent.SPIN_GHOST_SPIN",
 
 
 	// Build
@@ -37,7 +45,8 @@ var ViewEvent	= Object.freeze({
 	// Print
 	/////////////////////////////////////////////
 
-	PRINT_TAP:						"ViewEvent.PRINT_TAP",
+	CREATE_TAP:						"ViewEvent.CREATE_TAP",
+	PRINT_RESTART:					"ViewEvent.PRINT_RESTART",
 	NAME_SET:						"ViewEvent.NAME_SET",
 	KEYBOARD_OPEN:					"ViewEvent.KEYBOARD_OPEN",
 	KEYBOARD_CLOSE:					"ViewEvent.KEYBOARD_CLOSE",

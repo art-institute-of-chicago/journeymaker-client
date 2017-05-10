@@ -69,8 +69,7 @@ function ViewPolyhedron($) {
 	// Elements
 	/////////////////////////////////////////////
 
-	var $wrapMain				= $("#wrap-polyhedron"),
-		$wrapFooter				= $("#footer .theme .theme-expanded .change-theme .wrap-polyhedron");
+	var $wrapMain				= $("#wrap-polyhedron");
 
 	var $polyhedron				= $("#polyhedron"),
 		$wrapAnims				= $("#wrap-anims");
@@ -199,6 +198,15 @@ function ViewPolyhedron($) {
 
 	}
 
+	this.setSpin = function(vel) {
+
+		_dragVel.x	= vel.y;
+		_dragVel.y	= vel.x;
+
+		$wrapAnims.removeClass("parked");
+
+	}
+
 
 	// Event handlers
 	/////////////////////////////////////////////
@@ -215,9 +223,15 @@ function ViewPolyhedron($) {
 			autoSpin();
 
 		} else {
-			$wrapFooter.append($polyhedron);
-			$wrapFooter.append($wrapAnims);
-			_self.hide();
+
+			var $wrapFooter		= $("#footer .theme .theme-expanded .change-theme .wrap-polyhedron");
+
+			if ($wrapFooter.length) {
+				$wrapFooter.append($polyhedron);
+				$wrapFooter.append($wrapAnims);
+				_self.hide();
+			}
+
 		}
 
 	}
@@ -318,10 +332,6 @@ function ViewPolyhedron($) {
 		_appModel.addListener(ModelEvent.PROMPT_INDEX_UPDATE, onPromptIndexUpdate);
 
 	}
-	function initEvents() {
-
-
-	}
 	function initView() {
 
 		var el		= $polyhedron.get(0);
@@ -357,7 +367,6 @@ function ViewPolyhedron($) {
 				imgUrl	= sheets[i].img,
 				sprites	= sheets[i].sprites,
 				opts	= {
-					initFrame: -1,
 					play: false,
 					loop: false
 				};
@@ -839,7 +848,6 @@ function ViewPolyhedron($) {
 
 	initModels();
 	initView();
-	initEvents();
 	initShapeAnims();
 	initControls();
 

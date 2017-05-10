@@ -47,7 +47,7 @@ function App($) {
 
 	var CONFIG_DEFAULTS_PATH		= "config.defaults.json";
 	var CONFIG_CUSTOM_PATH			= "config.custom.json";
-	var CONFIG_AUTO_PATH			= "config.auto.json";
+	var CONFIG_AUTO_PATH				= "config.auto.json";
 
 	var SFX_SHAPE_ROTATE	= "resources/sfx/sfx-shape-rotate.wav",
 		MIN_TIME_PER_SFX	= 35;
@@ -62,7 +62,6 @@ function App($) {
 
 	var $header				= $("#header"),
 		$bgs				= $("#bgs"),
-		$logo				= $("#artic-logo"),
 		$credits			= $("#credits");
 
 
@@ -88,13 +87,13 @@ function App($) {
 	var _timeoutFreeze,
 		_timeoutAdvance,
 		_timeoutPrint,
-		_timeoutExitIdle;
+		_timeoutRestartIdle;
 
 	var _timeLastSfx;
 
 	var _keyboardOn			= false;
 
-	var _idleIsFromExitBtn	= false;
+	var _idleIsFromRestart	= false;
 
 
 	// Event handlers
@@ -110,7 +109,8 @@ function App($) {
 		} else {
 			_idleModel.timeoutSecs		= _config.val("timeoutSecs", 180);
 		}
-
+		
+		_appModel.validateLang();
 		loadContentData();
 
 	}
@@ -122,6 +122,20 @@ function App($) {
 	function onSpriteSheetsDataReady(e) {
 
 		_appModel.spriteSheetsData	= e;
+		
+		loadKeyboardLayoutsData();
+
+	}
+	function onKeyboardLayoutsReady(e) {
+
+		_appModel.keyboardLayouts	= e;
+
+		loadStringsData();
+
+	}
+	function onStringsDataReady(e) {
+
+		_appModel.stringsData	= e;
 
 		preloadBgImgs();
 		start();
@@ -132,10 +146,19 @@ function App($) {
 		console.log("Problem loading config.json file.");
 	}
 	function onContentDataError(e) {
-		console.log("Problem loading content json (" + getContentPath() + ").");
+		var lang 	= _appModel.lang,
+			path	= lang ? lang.contentPath : "undefined";
+
+		console.log("Problem loading content json (" + path + ").");
 	}
 	function onSpriteSheetsDataError(e) {
 		console.log("Problem loading sprites sheet json (" + _config.val("spriteSheetsPath") + ").");
+	}
+	function onKeyboardLayoutsError(e) {
+		console.log("Problem loading keyboard layouts json (" + _config.val("keyboardLayoutsPath") + ").");
+	}
+	function onStringsDataError(e) {
+		console.log("Problem loading strings json (" + _config.val("stringsPath") + ").");
 	}
 
 	function onAppStateUpdate(e) {
@@ -151,7 +174,7 @@ function App($) {
 			_viewAttract.hide();
 		}
 
-		if (e.state == AppState.ATTRACT || e.state == AppState.SPIN) {
+		if (e.state == AppState.SPIN) {
 			_appModel.reset();
 			_viewSpin.show();
 		} else {
@@ -205,6 +228,18 @@ function App($) {
 		if (_appModel.state == AppState.BUILD) {
 			App.trackPage("build/" + getThemeId() + "/" + getPromptId());
 		}
+
+	}
+	
+	function onLanguageUpdate(e) {
+
+		var langCodes = _appModel.langCodes;
+
+		for (var i = 0; i < langCodes.length; i++) {
+			$body.removeClass("lang-" + langCodes[i]);
+		}
+
+		$body.addClass("lang-" + _appModel.langCode);
 
 	}
 
@@ -353,13 +388,8 @@ function App($) {
 
 	function onIdleBreak(e) {
 
-		if (_appModel.state == AppState.ATTRACT) {
-			_appModel.state	= AppState.SPIN;
-		}
-
-		$logo.fadeOut();
-
-		App.trackPage("session/begin");
+		// this now doesn't do anything
+		// you have to press the 'begin' button to exit attract
 
 	}
 	function onIdleTimeout(e) {
@@ -380,7 +410,7 @@ function App($) {
 				break;
 
 			case AppState.TOUR:
-				if (_idleIsFromExitBtn) {
+				if (_idleIsFromRestart) {
 					App.trackPage("session/end/exit-btn-tap");
 				} else {
 					App.trackPage("session/end/timeout/tour");
@@ -389,9 +419,28 @@ function App($) {
 
 		}
 
-		$logo.fadeIn();
-
 		_appModel.state	= AppState.ATTRACT;
+
+	}
+	
+	function onAttractBeginTap(e) {
+
+		if (_appModel.state == AppState.ATTRACT) {
+			_appModel.state	= AppState.SPIN;
+		}
+
+		App.trackPage("session/begin");
+
+	}
+	function onAttractLanguageChange(e) {
+
+		if (!e.lang || !e.lang.length) return;
+		if (!_appModel.isSupportedLang(e.lang)) return;
+
+		var baseUrl	= window.location.protocol + '//' + window.location.host + window.location.pathname,
+			url	= baseUrl + "?lang=" + e.lang;
+
+		window.location	= url;
 
 	}
 
@@ -402,6 +451,12 @@ function App($) {
 		App.trackPage("spin/select-theme/" + getThemeId() + "/" + _viewPolyhedron.swipeCount + "-swipes");
 
 		_appModel.state			= AppState.BUILD;
+
+	}
+	
+	function onSpinGhostSpin(e) {
+
+		_viewPolyhedron.setSpin(e.spinVel);
 
 	}
 
@@ -451,9 +506,9 @@ function App($) {
 
 	}
 
-	function onPrintTap(e) {
+	function onCreateTap(e) {
 
-		App.log("App::onPrintTap()");
+		App.log("App::onCreateTap()");
 
 		App.trackPage("print/print-btn-tap");
 
@@ -484,15 +539,9 @@ function App($) {
 
 		App.log("App::onFinishExitTap()");
 
-		// Timeout prevents mouseup event on button from
-		// immediately ending idle/attract
-		setTimeout(_idleModel.startIdle, 1);
-
-		clearTimeout(_timeoutExitIdle);
-		_idleIsFromExitBtn	= true;
-		_timeoutExitIdle	= setTimeout(onExitIdleTimeout, 1000);
-
 		App.trackPage("tour/exit-btn-tap");
+		
+		restartApp();
 
 	}
 	function onNameSet(e) {
@@ -502,7 +551,14 @@ function App($) {
 		App.trackPage("print/set-name/" + e.name);
 
 	}
+	function onPrintRestartTap(e) {
 
+		App.log("App::onPrintRestartTap()");
+		App.trackPage("print/restart-btn-tap");
+
+		restartApp();
+
+	}
 	function onFinishDownloadTap(e) {
 
 		App.log("App::onFinishDownloadTap()");
@@ -516,7 +572,7 @@ function App($) {
 
 		App.trackPage("tour/create-another-btn-tap");
 
-		_appModel.state	= AppState.SPIN;
+		restartApp();
 
 	}
 	function onFinishBuyTap(e) {
@@ -534,11 +590,11 @@ function App($) {
 
 	}
 
-	function onExitIdleTimeout() {
+	function onRestartIdleTimeout() {
 
-		App.log("App::onExitIdleTimeout()");
+		App.log("App::onRestartIdleTimeout()");
 
-		_idleIsFromExitBtn	= false;
+		_idleIsFromRestart	= false;
 
 	}
 
@@ -832,6 +888,7 @@ function App($) {
 		_appModel.addListener(ModelEvent.THEME_INDEX_UPDATE, onThemeIndexUpdate);
 		_appModel.addListener(ModelEvent.PROMPT_INDEX_UPDATE, onPromptIndexUpdate);
 		_appModel.addListener(ModelEvent.CREDITS_UPDATE, onCreditsUpdate);
+		_appModel.addListener(ModelEvent.LANGUAGE_UPDATE, onLanguageUpdate);
 
 		_config			= ConfigModel.getInstance();
 		_config.addListener(ModelEvent.LOAD_ERROR, onConfigError);
@@ -865,7 +922,8 @@ function App($) {
 	}
 	function loadContentData() {
 
-		var path	= getContentPath();
+		var lang = _appModel.lang,
+		path = lang.contentPath;
 		_dataModel.load($, path);
 
 	}
@@ -879,10 +937,28 @@ function App($) {
 		});
 
 	}
+	function loadKeyboardLayoutsData() {
 
+		$.ajax({
+			dataType: "json",
+			url: _config.val("keyboardLayoutsPath"),
+			error: onKeyboardLayoutsError,
+			success: onKeyboardLayoutsReady
+		});
+
+	}
+	function loadStringsData() {
+
+		$.ajax({
+			dataType: "json",
+			url: _config.val("stringsPath"),
+			error: onStringsDataError,
+			success: onStringsDataReady
+		});
+
+	}
 	function start() {
 
-		initAnalytics();
 		initLogging();
 		initTouch();
 		initTweening();
@@ -957,12 +1033,6 @@ function App($) {
 
 		$doc.keydown(onKeyDown);
 
-		if (App.isHomeCompanion) {
-			$logo.click(function(e) {
-				window.open("http://your.museum", "_blank");
-			});
-		}
-
 	}
 	function initSfx() {
 
@@ -972,9 +1042,12 @@ function App($) {
 	function initView() {
 
 		_viewAttract	= new ViewAttract($);
+		_viewAttract.addListener(ViewEvent.ATTRACT_BEGIN_TAP, onAttractBeginTap);
+		_viewAttract.addListener(ViewEvent.ATTRACT_LANGUAGE_CHANGE, onAttractLanguageChange);
 
 		_viewSpin		= new ViewSpin($);
 		_viewSpin.addListener(ViewEvent.SPIN_CONTINUE_TAP, onSpinContinueTap);
+		_viewSpin.addListener(ViewEvent.SPIN_GHOST_SPIN, onSpinGhostSpin);
 
 		_viewBuild		= new ViewBuild($);
 		_viewBuild.addListener(ViewEvent.DETAIL_ADD, onObjAdded);
@@ -982,7 +1055,8 @@ function App($) {
 		_viewBuild.addListener(ViewEvent.ARTWORK_SELECT, onArtworkSelect);
 
 		_viewPrint		= new ViewPrint($);
-		_viewPrint.addListener(ViewEvent.PRINT_TAP, onPrintTap);
+		_viewPrint.addListener(ViewEvent.CREATE_TAP, onCreateTap);
+		_viewPrint.addListener(ViewEvent.PRINT_RESTART, onPrintRestartTap);
 		_viewPrint.addListener(ViewEvent.FINISH_EXIT_TAP, onFinishExitTap);
 		_viewPrint.addListener(ViewEvent.FINISH_DOWNLOAD_TAP, onFinishDownloadTap);
 		_viewPrint.addListener(ViewEvent.FINISH_REDO_TAP, onFinishRedoTap);
@@ -1150,12 +1224,12 @@ function App($) {
 			$text	= $("#unsupported-browser p");
 
 		if (isMobile()) {
-			$title.html("Sorry! JourneyMaker is not designed for mobile devices.");
-			$text.html("Please visit again using a laptop or desktop computer.");
+			$title.html(_appModel.getString("unsupportedBrowserMobileTitle"));
+			$text.html(_appModel.getString("unsupportedBrowserMobileText"));
 
 		} else if (noWebGL()) {
-			$title.html("Sorry! Your browser is not supported.");
-			$text.html("To use JourneyMaker, your browser must fully support WebGL. We recommend using <a target='_blank' href='https://www.google.com/chrome/browser/desktop/'>Chrome</a>, <a target='_blank' href='http://www.apple.com/safari/'>Safari</a>, <a target='_blank' href='https://www.microsoft.com/en-us/windows/microsoft-edge'>Edge</a>, or <a target='_blank' href='http://firefox.com'>Firefox</a> web browsers.");
+			$title.html(_appModel.getString("unsupportedBrowserWebGLTitle"));
+			$text.html(_appModel.getString("unsupportedBrowserWebGLText"));
 		}
 
 	}
@@ -1306,7 +1380,7 @@ function App($) {
 		for (var i = 0; i < sets.length; i++) {
 
 			var html		= $.templates({
-				markup: "#template-journey-guide-pdf",
+				markup: "#template-tour-journey-guide-pdf",
 				allowCode: true
 			}).render({
 				isHomeCompanion: false,
@@ -1357,6 +1431,17 @@ function App($) {
 
 		}
 
+
+	}
+	
+	function restartApp() {
+
+		clearTimeout(_timeoutRestartIdle);
+		_idleIsFromRestart	= true;
+		_timeoutRestartIdle	= setTimeout(onRestartIdleTimeout, 500);
+
+		freezeInteraction(250);
+		setTimeout(_idleModel.startIdle, 100);
 
 	}
 
@@ -1423,7 +1508,7 @@ function App($) {
 		}
 
 		var html	= $.templates({
-			markup: "#template-journey-guide-pdf",
+			markup: "#template-tour-journey-guide-pdf",
 			allowCode: true
 		}).render({
 			isHomeCompanion: App.isHomeCompanion,
@@ -1475,7 +1560,7 @@ function App($) {
 // Static
 /////////////////////////////////////////////
 
-App.analytics	= undefined;
+App.analytics = undefined;
 App.trackPage = function(page) {
 
 	if (App.analytics && App.analytics.enabled) {
@@ -1498,8 +1583,6 @@ App.log = function(msg, level) {
 
 	if (!App.loggingEnabled) return;
 	if (bwco.utils.defined(App.logOnlyLevel) && (level != App.logOnlyLevel)) return;
-
-	console.log(msg);
 
 	if (App.logger && App.logger.connected) {
 		App.logger.sendJSON({
@@ -1524,6 +1607,21 @@ App.stgScale  = function() { return Math.min(App.stgScaleX(), App.stgScaleY()); 
 App.isHomeCompanion = false;
 App.isKiosk			= true;
 
+App.getUrlParam = function(name) {
+
+	var url	= window.location.href;
+
+	name	= name.replace(/[\[\]]/g, "\\$&");
+
+	var regex	= new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+
+	if (!results) return null;
+	if (!results[2]) return '';
+
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
+
+}
 
 // Inheritance
 /////////////////////////////////////////////
