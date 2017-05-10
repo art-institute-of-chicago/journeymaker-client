@@ -78,7 +78,7 @@ function ViewBuild($) {
 
 	var SWAP_INTERVAL_SECS		= 3;
 
-	var SFX_OBJ_ADD				= "resources/sfx/sfx-obj-add.mp3";
+	var SFX_OBJ_ADD				= "resources/sfx/sfx-obj-add_artic.mp3";
 
 
 	// Elements
