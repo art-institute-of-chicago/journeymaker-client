@@ -48,7 +48,7 @@ function TouchBtn($el, opts) {
 
 	}
 
-	var SFX_TAP			= "resources/sfx/sfx-tap.mp3";
+	var SFX_TAP			= "resources/sfx/sfx-tap_artic.mp3";
 
 
 	// Elements
