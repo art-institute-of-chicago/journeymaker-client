@@ -1,5 +1,5 @@
 
-function Keyboard($keyboard, keysLayoutPath, maxChars) {
+function Keyboard($keyboard, maxChars) {
 
 	// Imports
 	/////////////////////////////////////////////
@@ -30,11 +30,13 @@ function Keyboard($keyboard, keysLayoutPath, maxChars) {
 
 	var _self				= this;
 
+	var _appModel;
+
 	var _maxChars			= bwco.utils.defined(maxChars) ? maxChars : -1,
-		_keysLayoutPath		= keysLayoutPath,
 		_text				= "";
 
-	var _keyBtns			= [];
+	var _layout				= {},
+		_keys				= [];
 
 
 	// Getters & setters
@@ -101,7 +103,6 @@ function Keyboard($keyboard, keysLayoutPath, maxChars) {
 			}
 		}
 
-
 	});
 
 
@@ -113,6 +114,20 @@ function Keyboard($keyboard, keysLayoutPath, maxChars) {
 		App.log("Obj::clear()");
 
 		_self.text	= "";
+
+	}
+
+	this.revert = function() {
+
+		if (_layout.revertTo) {
+
+			var layout	= _appModel.getKeyboardLayout(_layout.revertTo);
+
+			if (layout) {
+				_self.setLayout(layout);
+			}
+
+		}
 
 	}
 
@@ -132,46 +147,51 @@ function Keyboard($keyboard, keysLayoutPath, maxChars) {
 
 	}
 
+	this.setLayout = function(layout) {
+
+		App.log("Obj::setLayout()");
+
+		_layout		= layout;
+
+		clearKeys();
+		makeKeys();
+
+	}
+
 
 	// Event handlers
 	/////////////////////////////////////////////
-
-	function onKeysLoadError(xhr, status) {
-
-		App.log("Obj::onKeysLoadError()");
-
-		alert("Could not load keyboard keys data");
-
-	}
-	function onKeysLoad(data) {
-
-		App.log("Obj::onKeysLoad()");
-
-		makeKeys(data);
-		placeKeys();
-
-	}
 
 	function onKeyTap(e) {
 
 		App.log("Obj::onKeyTap()");
 
-		var $key		= e.target.$el;
+		var $key		= e.target.$el,
+			key			= getKeyByEl($key);
 
-		var char		= $key.data("char");
-			hasChar		= bwco.utils.defined(char),
-			isShift		= ($key.data("func") == "shift"),
-			isBackspace	= ($key.data("func") == "backspace");
+		if (!key) return;
 
-		if (hasChar) {
-			appendText(char, _self.shiftOn);
+		if (key.data.func) {
+			switch (key.data.func) {
+
+				case "layout":
+					var layout	= _appModel.getKeyboardLayout(key.data.val);
+					if (layout) {
+						_self.setLayout(layout);
+					}
+					break;
+
+				case "backspace":
+					deleteFromEnd();
+					break;
+
+			}
+
+		} else if (key.data.char) {
+			appendText(key.data.char, _self.shiftOn);
 		}
 
-		if (isBackspace) {
-			deleteFromEnd();
-		}
-
-		if (isShift) {
+		if (key.data.func && key.data.func == "shift") {
 			_self.shiftOn	= !_self.shiftOn;
 		} else {
 			_self.shiftOn	= false;
@@ -183,59 +203,56 @@ function Keyboard($keyboard, keysLayoutPath, maxChars) {
 	// Private methods
 	/////////////////////////////////////////////
 
-	function loadKeysLayout() {
+	function initModels() {
 
-		App.log("Obj::loadKeysLayout()");
-
-		$.ajax({
-			dataType: "json",
-			url: _keysLayoutPath,
-			error: onKeysLoadError,
-			success: onKeysLoad
-		});
+		_appModel	= AppModel.getInstance();
 
 	}
 
-	function makeKeys(keysData) {
+	function clearKeys() {
+
+		App.log("Obj::clearKeys()");
+
+		$keyboard.empty();
+
+		for (var i = 0; i < _keys.length; i++) {
+			if (_keys[i] && _keys[i].btn) {
+				_keys[i].btn.removeListener(TouchBtn.TAP, onKeyTap);
+			}
+		}
+
+		_keys	= [];
+
+	}
+	function makeKeys() {
 
 		App.log("Obj::makeKeys()");
 
-		var template	= $.templates("#template-keyboard-key");
+		var template	= $.templates("#template-print-keyboard-key");
 
-		for (var i = 0; i < keysData.length; i++) {
+		for (var i = 0; i < _layout.layout.length; i++) {
 
-			var html	= template.render(keysData[i]),
-				$el		= $(html);
+			var data	= _layout.layout[i],
+				$el		= $(template.render(data));
 
 			var btn		= new TouchBtn($el);
 				btn.addListener(TouchBtn.TAP, onKeyTap);
 
-			_keyBtns.push(btn);
+			$el.css({
+				"left":  KEY_COL_W * data.col,
+				"top":   KEY_ROW_H * data.row,
+				"width": KEY_W + ((data.width - 1) * KEY_COL_W)
+			})
 
 			$keyboard.append($el);
 
-		}
-
-	}
-	function placeKeys() {
-
-		App.log("Obj::placeKeys()");
-
-		$keyboard.find("button").each(function(i) {
-
-			var $key		= $(this);
-
-			var keyX		= KEY_COL_W * $key.data("col"),
-				keyY		= KEY_ROW_H * $key.data("row"),
-				keyW		= KEY_W + (($key.data("width") - 1) * KEY_COL_W)
-
-			$key.css({
-				"left": keyX,
-				"top": keyY,
-				"width": keyW
+			_keys.push({
+				btn: btn,
+				$el: $el,
+				data: _layout.layout[i]
 			})
 
-		})
+		}
 
 	}
 
@@ -260,11 +277,22 @@ function Keyboard($keyboard, keysLayoutPath, maxChars) {
 	// Helpers
 	/////////////////////////////////////////////
 
+	function getKeyByEl($el) {
+		for (var i = 0; i < _keys.length; i++) {
+			if (_keys[i] && _keys[i].$el) {
+				if ($el.is(_keys[i].$el)) {
+					return _keys[i];
+				}
+			}
+		}
+		return null;
+	}
+
 
 	// Init
 	/////////////////////////////////////////////
 
-	loadKeysLayout();
+	initModels();
 
 
 }
@@ -273,4 +301,3 @@ function Keyboard($keyboard, keysLayoutPath, maxChars) {
 /////////////////////////////////////////////
 
 bwco.utils.extend(Keyboard, bwco.events.Dispatcher);
-
