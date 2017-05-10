@@ -609,13 +609,13 @@ body.help-on .help-item.disabled {
 #footer.theme-locked div.theme div.spacer {
   width: 0px;
   -webkit-transition: width 750ms ease 200ms;
-   -moz-transition: width 750ms ease 200ms;
-   -ms-transition: width 750ms ease 200ms;
-   -o-transition: width 750ms ease 200ms;
-   transition: width 750ms ease 200ms;
- }
+  -moz-transition: width 750ms ease 200ms;
+  -ms-transition: width 750ms ease 200ms;
+  -o-transition: width 750ms ease 200ms;
+  transition: width 750ms ease 200ms;
+}
 #footer.theme-locked div.theme div.theme-heading {
-   padding-right: 200px;
+  padding-right: 200px;
 }
 #footer.theme-locked div.theme div.theme-heading div.icon {
   margin-right: 12px;
@@ -627,6 +627,10 @@ body.help-on .help-item.disabled {
   top: 17px;
 }
 #footer.theme-locked div.theme div.theme-heading button.change {
+  right: 20px;
+  width: 160px;
+}
+#footer.theme-locked div.theme div.theme-heading button span {
   -webkit-transition: opacity 200ms ease 200ms;
   -moz-transition: opacity 200ms ease 200ms;
   -ms-transition: opacity 200ms ease 200ms;
@@ -1969,10 +1973,10 @@ body.help-on section#spin .help-item {
   position: relative;
 }
 #wrap-sections section#build div.wrap-obj-detail div.detail-panel.credits-expanded div.wrap-credits.expandable.at-top div.overflow-fade.top {
-   opacity: 0;
+  opacity: 0;
 }
 #wrap-sections section#build div.wrap-obj-detail div.detail-panel.credits-expanded div.wrap-credits.expandable.at-bottom div.overflow-fade.btm {
-   opacity: 0;
+  opacity: 0;
 }
 #wrap-sections section#build div.wrap-obj-detail div.detail-panel.credits-expanded div.wrap-credits.expandable button.expand-collapse {
   background-image: url(../images/detail-credits-collapse-btn.png);
@@ -3091,9 +3095,9 @@ body.home-companion #credits div.panel div {
 }
 body.home-companion section#attract h1 {
   width: 530px;
- height: 72px;
- top: 52.5%;
- left: 46.25%;
+  height: 72px;
+  top: 52.5%;
+  left: 46.25%;
 }
 body.home-companion section#attract h2 {
   top: 55%;
@@ -3112,32 +3116,32 @@ body.home-companion section#attract button.begin {
   height: 55px;
 }
 body.home-companion section#attract button.begin.active {
- height: 49px;
- bottom: auto;
- margin-top: 3px;
- padding: 0px 19px;
+  height: 49px;
+  bottom: auto;
+  margin-top: 3px;
+  padding: 0px 19px;
 }
 body.home-companion section#attract .artic-logo {
- pointer-events: auto !important;
- cursor: pointer !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
 }
 body.home-companion section#attract .artic-logo:hover {
- opacity: 0.7;
+  opacity: 0.7;
 }
 body.home-companion section#attract .language-select {
- right: 36px;
- bottom: 36px;
- width: 200px;
+  right: 36px;
+  bottom: 36px;
+  width: 200px;
 }
 body.home-companion section#attract .language-select ul li + li {
- margin-top: 14px;
+  margin-top: 14px;
 }
 body.home-companion section#attract .language-select button {
- height: 55px;
- font-size: 20px;
+  height: 55px;
+  font-size: 20px;
 }
 body.home-companion section#attract .language-select button.select {
- background-position: right 22px center;
+  background-position: right 22px center;
 }
 body.home-companion.attract #header div.nav-left {
   left: -120px;
@@ -3315,7 +3319,7 @@ body.home-companion #wrap-sections section#build div.wrap-obj-detail div.detail-
   margin-top: -25px;
   top: 50%;
   width: 400px;
-  padding: 30px;
+  padding: 30px 30px 110px 30px;
 }
 body.home-companion #wrap-sections section#build div.wrap-obj-detail div.detail-panel p {
   margin: 0px;

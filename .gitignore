@@ -7,7 +7,9 @@ App/assets
 Kiosk
 
 App/resources/fonts
-App/resources/sfx 
+App/resources/sfx/sfx-obj-add_artic.mp3
+App/resources/sfx/sfx-shape-rotate_artic.wav
+App/resources/sfx/sfx-tap_artic.mp3
 App/PDF
 App/PDFWK
 App/resources/images/credits-logo-womans-board.png
