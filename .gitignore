@@ -5,3 +5,11 @@ config.custom.json
 install.log
 App/assets
 Kiosk
+
+App/resources/fonts
+App/resources/sfx 
+App/PDF
+App/PDFWK
+App/resources/images/credits-logo-womans-board.png
+App/resources/images/journey-guide-instructions.png
+App/resources/images/artic-logo.png

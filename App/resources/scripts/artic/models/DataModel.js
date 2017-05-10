@@ -133,9 +133,11 @@ function DataModel() {
 		// Sort themes by config ids
 		/////////////////////////////////////////////
 
-		if (_config.has("themeIds")) {
+		var lang	= AppModel.getInstance().lang;
 
-			var ids			= _config.val("themeIds"),
+		if (lang) {
+
+			var ids			= lang.themeIds,
 				arranged	= [];
 
 			for (var i = 0; i < ids.length; i++) {
@@ -180,10 +182,14 @@ function DataModel() {
 
 			for (var i = 0; i < theme.bgs.length; i++) {
 				var bg	= theme.bgs[i];
-				if (!bg || !bg.width || !bg.height) {
+				if (!bg) {
 					console.log("Omitting theme background, bad image: " + theme.title + ", background " + (i + 1))
 					theme.bgs.splice(i, 1);
 					i--;
+				} else if (!bg.width || !bg.height) {
+					console.log("Theme background image has no defined dimensions, assuming 1920x1080: " + theme.title + ", background " + (i + 1))
+					bg.width	= 1920;
+					bg.height	= 1080;
 				}
 			}
 
@@ -200,6 +206,15 @@ function DataModel() {
 						noMapY			= !bwco.utils.defined(artwork.mapY),
 						mapAtZeroZero	= (artwork.mapX == 0 && artwork.mapY == 0),
 						notOnDisplay	= noMapX || noMapY || mapAtZeroZero;
+
+					if (_config.val("showArtworksNotOnDisplay", true)) {
+
+						if (noMapX || mapAtZeroZero) artwork.mapX	= _config.val("guideStartX");
+						if (noMapY || mapAtZeroZero) artwork.mapY	= _config.val("guideStartY");
+
+						notOnDisplay	= false;
+
+					}
 
 					var artworkLabel	= "(id " + artwork.id + ") " + theme.title + ", prompt " + (promptIndex + 1) + ", artwork " + (artworkIndex + 1) + ": " + artwork.title;
 
@@ -233,15 +248,15 @@ function DataModel() {
 			}
 		}
 
-		for (var i = 0; i < artworksNotOnDisplay.length; i++) {
+		for (var i = 0; i < artworksNotOnDisplay.length; i++) { 
 			console.log("Omitting artwork, not on display: " + artworksNotOnDisplay[i]);
 		}
 
-		for (var i = 0; i < artworksNoImg.length; i++) {
+		for (var i = 0; i < artworksNoImg.length; i++) { 
 			console.log("Omitting artwork, no image defined: " + artworksNoImg[i]);
 		}
 
-		for (var i = 0; i < artworksBadDimensions.length; i++) {
+		for (var i = 0; i < artworksBadDimensions.length; i++) { 
 			console.log("Omitting artwork, bad image dimensions: " + artworksBadDimensions[i]);
 		}
 

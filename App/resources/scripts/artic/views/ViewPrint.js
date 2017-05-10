@@ -19,134 +19,86 @@ function ViewPrint($) {
 
 	var CURSOR_BLINK_INTERVAL	= 500;
 
-	var DEFAULT_NAME			= "Anonymous",
-		DEFAULT_PRINTER_NAME	= "the Printing Area",
-		DEFAULT_PRINTER_COLOR	= "#ffffff";
+	var DEFAULT_PRINTER_COLOR	= "#ffffff";
 
 	var TILES_SPACING_X			= 8;
 
 	var STATE_VALS				= [
 		{
 			"state": PrintState.ASSEMBLING,
-			"title": "Creating Your Path...",
 			"class": "assembling",
-			"nameBtnLabel": ""
+			"stringTitle": "printAssemblingTitle",
+			"stringEditBtnLabel": null
 		},
 		{
 			"state": PrintState.REARRANGING,
-			"title": "Creating Your Path...",
 			"class": "rearranging",
-			"nameBtnLabel": ""
+			"stringTitle": "printRearrangingTitle",
+			"stringEditBtnLabel": null
 		},
 		{
 			"state": PrintState.UNNAMED,
-			"title": "Personalize Your Journey Guide",
 			"class": "unnamed",
-			"nameBtnLabel": "Add Name"
+			"stringTitle": "printUnnamedTitle",
+			"stringEditBtnLabel": "printBtnEditUnnamed"
 		},
 		{
 			"state": PrintState.KEYBOARD_ON,
-			"title": "Personalize Your Journey Guide",
 			"class": "keyboard-on",
-			"nameBtnLabel": "Enter"
+			"stringTitle": "printKeyboardOnTitle",
+			"stringEditBtnLabel": null
 		},
 		{
 			"state": PrintState.NAMED,
-			"title": "{{name}}’s Journey Guide",
 			"class": "named",
-			"nameBtnLabel": "Print"
+			"stringTitle": "printNamedTitle",
+			"stringEditBtnLabel": "printBtnEditNamed"
 		},
 		{
 			"state": PrintState.PRINTING,
-			"title": "Thanks {{name}}!",
 			"class": "printing",
-			"nameBtnLabel": ""
+			"stringTitle": "printPrintingTitle",
+			"stringEditBtnLabel": null
 		},
 		{
 			"state": PrintState.FINISHED,
-			"title": "Thanks {{name}}! {{printerResponse}}",
 			"class": "printed",
-			"nameBtnLabel": ""
+			"stringTitle": "printFinishedTitle",
+			"stringEditBtnLabel": null
 		}
 	];
-
-	var STATE_VALS_HOME			= [
-		{
-			"state": PrintState.ASSEMBLING,
-			"title": "Creating Your Path...",
-			"class": "assembling",
-			"nameBtnLabel": ""
-		},
-		{
-			"state": PrintState.REARRANGING,
-			"title": "Creating Your Path...",
-			"class": "rearranging",
-			"nameBtnLabel": ""
-		},
-		{
-			"state": PrintState.UNNAMED,
-			"title": "Personalize Your Journey Guide",
-			"class": "unnamed",
-			"nameBtnLabel": "Add Name"
-		},
-		{
-			"state": PrintState.KEYBOARD_ON,
-			"title": "Personalize Your Journey Guide",
-			"class": "named",
-			"nameBtnLabel": "Create Guide"
-		},
-		{
-			"state": PrintState.NAMED,
-			"title": "Personalize Your Journey Guide",
-			"class": "named",
-			"nameBtnLabel": "Create Guide"
-		},
-		{
-			"state": PrintState.PRINTING,
-			"title": "Thanks {{name}}!",
-			"class": "printing",
-			"nameBtnLabel": ""
-		},
-		{
-			"state": PrintState.FINISHED,
-			"title": "Thanks {{name}}! {{printerResponse}}",
-			"class": "printed",
-			"nameBtnLabel": ""
-		}
-	];
-
-	var PROGRESS_LABEL			= "Your Journey Guide is Printing...",
-		PROGRESS_LABEL_HOME		= "Creating your Journey Guide PDF...";
 
 
 	// Elements
 	/////////////////////////////////////////////
 
 	var $doc			= $(document),
-		$view			= $("#wrap-sections section#print"),
-		$nameForm		= $view.find("div.name-form"),
-		$nameField		= $nameForm.find("div.name-field"),
-		$nameFieldText	= $nameField.find("p.text"),
-		$nameFieldHit	= $nameField.find("div.hit-area"),
-		$nameFieldInput	= $nameField.find("input"),
-		$cursor			= $nameField.find("div.cursor"),
-		$btn			= $nameField.find("button"),
-		$keyboard		= $view.find("div.keyboard");
+		$view			= $("#wrap-sections section#print");
 
-	var $top			= $view.find("div.top"),
-		$title			= $top.find("h3"),
-		$tilesList		= $top.find("ul.tiles"),
-		$tiles			= $tilesList.find("li");
-
-	var $btm			= $view.find("div.btm"),
-		$progressLabel	= $btm.find("p.progress-label"),
-		$progressBar	= $btm.find("div.print-progress div.progress-bar"),
-		$btmBtns		= $btm.find("p.btns"),
-		$exitBtn		= $btmBtns.find("button.exit"),
-		$downloadBtn	= $btmBtns.find("button.download"),
-		$redoBtn		= $btmBtns.find("button.redo"),
-		$buyBtn			= $btmBtns.find("button.buy"),
-		$visitBtn		= $btmBtns.find("button.visit");
+	var $nameForm,
+		$nameField,
+		$nameFieldText,
+		$nameFieldHit,
+		$nameFieldInput,
+		$cursor,
+		$editBtn,
+		$submitBtn,
+		$createBtn,
+		$restartBtn,
+		$keyboard,
+		$top,
+		$title,
+		$tilesList,
+		$tiles,
+		$btm,
+		$progressLabel,
+		$progressBar,
+		$btmBtns,
+		$exitBtn,
+		$downloadBtn,
+		$redoBtn,
+		$buyBtn,
+		$visitBtn;
 
 
 	// Vars
@@ -164,7 +116,7 @@ function ViewPrint($) {
 
 	var _state					= PrintState.ASSEMBLING;
 
-	var _name					= DEFAULT_NAME,
+	var _name					= "",
 		_printerResponse		= "",
 		_printingComplete		= false,
 		_fakePrintingComplete	= false,
@@ -172,8 +124,9 @@ function ViewPrint($) {
 
 	var _on						= false;
 
-	var _btn,
+	var _editBtn,
 		_nameFieldHit,
+		_restartBtn,
 		_exitBtn;
 
 	var _tileW,
@@ -217,6 +170,9 @@ function ViewPrint($) {
 					App.log("ViewPrint::state: " + _state);
 
 					if (_state == PrintState.KEYBOARD_ON) {
+
+						_keyboard.revert();
+
 						if (App.isHomeCompanion) {
 							$nameFieldInput.focus();
 						}
@@ -227,6 +183,12 @@ function ViewPrint($) {
 						_self.dispatch(ViewEvent.KEYBOARD_OPEN, {
 							named: nameEntered()
 						});
+
+					} else {
+
+						if (App.isHomeCompanion) {
+							$nameFieldInput.blur();
+						}
 
 					}
 
@@ -278,14 +240,14 @@ function ViewPrint($) {
 			$btmBtns.removeClass("problem");
 
 			if (response.pdfUrl) {
-				_printerResponse	= "Your Journey Guide is ready to print!";
+				_printerResponse	= _appModel.getString("printResponseUrl");
 				_pdfUrl				= response.pdfUrl;
 
 			} else {
-				var printerName		= response.printerName ? response.printerName : DEFAULT_PRINTER_NAME,
+				var printerName		= response.printerName ? response.printerName : _appModel.getString("printDefaultPrinterName"),
 					printerColor	= response.printerColor ? response.printerColor : DEFAULT_PRINTER_COLOR;
 
-				_printerResponse	= "Pick up your Journey Guide from <span style=\"color: " + printerColor + ";\">" + printerName + "</span>.";
+				_printerResponse	= _appModel.getString("printResponseSuccess") + " <span style=\"color: " + printerColor + ";\">" + printerName + "</span>.";
 
 			}
 
@@ -294,11 +256,7 @@ function ViewPrint($) {
 
 			$btmBtns.addClass("problem");
 
-			if (App.isKiosk) {
-				_printerResponse	= "Sorry, there was a problem printing."
-			} else {
-				_printerResponse	= "Sorry, there was a problem creating the PDF."
-			}
+			_printerResponse	= _appModel.getString("printResponseProblem");
 
 		}
 
@@ -319,7 +277,7 @@ function ViewPrint($) {
 		switch (_appModel.state) {
 
 			case AppState.SPIN:
-				_name					= DEFAULT_NAME;
+				_name					= _appModel.getString("printDefaultName");
 				_printerResponse		= "";
 				_printingComplete		= false;
 				_fakePrintingComplete	= false;
@@ -366,6 +324,10 @@ function ViewPrint($) {
 
 		App.log("ViewPrint::onInputTextChange()");
 
+		if (_state == PrintState.NAMED || _state == PrintState.UNNAMED) {
+			_self.state	= PrintState.KEYBOARD_ON;
+		}
+
 		updateView();
 
 	}
@@ -376,21 +338,7 @@ function ViewPrint($) {
 		onNameFieldTap(e);
 
 	}
-	function onInputFieldUnfocus(e) {
-
-		App.log("ViewPrint::onInputFieldUnfocus()");
-
-		if (_state == PrintState.NAMED || _state == PrintState.KEYBOARD_ON) {
-
-			if (!nameEntered()) {
-				_self.state		= PrintState.UNNAMED;
-			} else {
-				_self.state		= PrintState.NAMED;
-			}
-
-		}
-
-	}
+	function onInputFieldUnfocus(e) { }
 
 	function onCursorInterval() {
 
@@ -428,52 +376,12 @@ function ViewPrint($) {
 
 	}
 
-	function onBtnTap(e) {
+	function onEditBtnTap(e) {
 
-		App.log("ViewPrint::onBtnTap()");
+		App.log("ViewPrint::onEditBtnTap()");
 
-		if (App.isHomeCompanion) {
-
-			if (_state == PrintState.NAMED || _state == PrintState.KEYBOARD_ON) {
-				_name					= $nameFieldInput.val();
-				_appModel.visitorName	= _name;
-
-				if (_name.length) {
-					_self.dispatch(ViewEvent.NAME_SET, {
-						name: _appModel.visitorName
-					});
-					_self.dispatch(ViewEvent.PRINT_TAP);
-				} else {
-					_self.state	= PrintState.UNNAMED;
-				}
-			} else {
-				_self.state	= PrintState.KEYBOARD_ON;
-			}
-
-		} else {
-
-			if (_state == PrintState.NAMED) {
-				_self.dispatch(ViewEvent.NAME_SET, {
-					name: _appModel.visitorName
-				});
-				_self.dispatch(ViewEvent.PRINT_TAP);
-
-			} else if (_state == PrintState.KEYBOARD_ON) {
-
-				_name					= $nameFieldText.text();
-				_appModel.visitorName	= _name;
-
-				if (_name.length) {
-					_self.state	= PrintState.NAMED;
-				} else {
-					_self.state	= PrintState.UNNAMED;
-				}
-
-			} else {
-				_self.state	= PrintState.KEYBOARD_ON;
-			}
-
-
+		if (_state == PrintState.NAMED || _state == PrintState.UNNAMED) {
+			_self.state	= PrintState.KEYBOARD_ON;
 		}
 
 	}
@@ -486,6 +394,39 @@ function ViewPrint($) {
 		if (_state == PrintState.NAMED || _state == PrintState.UNNAMED) {
 			_self.state	= PrintState.KEYBOARD_ON;
 		}
+
+	}
+
+	function onSubmitBtnTap(e) {
+
+		App.log("ViewPrint::onSubmitBtnTap()");
+
+		_name					= App.isHomeCompanion ? $nameFieldInput.val() : $nameFieldText.text();
+		_appModel.visitorName	= _name;
+
+		if (_name.length) {
+			_self.dispatch(ViewEvent.NAME_SET, {
+				name: _appModel.visitorName
+			});
+			_self.state	= PrintState.NAMED;
+
+		} else {
+			_self.state	= PrintState.UNNAMED;
+		}
+
+	}
+	function onCreateBtnTap(e) {
+
+		App.log("ViewPrint::onCreateBtnTap()");
+
+		_self.dispatch(ViewEvent.CREATE_TAP);
+
+	}
+	function onRestartTap(e) {
+
+		App.log("ViewPrint.onRestartTap()");
+
+		_self.dispatch(ViewEvent.PRINT_RESTART);
 
 	}
 
@@ -516,7 +457,7 @@ function ViewPrint($) {
 					_self.dispatch(ViewEvent.NAME_SET, {
 						name: _appModel.visitorName
 					});
-					setTimeout(_self.dispatch, 1, ViewEvent.PRINT_TAP);
+					_self.state	= PrintState.NAMED;
 
 				} else {
 					_self.state	= PrintState.UNNAMED;
@@ -570,7 +511,6 @@ function ViewPrint($) {
 	}
 
 
-
 	// Private methods
 	/////////////////////////////////////////////
 
@@ -582,6 +522,51 @@ function ViewPrint($) {
 
 		_dataModel		= DataModel.getInstance();
 		_config			= ConfigModel.getInstance();
+
+	}
+	function initTemplate() {
+
+		var html		= $.templates({
+			markup: "#template-print"
+		}).render({
+			strings: _appModel.strings
+		});
+
+		$view.html(html);
+
+		$nameForm		= $view.find("div.name-form");
+
+		$nameField		= $nameForm.find("div.name-field");
+
+		$nameFieldText	= $nameField.find("p.text");
+		$nameFieldHit	= $nameField.find("div.hit-area");
+		$nameFieldInput	= $nameField.find("input");
+		$cursor			= $nameField.find("div.cursor");
+		$editBtn		= $nameField.find("button.edit");
+		$submitBtn		= $nameField.find("button.submit");
+		$createBtn		= $nameField.find("button.create");
+		$restartBtn		= $nameField.find("button.restart");
+
+		$keyboard		= $view.find("div.keyboard");
+		$top			= $view.find("div.top");
+
+		$title			= $top.find("h3");
+		$tilesList		= $top.find("ul.tiles");
+
+		$tiles			= $tilesList.find("li");
+
+		$btm			= $view.find("div.btm");
+
+		$progressLabel	= $btm.find("p.progress-label");
+		$progressBar	= $btm.find("div.print-progress div.progress-bar");
+		$btmBtns		= $btm.find("p.btns");
+
+		$exitBtn		= $btmBtns.find("button.exit");
+		$downloadBtn	= $btmBtns.find("button.download");
+		$redoBtn		= $btmBtns.find("button.redo");
+		$buyBtn			= $btmBtns.find("button.buy");
+		$visitBtn		= $btmBtns.find("button.visit");
+
 	}
 	function initKeys() {
 
@@ -592,12 +577,15 @@ function ViewPrint($) {
 	}
 	function initView() {
 
-		_keyboard	= new Keyboard($keyboard, _config.val("keyboardLayoutPath"), 25);
+		var layout		= _appModel.getKeyboardLayout(_appModel.langCode);
+
+		_keyboard		= new Keyboard($keyboard, 25);
 		_keyboard.addListener(KeyboardEvent.TEXT_CHANGE, onKeyboardTextChange);
+		_keyboard.setLayout(layout);
 
 		$nameFieldInput.on('input', onInputTextChange);
 
-		$progressLabel.text(App.isHomeCompanion ? PROGRESS_LABEL_HOME : PROGRESS_LABEL);
+		$progressLabel.text(_appModel.getString("printProgress"));
 
 	}
 	function initTiles() {
@@ -617,11 +605,19 @@ function ViewPrint($) {
 	}
 	function initBtns() {
 
-		_btn			= new TouchBtn($btn);
+		_editBtn		= new TouchBtn($editBtn);
+		_submitBtn		= new TouchBtn($submitBtn);
+		_createBtn		= new TouchBtn($createBtn);
+		_restartBtn		= new TouchBtn($restartBtn);
+
 		_nameFieldHit	= new TouchBtn($nameFieldHit);
 		_exitBtn		= new TouchBtn($exitBtn);
 
-		_btn.addListener(TouchBtn.TAP, onBtnTap);
+		_editBtn.addListener(TouchBtn.TAP, onEditBtnTap);
+		_submitBtn.addListener(TouchBtn.TAP, onSubmitBtnTap);
+		_createBtn.addListener(TouchBtn.TAP, onCreateBtnTap);
+		_restartBtn.addListener(TouchBtn.TAP, onRestartTap);
+
 		_nameFieldHit.addListener(TouchBtn.TAP, onNameFieldTap);
 		_exitBtn.addListener(TouchBtn.TAP, onExitTap);
 
@@ -667,25 +663,26 @@ function ViewPrint($) {
 		App.log("ViewPrint::updateView()");
 
 		var stateIndex	= getStateIndex(),
-			vals		= App.isHomeCompanion ? STATE_VALS_HOME[stateIndex] : STATE_VALS[stateIndex];
+			vals		= STATE_VALS[stateIndex];
 
 		if (!vals) return;
 
-		var titleText	= vals.title;
-			titleText	= titleText.replace("{{name}}", _name);
-			titleText	= titleText.replace("{{printerResponse}}", _printerResponse);
-
-		$title.html(titleText);
 		if ($view.attr("class") != vals.class) {
 			$view.attr("class", vals.class);
 		}
 
-		$btn.text(vals.nameBtnLabel);
+		var titleText	= _appModel.getString(vals.stringTitle);
+			titleText	= titleText.replace("{{name}}", _name);
+			titleText	= titleText.replace("{{printerResponse}}", _printerResponse);
+		$title.html(titleText);
+
+		var editBtnText	= _appModel.getString(vals.stringEditBtnLabel);
+		$editBtn.text(editBtnText);
 
 		if (_self.state == PrintState.KEYBOARD_ON && !nameEntered()) {
-			_btn.disable();
+			_editBtn.disable();
 		} else {
-			_btn.enable();
+			_editBtn.enable();
 		}
 
 	}
@@ -767,10 +764,8 @@ function ViewPrint($) {
 
 	function getStateIndex() {
 
-		var vals	= App.isHomeCompanion ? STATE_VALS_HOME : STATE_VALS;
-
-		for (var i = 0; i < vals.length; i++) {
-			if (vals[i].state == _state) {
+		for (var i = 0; i < STATE_VALS.length; i++) {
+			if (STATE_VALS[i].state == _state) {
 				return i;
 			}
 		}
@@ -788,6 +783,7 @@ function ViewPrint($) {
 	/////////////////////////////////////////////
 
 	initModels();
+	initTemplate();
 	initKeys();
 	initView();
 	initBtns();
