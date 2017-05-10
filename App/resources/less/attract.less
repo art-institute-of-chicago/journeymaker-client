@@ -118,35 +118,38 @@ section#attract {
 	h1 {
 		.hide-text();
 		position: absolute;
-		top: 60%;
-		left: 50%;
+		top: 58%;
+		left: 46.5%;
 		.translate(-50%, -50%);
-		width: 843px;
-		height: 152px;
+		width: 672px;
+		height: 91px;
 		background-image: url("../images/attract-logo.png");
 		background-repeat: no-repeat;
 		background-size: contain;
 		background-position: center center;
 	}
 
-	&.idle {
-		button.begin {
-			padding: 0px 25px;
-			height: 61px;
-			bottom: 220px;
-		}
+	h2 {
+		color: #b0b0b1;
+		position: absolute;
+		top: 60%;
+		left: 50%;
+		.translate(-6%, -20%);
+		font: normal normal 500 39px @ideal;
+		letter-spacing: 0.01em;
+
 	}
 
 	button.begin {
 		display: inline-block;
 		position: absolute;
 		left: 50%;
+		padding: 0px 25px;
+		height: 61px;
+		bottom: 220px;
 		.translate(-50%, -50%);
 
 		background-color: @articBlue;
-		height: 55px;
-		bottom: 226px;
-		padding: 0px 19px;
 		.round(8px);
 		font-family: @anchor;
 		font-size: 24px;
@@ -154,6 +157,117 @@ section#attract {
 		letter-spacing: 0.045em;
 		color: white;
 
+		&.active {
+			height: 55px;
+			bottom: 226px;
+			padding: 0px 19px;
+
+		}
+
+	}
+
+	.artic-logo {
+		position: absolute;
+		bottom: 36px;
+		left: 36px;
+		width: 72px;
+		height: 72px;
+
+		p {
+			.hide-text();
+			width: 72px;
+			height: 72px;
+			background-image: url("../images/artic-logo.png");
+			background-size: contain;
+		}
+	}
+
+	.language-select {
+		position: absolute;
+		right: 36px;
+		bottom: 36px;
+		width: 215px;
+		.translucent-bg(white, 0.75);
+		.round(8px);
+
+		ul {
+			max-height: 0px;
+			overflow: hidden;
+			list-style: none;
+			margin: 0px;
+			padding: 0px 14px;
+			.transition(~"max-height 300ms ease, padding-top 300ms ease 150ms, padding-bottom 300ms ease");
+
+			li {
+				margin: 0px;
+				padding: 0px;
+
+				& + li {
+					margin-top: 14px;
+				}
+
+				&.selected {
+					button {
+						background-color: @articBlue;
+						color: white;
+					}
+				}
+
+			}
+		}
+
+		&.open {
+			ul {
+				max-height: 500px;
+				padding: 14px;
+				.transition(~"max-height 500ms ease, padding-top 300ms ease, padding-bottom 300ms ease");
+			}
+			button.select {
+				background-image: url("../images/attract-language-select-arrow-down.png");
+			}
+		}
+
+		button {
+			display: inline-block;
+			width: 100%;
+			height: 62px;
+			background: white;
+			.round(8px);
+			font-family: @anchor;
+			font-size: 24px;
+			text-transform: uppercase;
+			letter-spacing: 0.045em;
+			color: @articBlue;
+
+			&.active {
+				background-color: @articBlue;
+				color: white;
+			}
+
+			&.select {
+
+				background-color: @articBlue;
+				background-image: url("../images/attract-language-select-arrow-up.png");
+				background-repeat: no-repeat;
+				background-position: right 22px center;
+
+				height: 62px;
+				bottom: 226px;
+				padding-right: 25px;
+				.round(8px);
+				color: white;
+
+				&.active {
+					color: mix(white, @articBlue, 50%);
+				}
+
+			}
+
+		}
+
 	}
 
 }
+
+
+

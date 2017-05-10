@@ -30,10 +30,12 @@
 
 			div.spacer {
 				width: 0px;
-				.transition(~"width 750ms ease");
+				.transition(~"width 750ms ease 200ms");
 			}
 
 			div.theme-heading {
+				padding-right: 200px;
+
 				div.icon {
 					margin-right: 12px;
 				}
@@ -42,9 +44,14 @@
 						max-width: 1000px;
 					}
 				}
-				button.change {
+
+				button {
 					top: 17px;
-					right: 17px;
+
+					&.change {
+						right: 20px;
+						width: 160px;
+					}
 
 					span {
 						.transition(~"opacity 200ms ease 200ms");
@@ -59,6 +66,7 @@
 							.opacity(1);
 						}
 					}
+
 				}
 			}
 
@@ -213,7 +221,7 @@
 
 			}
 
-			button.change {
+			button {
 				position: absolute;
 				top: 25px;
 				right: 25px;
@@ -222,7 +230,7 @@
 				height: 65px;
 				border: 3px solid @articBlue;
 				.round(8px);
-				.transition(~"top 200ms ease, right 200ms ease, opacity 150ms ease 300ms");
+				.transition(~"top 200ms ease, right 200ms ease, width 200ms ease, opacity 150ms ease 300ms");
 
 				&.active {
 					background: @articBlue;
@@ -236,6 +244,8 @@
 					position: absolute;
 					top: 15px;
 					left: 0px;
+					height: 25px;
+					overflow: hidden;
 					width: 100%;
 					text-align: center;
 					font-family: @anchor;

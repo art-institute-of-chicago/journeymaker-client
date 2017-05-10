@@ -1,0 +1,370 @@
+
+{
+
+	"en": {
+
+		"btnLabelClose": "Close",
+
+		"headerStep1TitleA": "Spin",
+		"headerStep1TitleB": "to select a theme",
+		"headerStep1Description": "Begin your journey by choosing a theme. Swipe the shape to see the options!",
+		"headerStep1Description-home": "Begin your journey by choosing a theme. Drag the shape to see the options!",
+
+		"headerStep2TitleA": "Build",
+		"headerStep2TitleB": "a journey",
+		"headerStep2Description": "Explore these artworks. Select the ones you want to take on your journey.",
+
+		"headerStep3TitleA": "Print",
+		"headerStep3TitleB": "your custom guide",
+		"headerStep3Description": "Give your Journey Guide a personal touch by adding your name. Then send it to the printer!",
+
+		"headerStep4TitleA": "Tour",
+		"headerStep4TitleB": "the galleries",
+		"headerStep4Description": "Grab your family, Journey Guide, and museum admission ticket or member card and start exploring the galleries!",
+		"headerStep4TitleA-home": "Explore",
+		"headerStep4TitleB-home": "the Museum",
+
+		"headerBtnHelp": "Help",
+		"headerBtnCredits": "Credits",
+
+		"creditsTitleA": "JourneyMaker is generously supported by the Woman's Board of the Art Institute of Chicago.",
+		"creditsTitleB": "JourneyMaker was designed and developed by:",
+
+		"footerTitle": "Selected theme",
+		"footerBtnChange": "Change",
+		"footerBtnGoBack": "Make Changes",
+		"footerBtnExpandedChange": "Change Theme",
+		"footerBtnContinue": "Continue",
+		"footerHelpChange": "Select to change your selected theme.",
+		"footerHelpClose": "Select to keep your current theme selection.",
+		"footerHelpSelect": "Want to try a different theme? Spin to browse and select a new theme.",
+		"footerHelpContinue": "Happy with your selections? Select continue to move forward, or take some time to change any of your selections.",
+
+		"attractTagline": "Your Journey Begins Here",
+		"attractBeginBtn": "Touch to Begin",
+		"attractBeginBtn-home": "Begin Your Journey",
+		"attractLanguageBtn": "Select Language",
+
+		"spinContinueBtn": "Select theme",
+		"spinHelpContinue": "Touch to select this theme or swipe the shape to explore other themes.",
+		"spinHelpContinue-home": "Click to select this theme or swipe the shape to explore other themes.",
+
+		"buildDetailAddBtn": "Add to My Journey",
+		"buildDetailReplaceBtn": "Replace Current Artwork",
+		"buildHelpAdd": "Select to add this artwork to your journey.",
+
+		"printInputDefaultLabel": "Add Your Name Here",
+		"printDefaultName": "Anonymous",
+		"printDefaultPrinterName": "the Printing Area",
+
+		"printAssemblingTitle": "Creating Your Path...",
+		"printRearrangingTitle": "Creating Your Path...",
+		"printUnnamedTitle": "Personalize Your Journey Guide",
+		"printKeyboardOnTitle": "Personalize Your Journey Guide",
+		"printNamedTitle": "{{name}}’s Journey Guide",
+		"printPrintingTitle": "Thanks {{name}}!",
+		"printFinishedTitle": "Thanks {{name}}! {{printerResponse}}",
+
+		"printBtnEditUnnamed": "Add Your Name",
+		"printBtnEditNamed": "Edit Your Name",
+		"printBtnSubmit": "Submit",
+		"printBtnCreate": "Print Your Guide",
+		"printBtnCreate-home": "Create Guide",
+		"printBtnRestart": "Start Over",
+
+		"printProgress": "Your Journey Guide is Printing...",
+		"printProgress-home": "Creating your Journey Guide PDF...",
+
+		"printResponseSuccess": "Pick up your Journey Guide from",
+		"printResponseUrl": "Your Journey Guide is ready to print!",
+		"printResponseProblem": "Sorry, there was a problem printing.",
+		"printResponseProblem-home": "Sorry, there was a problem creating the PDF.",
+
+		"printBtnExit": "Exit",
+		"printBtnHomeVisit": "Visit",
+		"printBtnHomeBuy": "Buy Tickets",
+		"printBtnHomeRedo": "Create Another",
+		"printBtnHomeDownload": "Download & Print Your Journey Guide",
+
+		"printHelpUnnamed": "Select to personalize your Journey Guide by adding your name(s).",
+		"printHelpKeyboardOn": "Select after entering your name(s) to finish building your Journey Guide.",
+		"printHelpNamed": "Select to send your Journey Guide to the printer",
+		"printHelpNamed-home": "Select to send your Journey Guide to your printer",
+		"printHelpEnd": "You did it! Touch “exit” and go pick up your Journey Guide from the printer mentioned above.",
+		"printHelpEnd-home": "You did it! Click “Download” to open the printable PDF. You may need to disable your browser's pop-up blocker.",
+
+		"unsupportedBrowserMobileTitle": "Sorry! JourneyMaker is not designed for mobile devices",
+		"unsupportedBrowserMobileText": "Please visit again using a laptop or desktop computer",
+		"unsupportedBrowserWebGLTitle": "Sorry! Your browser is not supported.",
+		"unsupportedBrowserWebGLText": "To use JourneyMaker, your browser must fully support WebGL. We recommend using <a target='_blank' href='https://www.google.com/chrome/browser/desktop/'>Chrome</a>, <a target='_blank' href='http://www.apple.com/safari/'>Safari</a>, <a target='_blank' href='https://www.microsoft.com/en-us/windows/microsoft-edge'>Edge</a>, or <a target='_blank' href='http://firefox.com'>Firefox</a> web browsers."
+
+	},
+
+	"pl": {
+
+		"btnLabelClose": "Zamknij",
+
+		"headerStep1TitleA": "Obróć",
+		"headerStep1TitleB": "Aby Wybrać Temat",
+		"headerStep1Description": "Wybierz temat, aby rozpocząć wycieczkę. Przesuń kształt, by zobaczyć dostępne opcje.",
+
+		"headerStep2TitleA": "Stwórz ",
+		"headerStep2TitleB": "Wycieczkę",
+		"headerStep2Description": "Odkryj te dzieła sztuki. Wybierz dzieła, które chcesz zobaczyć.",
+
+		"headerStep3TitleA": "Wydrukuj",
+		"headerStep3TitleB": "Swój Przewodnik",
+		"headerStep3Description": "Dodaj swoje imię, by spersonalizować przewodnik. Następnie wyślij go do drukarki.",
+
+		"headerStep4TitleA": "Wycieczka",
+		"headerStep4TitleB": "Po Galeriach",
+		"headerStep4Description": "Zabierz swoją rodzinę, przewodnik oraz bilet wstępu do muzeum bądź kartę członkowską, aby rozpocząć zwiedzanie galerii.",
+
+		"headerBtnHelp": "Pomoc",
+		"headerBtnCredits": "Autorzy",
+
+		"creditsTitleA": "XXXX",
+		"creditsTitleB": "XXXX",
+
+		"footerTitle": "Wybrany Temat",
+		"footerBtnChange": "Zmień",
+		"footerBtnGoBack": "Wstecz",
+		"footerBtnExpandedChange": "Zmień Temat",
+		"footerBtnContinue": "Kontynuuj",
+		"footerHelpChange": "Wybierz tutaj, aby zmienić wybrany temat",
+		"footerHelpClose": "Wybierz tutaj, aby zachować swój aktualny wybór tematu.",
+		"footerHelpSelect": "Chcesz wypróbować inny temat? Zakręcić, aby przeglądać i wybrać nowy temat.",
+		"footerHelpContinue": "Zadowolony ze swoich wyborów? Wybierz nadal iść do przodu, lub zająć trochę czasu, aby zmienić jakiekolwiek selekcje.",
+
+		"attractTagline": "Twoja Wycieczka Zaczyna Się Tutaj",
+		"attractBeginBtn": "Dotknij, aby Rozpocząć",
+		"attractLanguageBtn": "Select Language",
+
+		"spinContinueBtn": "Wybierz Temat",
+		"spinHelpContinue": "Wybierz tutaj do wyboru tego tematu lub obrócić kształt zbadać inne tematy",
+
+		"buildDetailAddBtn": "Dodaj do Wycieczki",
+		"buildDetailReplaceBtn": "Zastąpić obecną grafiki",
+		"buildHelpAdd": "XXXX",
+
+		"printInputDefaultLabel": "Tutaj Wpisz Swoje Imię",
+		"printDefaultName": "Anonimowy",
+		"printDefaultPrinterName": "Obszar Drukowania",
+
+		"printAssemblingTitle": "Tworzenie Twojej Trasy...",
+		"printRearrangingTitle": "Tworzenie Twojej Trasy...",
+		"printUnnamedTitle": "Spersonalizuj Swój Przewodnik",
+		"printKeyboardOnTitle": "Spersonalizuj Swój Przewodnik",
+		"printNamedTitle": "{{name}} – Mój Przewodnik",
+		"printPrintingTitle": "Dziękujemy, {{name}}!",
+		"printFinishedTitle": "Dziękujemy, {{name}}! {{printerResponse}}",
+
+		"printBtnEditUnnamed": "Dodaj Imię",
+		"printBtnEditNamed": "Edytuj Imię",
+		"printBtnSubmit": "Wprowadź",
+		"printBtnCreate": "Utwórz Przewodnik",
+		"printBtnRestart": "Zacząć od Nowa",
+
+		"printProgress": "Twój Przewodnik Drukuje...",
+
+		"printResponseSuccess": "Weź Przewodnik po Swojej Podróży ze",
+		"printResponseUrl": "Twój przewodnik jest gotowa do drukowania!",
+		"printResponseProblem": "Niestety, nie było problemu!",
+
+		"printBtnExit": "Wyjdź",
+		"printBtnHomeVisit": "Odwiedzać",
+		"printBtnHomeBuy": "Kup Bilety",
+		"printBtnHomeRedo": "Tworzenie Innym",
+		"printBtnHomeDownload": "Pobrać i Wydrukować Swój Przewodnik",
+
+		"printHelpUnnamed": "Wybierz tutaj, aby spersonalizować przewodnik dodając swoje nazwisko.",
+		"printHelpKeyboardOn": "Wybierz tutaj po wpisaniu nazwy w celu zakończenia przewodnik",
+		"printHelpNamed": "Wybierz tutaj aby wysłać przewodnik do drukarki",
+		"printHelpEnd": "Zrobiłeś to! Dotknąć „exit” i iść odebrać przewodnik z drukarki wspomnianej powyżej.",
+
+		"unsupportedBrowserMobileTitle": "Przepraszam! JourneyMaker nie jest przeznaczony dla urządzeń mobilnych",
+		"unsupportedBrowserMobileText": "Proszę odwiedzić ponownie za pomocą laptopa lub komputera stacjonarnego",
+		"unsupportedBrowserWebGLTitle": "Przepraszam! Twoja przeglądarka nie jest wspierana.",
+		"unsupportedBrowserWebGLText": "Aby korzystać JourneyMaker, Twoja przeglądarka musi w pełni obsługuje WebGL. Zalecamy używanie <a target='_blank' href='https://www.google.com/chrome/browser/desktop/'>Chrome</a>, <a target='_blank' href='http://www.apple.com/safari/'>Safari</a>, <a target='_blank' href='https://www.microsoft.com/en-us/windows/microsoft-edge'>Edge</a>, lub <a target='_blank' href='http://firefox.com'>Firefox</a> przeglądarek internetowych."
+
+	},
+
+	"es": {
+
+		"btnLabelClose": "Cerrar",
+
+		"headerStep1TitleA": "Gire",
+		"headerStep1TitleB": "Para Seleccionar un Tema",
+		"headerStep1Description": "Comience su viaje seleccionando un tema. Deslice la figura para ver opciones.",
+
+		"headerStep2TitleA": "Arme",
+		"headerStep2TitleB": "Un Viaje",
+		"headerStep2Description": "Explora estas obras de arte. Seleccione las que desea llevar en su viaje.",
+
+		"headerStep3TitleA": "Imprima",
+		"headerStep3TitleB": "Su Guía Personalizada",
+		"headerStep3Description": "Dé un toque personal a su Guía de viaje agregando su nombre. Envíela a la impresora.",
+
+		"headerStep4TitleA": "Recorra",
+		"headerStep4TitleB": "Las Galerías",
+		"headerStep4Description": "Reúna a su familia, la Guía de viaje y la entrada al museo o tarjeta de membresía y comience a explorar las galerías.",
+
+		"headerBtnHelp": "Ayuda",
+		"headerBtnCredits": "Créditos",
+
+		"creditsTitleA": "JourneyMaker es generosamente apoyado por el Woman's Board of the Art Institute of Chicago.",
+		"creditsTitleB": "JourneyMaker fue diseñado y desarrollado por:",
+
+		"footerTitle": "Tema Seleccionado",
+		"footerBtnChange": "Cambiar",
+		"footerBtnGoBack": "Regresar",
+		"footerBtnExpandedChange": "Cambiar Tema",
+		"footerBtnContinue": "Continuar",
+		"footerHelpChange": "Seleccione para cambiar el tema seleccionado.",
+		"footerHelpClose": "Seleccione para mantener la selección del tema actual.",
+		"footerHelpSelect": "¿Quieres probar un tema diferente? Gira para navegar y seleccionar un nuevo tema.",
+		"footerHelpContinue": "¿Feliz con sus selecciones? Selecciona Continuar para avanzar o tarda algún tiempo en cambiar cualquiera de tus selecciones.",
+
+		"attractTagline": "Su Viaje Comienza Aquí",
+		"attractBeginBtn": "Toque Para Comenzar",
+		"attractLanguageBtn": "Select Language",
+
+		"spinContinueBtn": "Seleccionar Tema",
+		"spinHelpContinue": "Toca para seleccionar este tema o desliza la forma para explorar otros temas.",
+
+		"buildDetailAddBtn": "Agregar al Viaje",
+		"buildDetailReplaceBtn": "Sustituir ilustraciones actuales",
+		"buildHelpAdd": "Selecciona esta obra para añadirla a tu viaje.",
+
+		"printInputDefaultLabel": "Su Nombre Aquí",
+		"printDefaultName": "Anónimo",
+		"printDefaultPrinterName": "El área de impresión",
+
+		"printAssemblingTitle": "Crear el Recorrido...",
+		"printRearrangingTitle": "Crear el Recorrido...",
+		"printUnnamedTitle": "Personalizar la Guía de Viaje",
+		"printKeyboardOnTitle": "Personalizar la Guía de Viaje",
+		"printNamedTitle": "Guía de Viaje De {{name}}",
+		"printPrintingTitle": "¡Gracias {{name}}!",
+		"printFinishedTitle": "¡Gracias {{name}}! {{printerResponse}}",
+
+		"printBtnEditUnnamed": "Agregar Nombre",
+		"printBtnEditNamed": "Editar nombre",
+		"printBtnSubmit": "Ingresar",
+		"printBtnCreate": "Crear Guía",
+		"printBtnRestart": "Comenzar de Nuevo",
+
+		"printProgress": "Su Guía de Viaje Está Imprimiendo...",
+
+		"printResponseSuccess": "Recoja su Guía del Recorrido en La",
+		"printResponseUrl": "Su guía de viaje está lista para imprimir!",
+		"printResponseProblem": "Se produjo un error al imprimir.",
+
+		"printBtnExit": "Salir",
+		"printBtnHomeVisit": "Visitar",
+		"printBtnHomeBuy": "Comprar Boletos",
+		"printBtnHomeRedo": "Crea Otro",
+		"printBtnHomeDownload": "Descargue e imprima su guía de viaje",
+
+		"printHelpUnnamed": "Selecciona para personalizar tu Guía de viaje añadiendo tu nombre.",
+		"printHelpKeyboardOn": "Seleccione después de ingresar su nombre para terminar de construir su Guía de viaje.",
+		"printHelpNamed": "Seleccione esta opción para enviar su guía de viaje a la impresora",
+		"printHelpEnd": "¡Lo hiciste! Toque 'Salir' y vaya a recoger su Guía de viaje de la impresora mencionada anteriormente.",
+
+		"unsupportedBrowserMobileTitle": "¡Lo siento! JourneyMaker no está diseñado para dispositivos móviles",
+		"unsupportedBrowserMobileText": "Vuelva a visitarlo de nuevo utilizando un ordenador portátil o una computadora de escritorio.",
+		"unsupportedBrowserWebGLTitle": "¡Lo siento! Tu navegador no es compatible.",
+		"unsupportedBrowserWebGLText": "Para usar JourneyMaker, su navegador debe soportar completamente WebGL. Recomendamos usar <a target='_blank' href='https://www.google.com/chrome/browser/desktop/'>Chrome</a>, <a target='_blank' href='http://www.apple.com/safari/'>Safari</a>, <a target='_blank' href='https://www.microsoft.com/en-us/windows/microsoft-edge'>Edge</a>, o <a target='_blank' href='http://firefox.com'>Firefox</a> navegadores web."
+
+	},
+
+	"zh": {
+
+		"btnLabelClose": "关闭",
+
+		"headerStep1TitleA": "旋转选择一个主题",
+		"headerStep1TitleB": "",
+		"headerStep1Description": "选择一个主题，开始您的旅程。滑动形状，查看选项！",
+
+		"headerStep2TitleA": "规划行程",
+		"headerStep2TitleB": "",
+		"headerStep2Description": "探索这些艺术品。选择旅程过程中想要观看的艺术品。",
+
+		"headerStep3TitleA": "打印您的自定义指南",
+		"headerStep3TitleB": "",
+		"headerStep3Description": "添加您的姓名，个性化您的旅程指南 然后发送至打印机！",
+
+		"headerStep4TitleA": "参观美术馆",
+		"headerStep4TitleB": "",
+		"headerStep4Description": "带上您的家人、旅游指南以及博 物馆门票或会员卡，开始探索美术馆！",
+
+		"headerBtnHelp": "帮助",
+		"headerBtnCredits": "积分",
+
+		"creditsTitleA": "JourneyMaker 慷慨支持 Woman's Board of the Art Institute of Chicago。",
+		"creditsTitleB": "JourneyMaker 是由设计和开发的:",
+
+		"footerTitle": "已选择主题",
+		"footerBtnChange": "更改",
+		"footerBtnGoBack": "返回",
+		"footerBtnExpandedChange": "更改主题",
+		"footerBtnContinue": "继续",
+		"footerHelpChange": "选择以更改所选的主题。",
+		"footerHelpClose": "选择以保留您当前的主题选择。",
+		"footerHelpSelect": "想尝试不同的主题？ 旋转浏览并选择一个新的主题。",
+		"footerHelpContinue": "满意你的选择？ 选择继续以向前移动，或花一些时间更改任何选择。",
+
+		"attractTagline": "您的旅程从这里开始",
+		"attractBeginBtn": "点击开始",
+		"attractLanguageBtn": "Select Language",
+
+		"spinContinueBtn": "选择主题",
+		"spinHelpContinue": "触摸即可选择此主题，或滑动形状以探索其他主题。",
+
+		"buildDetailAddBtn": "添加至旅程",
+		"buildDetailReplaceBtn": "替换当前图稿",
+		"buildHelpAdd": "选择将此作品添加到您的旅程中。",
+
+		"printInputDefaultLabel": "您的姓名填于此处",
+		"printDefaultName": "匿名",
+		"printDefaultPrinterName": "打印区",
+
+		"printAssemblingTitle": "创建您的路径...",
+		"printRearrangingTitle": "创建您的路径...",
+		"printUnnamedTitle": "个性化旅程指南",
+		"printKeyboardOnTitle": "个性化旅程指南",
+		"printNamedTitle": "{{name}} 的旅程指南",
+		"printPrintingTitle": "谢谢 {{name}}!",
+		"printFinishedTitle": "谢谢 {{name}}! {{printerResponse}}",
+
+		"printBtnEditUnnamed": "添加姓名",
+		"printBtnEditNamed": "编辑名称",
+		"printBtnCreate": "创建指南",
+		"printBtnSubmit": "进入",
+		"printBtnRestart": "重新开始",
+
+		"printProgress": "您的旅程指南是印刷...",
+
+		"printResponseSuccess": "从中挑选您的旅程指南",
+		"printResponseUrl": "您的旅程指南已准备好打印!",
+		"printResponseProblem": "很抱歉，列印时发生问题.",
+
+		"printBtnExit": "退出",
+		"printBtnHomeVisit": "访问",
+		"printBtnHomeBuy": "购买门票",
+		"printBtnHomeRedo": "创建另一个",
+		"printBtnHomeDownload": "下载并打印您的旅程指南",
+
+		"printHelpUnnamed": "选择通过添加您的姓名来个性化您的旅程指南。",
+		"printHelpKeyboardOn": "在输入您的名字后选择完成您的旅程指南。",
+		"printHelpNamed": "选择将您的旅程指南发送到打印机",
+		"printHelpEnd": "你做到了！ 触摸“退出”，然后从上述打印机中提取您的旅程指南。",
+
+		"unsupportedBrowserMobileTitle": "抱歉! JourneyMaker不是为移动设备设计的",
+		"unsupportedBrowserMobileText": "请使用笔记本电脑或台式电脑再次访问",
+		"unsupportedBrowserWebGLTitle": "抱歉! 不支持您的浏览器。",
+		"unsupportedBrowserWebGLText": "要使用JourneyMaker，您的浏览器必须完全支持WebGL。 我们建议使用 <a target='_blank' href='https://www.google.com/chrome/browser/desktop/'>Chrome</a>, <a target='_blank' href='http://www.apple.com/safari/'>Safari</a>, <a target='_blank' href='https://www.microsoft.com/en-us/windows/microsoft-edge'>Edge</a>, 要么 <a target='_blank' href='http://firefox.com'>Firefox</a> 网络浏览器."
+
+	}
+
+}

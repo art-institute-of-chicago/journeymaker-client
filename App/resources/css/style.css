@@ -126,25 +126,6 @@ h6 {
   height: 100%;
   overflow: hidden;
 }
-#artic-logo {
-  position: absolute;
-  top: 50%;
-  width: 1920px;
-  height: 1080px;
-  margin-top: -540px;
-}
-#artic-logo p {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  position: absolute;
-  bottom: 36px;
-  left: 36px;
-  width: 72px;
-  height: 72px;
-  background-image: url("../images/artic-logo.png");
-  background-size: contain;
-}
 #credits {
   position: absolute;
   width: 100%;
@@ -533,6 +514,12 @@ body.help-on .help-item.disabled {
   -o-border-radius: 6px;
   border-radius: 6px;
 }
+#header button span.on {
+  display: none;
+}
+#header button span.off {
+  display: inline;
+}
 #header button.active {
   width: 86px;
   height: 41px;
@@ -541,6 +528,12 @@ body.help-on .help-item.disabled {
 #header button.on {
   background-color: #009bce;
   color: white;
+}
+#header button.on span.off {
+  display: none;
+}
+#header button.on span.on {
+  display: inline;
 }
 #header button#help-btn {
   left: 7px;
@@ -615,11 +608,14 @@ body.help-on .help-item.disabled {
 }
 #footer.theme-locked div.theme div.spacer {
   width: 0px;
-  -webkit-transition: width 750ms ease;
-  -moz-transition: width 750ms ease;
-  -ms-transition: width 750ms ease;
-  -o-transition: width 750ms ease;
-  transition: width 750ms ease;
+  -webkit-transition: width 750ms ease 200ms;
+   -moz-transition: width 750ms ease 200ms;
+   -ms-transition: width 750ms ease 200ms;
+   -o-transition: width 750ms ease 200ms;
+   transition: width 750ms ease 200ms;
+ }
+#footer.theme-locked div.theme div.theme-heading {
+   padding-right: 200px;
 }
 #footer.theme-locked div.theme div.theme-heading div.icon {
   margin-right: 12px;
@@ -627,26 +623,25 @@ body.help-on .help-item.disabled {
 #footer.theme-locked div.theme div.theme-heading div.wrap-titles h2 {
   max-width: 1000px;
 }
-#footer.theme-locked div.theme div.theme-heading button.change {
+#footer.theme-locked div.theme div.theme-heading button {
   top: 17px;
-  right: 17px;
 }
-#footer.theme-locked div.theme div.theme-heading button.change span {
+#footer.theme-locked div.theme div.theme-heading button.change {
   -webkit-transition: opacity 200ms ease 200ms;
   -moz-transition: opacity 200ms ease 200ms;
   -ms-transition: opacity 200ms ease 200ms;
   -o-transition: opacity 200ms ease 200ms;
   transition: opacity 200ms ease 200ms;
 }
-#footer.theme-locked div.theme div.theme-heading button.change span.label-change {
+#footer.theme-locked div.theme div.theme-heading button span.label-change {
   opacity: 0;
   filter: alpha(opacity=@{opacity * 100});
 }
-#footer.theme-locked div.theme div.theme-heading button.change span.label-close {
+#footer.theme-locked div.theme div.theme-heading button span.label-close {
   opacity: 0;
   filter: alpha(opacity=@{opacity * 100});
 }
-#footer.theme-locked div.theme div.theme-heading button.change span.label-back {
+#footer.theme-locked div.theme div.theme-heading button span.label-back {
   opacity: 1;
   filter: alpha(opacity=@{opacity * 100});
 }
@@ -804,7 +799,7 @@ body.help-on .help-item.disabled {
   -o-transition: max-width 300ms ease;
   transition: max-width 300ms ease;
 }
-#footer div.theme div.theme-heading button.change {
+#footer div.theme div.theme-heading button {
   position: absolute;
   top: 25px;
   right: 25px;
@@ -817,23 +812,25 @@ body.help-on .help-item.disabled {
   -moz-border-radius: 8px;
   -o-border-radius: 8px;
   border-radius: 8px;
-  -webkit-transition: top 200ms ease, right 200ms ease, opacity 150ms ease 300ms;
-  -moz-transition: top 200ms ease, right 200ms ease, opacity 150ms ease 300ms;
-  -ms-transition: top 200ms ease, right 200ms ease, opacity 150ms ease 300ms;
-  -o-transition: top 200ms ease, right 200ms ease, opacity 150ms ease 300ms;
-  transition: top 200ms ease, right 200ms ease, opacity 150ms ease 300ms;
+  -webkit-transition: top 200ms ease, right 200ms ease, width 200ms ease, opacity 150ms ease 300ms;
+  -moz-transition: top 200ms ease, right 200ms ease, width 200ms ease, opacity 150ms ease 300ms;
+  -ms-transition: top 200ms ease, right 200ms ease, width 200ms ease, opacity 150ms ease 300ms;
+  -o-transition: top 200ms ease, right 200ms ease, width 200ms ease, opacity 150ms ease 300ms;
+  transition: top 200ms ease, right 200ms ease, width 200ms ease, opacity 150ms ease 300ms;
 }
-#footer div.theme div.theme-heading button.change.active {
+#footer div.theme div.theme-heading button.active {
   background: #009bce;
 }
-#footer div.theme div.theme-heading button.change.active span {
+#footer div.theme div.theme-heading button.active span {
   color: white;
 }
-#footer div.theme div.theme-heading button.change span {
+#footer div.theme div.theme-heading button span {
   display: block;
   position: absolute;
   top: 15px;
   left: 0px;
+  height: 25px;
+  overflow: hidden;
   width: 100%;
   text-align: center;
   font-family: "Anchor Medium", "Helvetica Neue", Helvetica, sans-serif;
@@ -847,15 +844,15 @@ body.help-on .help-item.disabled {
   -o-transition: opacity 200ms ease 200ms;
   transition: opacity 200ms ease 200ms;
 }
-#footer div.theme div.theme-heading button.change span.label-change {
+#footer div.theme div.theme-heading button span.label-change {
   opacity: 1;
   filter: alpha(opacity=@{opacity * 100});
 }
-#footer div.theme div.theme-heading button.change span.label-close {
+#footer div.theme div.theme-heading button span.label-close {
   opacity: 0;
   filter: alpha(opacity=@{opacity * 100});
 }
-#footer div.theme div.theme-heading button.change span.label-back {
+#footer div.theme div.theme-heading button span.label-back {
   opacity: 0;
   filter: alpha(opacity=@{opacity * 100});
 }
@@ -1330,38 +1327,46 @@ section#attract h1 {
   color: transparent;
   text-shadow: none;
   position: absolute;
-  top: 60%;
-  left: 50%;
+  top: 58%;
+  left: 46.5%;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  width: 843px;
-  height: 152px;
+  width: 672px;
+  height: 91px;
   background-image: url("../images/attract-logo.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
 }
-section#attract.idle button.begin {
-  padding: 0px 25px;
-  height: 61px;
-  bottom: 220px;
+section#attract h2 {
+  color: #b0b0b1;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  -webkit-transform: translate(-6%, -20%);
+  -moz-transform: translate(-6%, -20%);
+  -ms-transform: translate(-6%, -20%);
+  -o-transform: translate(-6%, -20%);
+  transform: translate(-6%, -20%);
+  font: normal normal 500 39px "Ideal Sans A", "Ideal Sans B", "Helvetica Neue", Helvetica, sans-serif;
+  letter-spacing: 0.01em;
 }
 section#attract button.begin {
   display: inline-block;
   position: absolute;
   left: 50%;
+  padding: 0px 25px;
+  height: 61px;
+  bottom: 220px;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   background-color: #009bce;
-  height: 55px;
-  bottom: 226px;
-  padding: 0px 19px;
   -webkit-border-radius: 8px;
   -khtml-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -1372,6 +1377,112 @@ section#attract button.begin {
   text-transform: uppercase;
   letter-spacing: 0.045em;
   color: white;
+}
+section#attract button.begin.active {
+  height: 55px;
+  bottom: 226px;
+  padding: 0px 19px;
+}
+section#attract .artic-logo {
+  position: absolute;
+  bottom: 36px;
+  left: 36px;
+  width: 72px;
+  height: 72px;
+}
+section#attract .artic-logo p {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  width: 72px;
+  height: 72px;
+  background-image: url("../images/artic-logo.png");
+  background-size: contain;
+}
+section#attract .language-select {
+  position: absolute;
+  right: 36px;
+  bottom: 36px;
+  width: 215px;
+  background-color: rgba(255, 255, 255, 0.75);
+  -webkit-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+}
+section#attract .language-select ul {
+  max-height: 0px;
+  overflow: hidden;
+  list-style: none;
+  margin: 0px;
+  padding: 0px 14px;
+  -webkit-transition: max-height 300ms ease, padding-top 300ms ease 150ms, padding-bottom 300ms ease;
+  -moz-transition: max-height 300ms ease, padding-top 300ms ease 150ms, padding-bottom 300ms ease;
+  -ms-transition: max-height 300ms ease, padding-top 300ms ease 150ms, padding-bottom 300ms ease;
+  -o-transition: max-height 300ms ease, padding-top 300ms ease 150ms, padding-bottom 300ms ease;
+  transition: max-height 300ms ease, padding-top 300ms ease 150ms, padding-bottom 300ms ease;
+}
+section#attract .language-select ul li {
+  margin: 0px;
+  padding: 0px;
+}
+section#attract .language-select ul li + li {
+  margin-top: 14px;
+}
+section#attract .language-select ul li.selected button {
+  background-color: #009bce;
+  color: white;
+}
+section#attract .language-select.open ul {
+  max-height: 500px;
+  padding: 14px;
+  -webkit-transition: max-height 500ms ease, padding-top 300ms ease, padding-bottom 300ms ease;
+  -moz-transition: max-height 500ms ease, padding-top 300ms ease, padding-bottom 300ms ease;
+  -ms-transition: max-height 500ms ease, padding-top 300ms ease, padding-bottom 300ms ease;
+  -o-transition: max-height 500ms ease, padding-top 300ms ease, padding-bottom 300ms ease;
+  transition: max-height 500ms ease, padding-top 300ms ease, padding-bottom 300ms ease;
+}
+section#attract .language-select.open button.select {
+  background-image: url("../images/attract-language-select-arrow-down.png");
+}
+section#attract .language-select button {
+  display: inline-block;
+  width: 100%;
+  height: 62px;
+  background: white;
+  -webkit-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  font-family: "Anchor Medium", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+  color: #009bce;
+}
+section#attract .language-select button.active {
+  background-color: #009bce;
+  color: white;
+}
+section#attract .language-select button.select {
+  background-color: #009bce;
+  background-image: url("../images/attract-language-select-arrow-up.png");
+  background-repeat: no-repeat;
+  background-position: right 22px center;
+  height: 62px;
+  bottom: 226px;
+  padding-right: 25px;
+  -webkit-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  color: white;
+}
+section#attract .language-select button.select.active {
+  color: #80cde7;
 }
 #bg {
   position: absolute;
@@ -1623,6 +1734,18 @@ body.help-on section#spin .help-item {
   visibility: visible;
   opacity: 1;
 }
+#ghost-hand {
+  display: none;
+  position: absolute;
+  width: 600px;
+  height: 1258px;
+  -webkit-transform: scale(0.8) translate(-40%, -20%);
+  -moz-transform: scale(0.8) translate(-40%, -20%);
+  -ms-transform: scale(0.8) translate(-40%, -20%);
+  -o-transform: scale(0.8) translate(-40%, -20%);
+  transform: scale(0.8) translate(-40%, -20%);
+  overflow: hidden;
+}
 #wrap-sections section#build {
   height: 1020px;
 }
@@ -1814,7 +1937,7 @@ body.help-on section#spin .help-item {
   top: 510px;
   left: 0px;
   margin-left: 45px;
-  padding: 45px 45px 160px 45px;
+  padding: 45px 45px 140px 45px;
   width: 486px;
   height: auto;
   background: white;
@@ -1843,18 +1966,50 @@ body.help-on section#spin .help-item {
 }
 #wrap-sections section#build div.wrap-obj-detail div.detail-panel.credits-expanded div.wrap-credits.expandable {
   margin-top: 0px;
+  position: relative;
+}
+#wrap-sections section#build div.wrap-obj-detail div.detail-panel.credits-expanded div.wrap-credits.expandable.at-top div.overflow-fade.top {
+   opacity: 0;
+}
+#wrap-sections section#build div.wrap-obj-detail div.detail-panel.credits-expanded div.wrap-credits.expandable.at-bottom div.overflow-fade.btm {
+   opacity: 0;
 }
 #wrap-sections section#build div.wrap-obj-detail div.detail-panel.credits-expanded div.wrap-credits.expandable button.expand-collapse {
   background-image: url(../images/detail-credits-collapse-btn.png);
 }
-#wrap-sections section#build div.wrap-obj-detail div.detail-panel.credits-expanded div.wrap-credits.expandable p {
-  -webkit-transition: max-height 750ms ease;
-  -moz-transition: max-height 750ms ease;
-  -ms-transition: max-height 750ms ease;
-  -o-transition: max-height 750ms ease;
-  transition: max-height 750ms ease;
-  white-space: normal;
-  max-height: 800px;
+#wrap-sections section#build div.wrap-obj-detail div.detail-panel.credits-expanded div.wrap-credits.expandable div.overflow-fade {
+  position: absolute;
+  left: 30px;
+  width: 90%;
+  height: 25px;
+  -webkit-transition: opacity 300ms ease;
+  -moz-transition: opacity 300ms ease;
+  -ms-transition: opacity 300ms ease;
+  -o-transition: opacity 300ms ease;
+  transition: opacity 300ms ease;
+}
+#wrap-sections section#build div.wrap-obj-detail div.detail-panel.credits-expanded div.wrap-credits.expandable div.overflow-fade.top {
+  top: 0px;
+  background: url(../images/detail-credits-overflow-fade-top.png);
+}
+#wrap-sections section#build div.wrap-obj-detail div.detail-panel.credits-expanded div.wrap-credits.expandable div.overflow-fade.btm {
+  bottom: 0px;
+  background: url(../images/detail-credits-overflow-fade-btm.png);
+}
+#wrap-sections section#build div.wrap-obj-detail div.detail-panel.credits-expanded div.wrap-credits.expandable div.drag {
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  width: 95%;
+  height: 250px;
+}
+#wrap-sections section#build div.wrap-obj-detail div.detail-panel.credits-expanded div.wrap-credits.expandable div.wrap-credits-text {
+  -webkit-transition: max-height 500ms ease;
+  -moz-transition: max-height 500ms ease;
+  -ms-transition: max-height 500ms ease;
+  -o-transition: max-height 500ms ease;
+  transition: max-height 500ms ease;
+  max-height: 250px;
 }
 #wrap-sections section#build div.wrap-obj-detail div.detail-panel div.panel-tail {
   width: 30px;
@@ -1893,7 +2048,7 @@ body.help-on section#spin .help-item {
   color: #4f4f4f;
 }
 #wrap-sections section#build div.wrap-obj-detail div.detail-panel div.wrap-credits {
-  margin-top: 15px;
+  margin-top: 25px;
   display: none;
 }
 #wrap-sections section#build div.wrap-obj-detail div.detail-panel div.wrap-credits.on {
@@ -1917,6 +2072,7 @@ body.help-on section#spin .help-item {
   transition: margin-top 500ms;
 }
 #wrap-sections section#build div.wrap-obj-detail div.detail-panel div.wrap-credits.expandable button.expand-collapse {
+  display: inline;
   font: 0/0 a;
   color: transparent;
   text-shadow: none;
@@ -1937,11 +2093,10 @@ body.help-on section#spin .help-item {
   opacity: 0.5;
   filter: alpha(opacity=@{opacity * 100});
 }
-#wrap-sections section#build div.wrap-obj-detail div.detail-panel div.wrap-credits.expandable p {
+#wrap-sections section#build div.wrap-obj-detail div.detail-panel div.wrap-credits.expandable div.wrap-credits-text {
   margin: 0px 0px 0px 35px;
   max-height: 22px;
   overflow: hidden;
-  text-overflow: ellipsis;
   -webkit-transition: max-height 400ms ease;
   -moz-transition: max-height 400ms ease;
   -ms-transition: max-height 400ms ease;
@@ -2106,6 +2261,15 @@ body.help-on #wrap-sections section#build div.obj.help-selected .help-item {
 #wrap-sections section#print.unnamed div.name-form div.name-field div.help-item div.unnamed {
   display: block;
 }
+#wrap-sections section#print.unnamed div.name-form div.name-field button.submit,
+#wrap-sections section#print.unnamed div.name-form div.name-field button.create,
+#wrap-sections section#print.unnamed div.name-form div.name-field button.restart {
+  display: none;
+}
+#wrap-sections section#print.unnamed div.name-form div.name-field button.edit {
+  display: block;
+  float: right;
+}
 #wrap-sections section#print.keyboard-on div.name-form {
   top: 555px;
 }
@@ -2114,6 +2278,15 @@ body.help-on #wrap-sections section#build div.obj.help-selected .help-item {
 }
 #wrap-sections section#print.keyboard-on div.name-form div.name-field div.help-item div.keyboard-on {
   display: block;
+}
+#wrap-sections section#print.keyboard-on div.name-form div.name-field button.submit {
+  float: right;
+  display: block;
+}
+#wrap-sections section#print.keyboard-on div.name-form div.name-field button.edit,
+#wrap-sections section#print.keyboard-on div.name-form div.name-field button.create,
+#wrap-sections section#print.keyboard-on div.name-form div.name-field button.restart {
+  display: none;
 }
 #wrap-sections section#print.keyboard-on div.name-form div.keyboard {
   height: 400px;
@@ -2129,6 +2302,13 @@ body.help-on #wrap-sections section#build div.obj.help-selected .help-item {
 }
 #wrap-sections section#print.named div.name-form {
   top: 800px;
+  width: auto;
+}
+#wrap-sections section#print.named div.name-form div.name-field div.hit-area {
+  display: none;
+}
+#wrap-sections section#print.named div.name-form div.name-field p.text {
+  display: none;
 }
 #wrap-sections section#print.named div.name-form div.name-field p.default-label {
   display: none;
@@ -2138,6 +2318,25 @@ body.help-on #wrap-sections section#build div.obj.help-selected .help-item {
 }
 #wrap-sections section#print.named div.name-form div.name-field div.help-item div.named {
   display: block;
+}
+#wrap-sections section#print.named div.name-form div.name-field button.edit,
+#wrap-sections section#print.named div.name-form div.name-field button.create,
+#wrap-sections section#print.named div.name-form div.name-field button.restart {
+  display: inline-block;
+}
+#wrap-sections section#print.named div.name-form div.name-field button.edit {
+  display: inline-block;
+  background-color: transparent;
+  border: 3px solid #009bce;
+  color: #009bce;
+}
+#wrap-sections section#print.named div.name-form div.name-field button.edit.active {
+  border-color: white;
+  background-color: white;
+  color: #009bce;
+}
+#wrap-sections section#print.named div.name-form div.name-field button.submit {
+  display: none;
 }
 #wrap-sections section#print.named div.name-form div.keyboard {
   height: 0px;
@@ -2269,7 +2468,7 @@ body.help-on #wrap-sections section#build div.obj.help-selected .help-item {
   -moz-border-radius: 8px;
   -o-border-radius: 8px;
   border-radius: 8px;
-  padding: 12px;
+  padding: 12px 7px 12px 12px;
   position: relative;
 }
 #wrap-sections section#print div.name-form div.name-field input.home-input {
@@ -2306,11 +2505,11 @@ body.help-on #wrap-sections section#build div.obj.help-selected .help-item {
   background-color: transparent;
 }
 #wrap-sections section#print div.name-form div.name-field button {
-  position: absolute;
-  top: 12px;
-  right: 12px;
+  margin-right: 5px;
+  vertical-align: top;
   background-color: #009bce;
-  width: 135px;
+  min-width: 135px;
+  padding: 0px 20px;
   height: 61px;
   -webkit-border-radius: 8px;
   -khtml-border-radius: 8px;
@@ -2323,6 +2522,9 @@ body.help-on #wrap-sections section#build div.obj.help-selected .help-item {
   letter-spacing: 0.045em;
   color: white;
 }
+#wrap-sections section#print div.name-form div.name-field button.edit {
+  margin-left: 0px;
+}
 #wrap-sections section#print div.name-form div.name-field button.active {
   color: #009bce;
   background-color: white;
@@ -2330,6 +2532,11 @@ body.help-on #wrap-sections section#build div.obj.help-selected .help-item {
 #wrap-sections section#print div.name-form div.name-field button.disabled {
   background-color: #aaa;
   color: #ddd;
+}
+#wrap-sections section#print div.name-form div.name-field button.submit,
+#wrap-sections section#print div.name-form div.name-field button.create,
+#wrap-sections section#print div.name-form div.name-field button.restart {
+  display: none;
 }
 #wrap-sections section#print div.name-form div.name-field div.help-item > div {
   display: none;
@@ -2418,6 +2625,14 @@ body.help-on #wrap-sections section#build div.obj.help-selected .help-item {
 #wrap-sections section#print div.name-form div.keyboard button.shift.active {
   background-image: url("../images/keyboard-key-shift-active.png");
 }
+#wrap-sections section#print div.name-form div.keyboard button.selected {
+  background-color: #801439;
+  color: white;
+}
+#wrap-sections section#print div.name-form div.keyboard button.empty {
+  background-color: rgba(255, 255, 255, 0.75);
+  pointer-events: none !important;
+}
 #wrap-sections section#print div.btm {
   position: absolute;
   top: 790px;
@@ -2470,9 +2685,6 @@ body.help-on #wrap-sections section#build div.obj.help-selected .help-item {
 #wrap-sections section#print div.btm p.btns button.active {
   background-color: white;
   color: #009bce;
-}
-#wrap-sections section#print div.btm p.btns button.kiosk.exit {
-  width: 90px;
 }
 #wrap-sections section#print div.btm p.btns button.home {
   display: none;
@@ -2528,28 +2740,6 @@ body.home-companion .help-item p {
 }
 body.home-companion .help-item div.stem {
   background: #009bce;
-}
-body.home-companion #artic-logo {
-  top: auto;
-  bottom: 36px;
-  left: 36px;
-  width: 72px;
-  height: 72px;
-  margin-top: 0px;
-  pointer-events: auto !important;
-  cursor: pointer !important;
-  -webkit-transition: opacity 200ms;
-  -moz-transition: opacity 200ms;
-  -ms-transition: opacity 200ms;
-  -o-transition: opacity 200ms;
-  transition: opacity 200ms;
-}
-body.home-companion #artic-logo p {
-  top: 0px;
-  left: 0px;
-}
-body.home-companion #artic-logo:hover {
-  opacity: 0.7;
 }
 body.home-companion #header {
   width: 100%;
@@ -2633,6 +2823,9 @@ body.home-companion #footer.theme-change div.theme {
 body.home-companion #footer.theme-change div.theme div.theme-expanded {
   height: 485px;
 }
+body.home-companion #footer.theme-locked div.theme div.theme-heading {
+  padding-right: 310px;
+}
 body.home-companion #footer div.theme {
   padding: 13px 25px 0px 15px;
 }
@@ -2674,14 +2867,14 @@ body.home-companion #footer div.theme div.theme-heading div.wrap-titles h2 {
   height: 40px;
   max-width: 300px;
 }
-body.home-companion #footer div.theme div.theme-heading button.change {
+body.home-companion #footer div.theme div.theme-heading button {
   top: 15px;
   right: 15px;
   width: 85px;
   height: 45px;
   border: 2px solid #009bce;
 }
-body.home-companion #footer div.theme div.theme-heading button.change span {
+body.home-companion #footer div.theme div.theme-heading button span {
   top: 11px;
   font-size: 19px;
 }
@@ -2897,32 +3090,54 @@ body.home-companion #credits div.panel div {
   padding: 30px 40px 30px 30px;
 }
 body.home-companion section#attract h1 {
-  top: 55%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 766px;
-  height: 119px;
+  width: 530px;
+ height: 72px;
+ top: 52.5%;
+ left: 46.25%;
 }
-body.home-companion section#attract.idle button.begin {
-  -webkit-transform: translate(-50%, 0px);
-  -moz-transform: translate(-50%, 0px);
-  -ms-transform: translate(-50%, 0px);
-  -o-transform: translate(-50%, 0px);
-  transform: translate(-50%, 0px);
+body.home-companion section#attract h2 {
+  top: 55%;
+  font-size: 30px;
 }
 body.home-companion section#attract button.begin {
   top: 70%;
   left: 50%;
+  bottom: auto;
   -webkit-transform: translate(-50%, 3px);
   -moz-transform: translate(-50%, 3px);
   -ms-transform: translate(-50%, 3px);
   -o-transform: translate(-50%, 3px);
   transform: translate(-50%, 3px);
   font-size: 20px;
+  height: 55px;
+}
+body.home-companion section#attract button.begin.active {
+ height: 49px;
+ bottom: auto;
+ margin-top: 3px;
+ padding: 0px 19px;
+}
+body.home-companion section#attract .artic-logo {
+ pointer-events: auto !important;
+ cursor: pointer !important;
+}
+body.home-companion section#attract .artic-logo:hover {
+ opacity: 0.7;
+}
+body.home-companion section#attract .language-select {
+ right: 36px;
+ bottom: 36px;
+ width: 200px;
+}
+body.home-companion section#attract .language-select ul li + li {
+ margin-top: 14px;
+}
+body.home-companion section#attract .language-select button {
+ height: 55px;
+ font-size: 20px;
+}
+body.home-companion section#attract .language-select button.select {
+ background-position: right 22px center;
 }
 body.home-companion.attract #header div.nav-left {
   left: -120px;
@@ -3115,7 +3330,7 @@ body.home-companion #wrap-sections section#build div.wrap-obj-detail div.detail-
   font: normal normal 500 14px/20px "Ideal Sans A", "Ideal Sans B", "Helvetica Neue", Helvetica, sans-serif;
   letter-spacing: 0.01em;
   color: #9b9b9b;
-  margin-bottom: 100px;
+  margin-bottom: 0px;
 }
 body.home-companion #wrap-sections section#build div.wrap-obj-detail div.detail-panel div.btn-btm {
   position: absolute;
@@ -3199,14 +3414,25 @@ body.home-companion #wrap-sections section#print div.top ul.tiles li div.narrati
   -o-transform: translate(0px, -55%);
   transform: translate(0px, -55%);
 }
+body.home-companion #wrap-sections section#print.named div.name-form {
+  width: auto;
+}
+body.home-companion #wrap-sections section#print.named div.name-form div.name-field {
+  padding: 10px;
+}
+body.home-companion #wrap-sections section#print.named div.name-form div.name-field div.hit-area,
+body.home-companion #wrap-sections section#print.named div.name-form div.name-field input.home-input,
+body.home-companion #wrap-sections section#print.named div.name-form div.name-field p.text {
+  display: none;
+}
 body.home-companion #wrap-sections section#print div.name-form {
   top: calc(40% + 215px);
   width: 550px;
 }
 body.home-companion #wrap-sections section#print div.name-form div.name-field {
-  height: 70px;
+  height: 75px;
   margin-bottom: 15px;
-  padding: 0px;
+  padding: 10px;
 }
 body.home-companion #wrap-sections section#print div.name-form div.name-field input.home-input {
   position: absolute;
@@ -3214,7 +3440,7 @@ body.home-companion #wrap-sections section#print div.name-form div.name-field in
   vertical-align: top;
   font: normal normal 500 20px/25px "Ideal Sans A", "Ideal Sans B", "Helvetica Neue", Helvetica, sans-serif;
   width: 400px;
-  padding: 22px 0px 23px 20px;
+  padding: 16px 0px 23px 20px;
   margin: 0px;
   border: none;
   background: none;
@@ -3225,7 +3451,7 @@ body.home-companion #wrap-sections section#print div.name-form div.name-field > 
   display: none;
 }
 body.home-companion #wrap-sections section#print div.name-form div.name-field > p.default-label {
-  padding-top: 22px;
+  padding-top: 16px;
   font: normal normal 500 20px/25px "Ideal Sans A", "Ideal Sans B", "Helvetica Neue", Helvetica, sans-serif;
 }
 body.home-companion #wrap-sections section#print div.name-form div.name-field div.hit-area,
@@ -3233,11 +3459,11 @@ body.home-companion #wrap-sections section#print div.name-form div.name-field di
   display: none;
 }
 body.home-companion #wrap-sections section#print div.name-form div.name-field button {
-  top: 12px;
-  right: 12px;
   width: 125px;
-  height: 45px;
+  height: 55px;
   font-size: 19px;
+  line-height: 20px;
+  padding-top: 4px;
 }
 body.home-companion #wrap-sections section#print div.name-form div.name-field div.help-item > div {
   display: none;
@@ -3346,4 +3572,7 @@ body.home-companion #wrap-sections section#print div.btm > .help-item div.stem {
   left: 50%;
   width: 3px;
   height: 41px;
+}
+body.lang-pl #wrap-sections section#print div.name-form {
+  width: 865px;
 }
