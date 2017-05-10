@@ -22,25 +22,25 @@ function ViewFooter($) {
 	/////////////////////////////////////////////
 
 	var $body					= $("body"),
-		$footer					= $("#footer");
+		$view					= $("#footer");
 
-	var $theme					= $footer.find("div.theme"),
-		$themeChangeBtn			= $theme.find("button.change"),
-		$themeChangeAcceptBtn	= $theme.find("button.accept"),
-		$themeChangeBg			= $theme.find("div.theme-change-bg"),
-		$themeIcon				= $theme.find("div.icon"),
-		$themeTitle				= $theme.find("h2.title"),
-		$themeInfo				= $theme.find("div.theme-expanded div.wrap-info"),
-		$themeIntro				= $themeInfo.find("p"),
-		$themeChangeScreen		= $footer.find("div.theme-change-screen");
+	var $theme,
+		$themeChangeBtn,
+		$themeChangeAcceptBtn,
+		$themeChangeBg,
+		$themeIcon,
+		$themeTitle,
+		$themeInfo,
+		$themeIntro,
+		$themeChangeScreen;
 
-	var $trayList				= $footer.find("ol.tray"),
-		$trayItems				= $trayList.find("li"),
-		$trayCloseBtns			= $trayList.find("button.close"),
-		$promptTitles			= $trayList.find("p.prompt-title");
+	var $trayList,
+		$trayItems,
+		$trayCloseBtns,
+		$promptTitles;
 
-	var $wrapContinue			= $footer.find("div.wrap-continue"),
-		$continueBtn			= $wrapContinue.find("button.continue");
+	var $wrapContinue,
+		$continueBtn;
 
 
 	// Vars
@@ -134,7 +134,7 @@ function ViewFooter($) {
 
 		if (_helpModel.on) {
 			var detailOn	= $body.find("#build .wrap-obj-detail").hasClass("on");
-			$footer.find(".help-item").toggleClass("disabled", detailOn);
+			$view.find(".help-item").toggleClass("disabled", detailOn);
 		}
 
 	}
@@ -143,7 +143,7 @@ function ViewFooter($) {
 
 		App.log("ViewFooter.onThemeChangeTap()");
 
-		if ($footer.hasClass("theme-locked")) {
+		if ($view.hasClass("theme-locked")) {
 			_self.dispatch(ViewEvent.FOOTER_BACK);
 
 		} else if (_themePanelOpen) {
@@ -223,6 +223,36 @@ function ViewFooter($) {
 		_helpModel.addListener(ModelEvent.UPDATE, onHelpModelUpdate);
 
 	}
+	function initTemplate() {
+
+		var html		= $.templates({
+			markup: "#template-footer"
+		}).render({
+			strings: _appModel.strings
+		});
+
+		$view.html(html);
+
+		$theme					= $view.find("div.theme");
+		$themeChangeBtn			= $theme.find("button.change");
+		$themeChangeAcceptBtn	= $theme.find("button.accept");
+		$themeChangeBg			= $theme.find("div.theme-change-bg");
+		$themeIcon				= $theme.find("div.icon");
+		$themeTitle				= $theme.find("h2.title");
+		$themeInfo				= $theme.find("div.theme-expanded div.wrap-info");
+		$themeIntro				= $themeInfo.find("p");
+		$themeChangeScreen		= $view.find("div.theme-change-screen");
+
+		$trayList				= $view.find("ol.tray");
+		$trayItems				= $trayList.find("li");
+		$trayCloseBtns			= $trayList.find("button.close");
+		$promptTitles			= $trayList.find("p.prompt-title");
+
+		$wrapContinue			= $view.find("div.wrap-continue");
+		$continueBtn			= $wrapContinue.find("button.continue");
+
+
+	}
 	function initBtns() {
 
 		_themeChangeBtn			= new TouchBtn($themeChangeBtn);
@@ -263,25 +293,25 @@ function ViewFooter($) {
 			case AppState.OFF:
 			case AppState.ATTRACT:
 			case AppState.SPIN:
-				$footer.addClass("hidden");
-				$footer.removeClass("theme-locked printed");
+				$view.addClass("hidden");
+				$view.removeClass("theme-locked printed");
 				_themeChangeBgBtn.disable();
 				break;
 
 			case AppState.BUILD:
-				$footer.removeClass("hidden theme-locked printed");
+				$view.removeClass("hidden theme-locked printed");
 				_themeChangeBgBtn.enable();
 				break;
 
 			case AppState.PRINT:
-				$footer.removeClass("hidden printed");
-				$footer.addClass("theme-locked");
+				$view.removeClass("hidden printed");
+				$view.addClass("theme-locked");
 				_themeChangeBgBtn.enable();
 				break;
 
 			case AppState.TOUR:
-				$footer.removeClass("hidden");
-				$footer.addClass("theme-locked printed");
+				$view.removeClass("hidden");
+				$view.addClass("theme-locked printed");
 				_themeChangeBgBtn.disable();
 				break;
 
@@ -416,7 +446,7 @@ function ViewFooter($) {
 
 		_themePanelOpen			= true;
 
-		$footer.addClass("theme-change");
+		$view.addClass("theme-change");
 		_self.dispatch(ViewEvent.FOOTER_THEME_CHANGE_OPEN);
 
 		_themeChangeScreen.enable();
@@ -432,7 +462,7 @@ function ViewFooter($) {
 
 		updateTheme();
 
-		$footer.removeClass("theme-change");
+		$view.removeClass("theme-change");
 		_self.dispatch(ViewEvent.FOOTER_THEME_CHANGE_CLOSE);
 
 		_themeChangeScreen.disable();
@@ -449,8 +479,8 @@ function ViewFooter($) {
 	/////////////////////////////////////////////
 
 	initModels();
+	initTemplate();
 	initBtns();
-
 
 
 }
