@@ -8,6 +8,7 @@ function SpriteAnim($el, imgUrl, frames, opts) {
 		Geom			= bwco.utils.Geom,
 		Random			= bwco.utils.Random,
 		Ticker			= bwco.ticker.Ticker,
+		Arrays			= bwco.utils.Arrays;
 		Range			= bwco.math.Range;
 
 
@@ -24,6 +25,7 @@ function SpriteAnim($el, imgUrl, frames, opts) {
 		"fps": 30,
 		"play": true,
 		"loop": true,
+		"reverse": false,
 		"initFrame": 0
 	};
 
@@ -62,6 +64,37 @@ function SpriteAnim($el, imgUrl, frames, opts) {
 			get: function() {
 				return !_playing;
 			}
+		},
+
+		"reverse": {
+			get: function() {
+				return _opts.reverse;
+			},
+			set: function(val) {
+				_opts.reverse	= val;
+			}
+		},
+
+		"index": {
+			set: function(val) {
+				_frameIndex		= Maths.wrap(val, _self.frameFirst, _self.frameLast);
+			}
+		},
+
+		"frameInit": {
+			get: function() {
+				return _opts.initFrame;
+			}
+		},
+		"frameFirst": {
+			get: function() {
+				return 0;
+			}
+		},
+		"frameLast": {
+			get: function() {
+				return _frames.length - 1;
+			}
 		}
 
 	});
@@ -86,7 +119,7 @@ function SpriteAnim($el, imgUrl, frames, opts) {
 		_lastFrame	= Date.now();
 
 		if (restart) {
-			_frameIndex	= 0;
+			resetFrame();
 		}
 
 		updateFrame();
@@ -102,6 +135,12 @@ function SpriteAnim($el, imgUrl, frames, opts) {
 		_playing	= false;
 
 		_ticker.removeListener(TickerEvent.TICK, onFrame);
+
+	}
+	this.reset = function() {
+
+		resetFrame();
+		updateFrame();
 
 	}
 	this.restart = function() {
@@ -143,24 +182,12 @@ function SpriteAnim($el, imgUrl, frames, opts) {
 
 		if (!_on) return;
 
-		var now		= Date.now(),
-			nextMs	= (_lastFrame + (1 / _opts.fps) * 1000);
+		var now			= Date.now(),
+			nextMs		= (_lastFrame + (1 / _opts.fps) * 1000);
 
 		if (now > nextMs) {
-
-			if (_frameIndex >= _frames.length - 1) {
-				if (_opts.loop) {
-					_frameIndex	= 0;
-				} else {
-					_self.pause();
-				}
-			} else {
-				_frameIndex++;
-			}
-
-			updateFrame();
+			advanceFrame();
 			_lastFrame	= now;
-
 		}
 
 	}
@@ -185,11 +212,46 @@ function SpriteAnim($el, imgUrl, frames, opts) {
 	}
 	function initFrames() {
 
-		_frameIndex	= Maths.wrap(_opts.initFrame, 0, _frames.length - 1);
+		_self.index	= _self.frameInit;
+
 		updateFrame();
 
 	}
 
+	function resetFrame() {
+
+		_self.index		= _opts.reverse ? _self.frameLast : _self.frameFirst;
+
+	}
+	function advanceFrame() {
+
+		if (_opts.reverse) {
+			if (_frameIndex <= _self.frameFirst) {
+				if (_opts.loop) {
+					_self.index	= _self.frameLast;
+				} else {
+					_self.pause();
+				}
+			} else {
+				_self.index	= _frameIndex - 1;
+			}
+
+		} else {
+			if (_frameIndex >= _self.frameLast) {
+				if (_opts.loop) {
+					_self.index	= _self.frameFirst;
+				} else {
+					_self.pause();
+				}
+			} else {
+				_self.index	= _frameIndex + 1;
+			}
+
+		}
+
+		updateFrame();
+
+	}
 	function updateFrame() {
 
 		var frame		= _frames[_frameIndex],
@@ -229,5 +291,3 @@ function SpriteAnim($el, imgUrl, frames, opts) {
 /////////////////////////////////////////////
 
 bwco.utils.extend(SpriteAnim, bwco.events.Dispatcher);
-
-

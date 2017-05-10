@@ -1,5 +1,5 @@
 
-function DetailPanel($wrap) {
+function DetailPanel($view) {
 
 	// Imports
 	/////////////////////////////////////////////
@@ -22,9 +22,6 @@ function DetailPanel($wrap) {
 	// Constants
 	/////////////////////////////////////////////
 
-	var ADD_TEXT_DEFAULT			= "Add to Journey",
-		ADD_TEXT_REPLACE			= "Replace Current Artwork";
-
 	var SCALE_MIN					= 1,
 		SCALE_MAX					= 3;
 
@@ -32,29 +29,32 @@ function DetailPanel($wrap) {
 		TRANSFORM_EASE				= 1/4;
 
 	var TOUCH_TRANFORM_START_DELAY	= 850;
+	var MIN_EXPANDABLE_CREDITS_H	= 70;
 
 
 	// Elements
 	/////////////////////////////////////////////
 
-	var $wrapSelectedObj	= $wrap.find("div.wrap-selected-obj"),
-		$multitouchArea		= $wrap.find("div.multitouch-area");
-
-	var $panel				= $wrap.find("div.detail-panel"),
-		$textDesc			= $panel.find("p.description"),
-		$textMetaInfo		= $panel.find("p.meta-info"),
-		$closeBtn			= $panel.find("button.close"),
-		$addBtn				= $panel.find("button.add");
-
-	var $wrapCredits		= $panel.find("div.wrap-credits"),
-		$textCredits		= $wrapCredits.find("p"),
-		$creditsBtn			= $wrapCredits.find("button.expand-collapse");
+	var $wrapSelectedObj,
+		$multitouchArea,
+		$panel,
+		$textDesc,
+		$textMetaInfo,
+		$closeBtn,
+		$addBtn,
+		$creditsBtn,
+		$wrapCredits,
+		$wrapCreditsText,
+		$creditsText,
+		$creditsDrag;
 
 
 	// Vars
 	/////////////////////////////////////////////
 
 	var _self				= this;
+
+	var _appModel;
 
 	var _ticker;
 
@@ -86,6 +86,11 @@ function DetailPanel($wrap) {
 
 	var _startTimeout;
 
+	var _creditsDrag,
+		_creditsDragGrabY,
+		_creditsDragTextY	= 0,
+		_creditsDragStartY;
+
 
 	// Getters & setters
 	/////////////////////////////////////////////
@@ -94,7 +99,7 @@ function DetailPanel($wrap) {
 
 		"on": {
 			get: function() {
-				return $wrap.hasClass("on");
+				return $view.hasClass("on");
 			}
 		},
 
@@ -133,12 +138,16 @@ function DetailPanel($wrap) {
 
 		if (data.credit && data.credit.length) {
 			$wrapCredits.addClass("on");
-			$textCredits.html(data.credit);
+			$creditsText.html(data.credit);
+			resetCreditsText();
 		} else {
 			$wrapCredits.removeClass("on");
 		}
 
-		$addBtn.text(toReplace ? ADD_TEXT_REPLACE : ADD_TEXT_DEFAULT);
+		$wrapCredits.toggleClass("expandable", $creditsText.height() > MIN_EXPANDABLE_CREDITS_H);
+
+		var btnLabel	= _appModel.getString(toReplace ? "buildDetailReplaceBtn" : "buildDetailAddBtn");
+		$addBtn.text(btnLabel);
 
 		setObj(obj);
 
@@ -160,7 +169,7 @@ function DetailPanel($wrap) {
 		// Turn er on
 		/////////////////////////////////////////////
 
-		$wrap.addClass("on");
+		$view.addClass("on");
 
 		clearTimeout(_startTimeout);
 		_startTimeout	= setTimeout(startTouchTransform, TOUCH_TRANFORM_START_DELAY);
@@ -170,7 +179,7 @@ function DetailPanel($wrap) {
 
 		App.log("DetailPanel::hide()");
 
-		$wrap.removeClass("on");
+		$view.removeClass("on");
 
 		_closeBtn.disable();
 		_addBtn.disable();
@@ -203,6 +212,8 @@ function DetailPanel($wrap) {
 		App.log("DetailPanel::onCreditsExpandCollapseTap()");
 
 		$panel.toggleClass("credits-expanded");
+
+		resetCreditsText();
 
 	}
 
@@ -269,15 +280,105 @@ function DetailPanel($wrap) {
 
 	}
 
+	function onCreditsDragStart(e) {
+
+		_creditsDragGrabY		= e.screenY;
+		_creditsDragStartY		= _creditsDragTextY;
+
+	}
+	function onCreditsDragMove(e) {
+
+		var minY			= $wrapCreditsText.height() - $creditsText.height(),
+			maxY			= 0;
+
+		var y				= e.screenY - _creditsDragGrabY,
+			textY			= Math.min(maxY, Math.max(minY, _creditsDragStartY + y));
+
+		_creditsDragTextY	= textY;
+
+		$creditsDrag.css({
+			"top": y
+		});
+
+		$creditsText.css({
+			"transform": "translate(0px, " + textY + "px)"
+		});
+
+		updateCreditsOverflow();
+
+	}
+	function onCreditsDragEnd(e) {
+
+		$creditsDrag.css({
+			"top": 0
+		});
+
+	}
+
 
 	// Private methods
 	/////////////////////////////////////////////
 
-	function initModels() { }
-	function initView() { }
+	function initModels() {
+
+		_appModel	= AppModel.getInstance();
+
+	}
+	function initTemplate() {
+
+		var html		= $.templates({
+			markup: "#template-build-obj-detail"
+		}).render({
+			strings: _appModel.strings
+		});
+
+		$view.html(html);
+
+		$wrapSelectedObj	= $view.find("div.wrap-selected-obj");
+		$multitouchArea		= $view.find("div.multitouch-area");
+		$panel				= $view.find("div.detail-panel");
+
+		$textDesc			= $panel.find("p.description");
+		$textMetaInfo		= $panel.find("p.meta-info");
+		$closeBtn			= $panel.find("button.close");
+		$addBtn				= $panel.find("button.add");
+		$wrapCredits		= $panel.find("div.wrap-credits");
+
+		$wrapCreditsText	= $wrapCredits.find("div.wrap-credits-text");
+		$creditsText		= $wrapCredits.find("p");
+		$creditsDrag		= $wrapCredits.find("div.drag");
+		$creditsBtn			= $wrapCredits.find("button.expand-collapse");
+
+	}
+
 	function initTicker() {
 
 		_ticker			= Ticker.getInstance();
+
+	}
+	function initBtns() {
+
+		_closeBtn	= new TouchBtn($closeBtn, { enabled: false });
+		_addBtn		= new TouchBtn($addBtn, { enabled: false });
+		_creditsBtn = new TouchBtn($creditsBtn, { enabled: false });
+
+		_closeBtn.addListener(TouchBtn.TAP, onCloseTap);
+		_addBtn.addListener(TouchBtn.TAP, onAddTap);
+		_creditsBtn.addListener(TouchBtn.TAP, onCreditsExpandCollapseTap);
+
+	}
+	function initCreditsScroll() {
+
+		_creditsDrag	= new TouchBtn($creditsDrag, {
+			enabled: false,
+			buttonMode: false,
+			releaseOnLeave: false,
+			enableSfx: false
+		});
+
+		_creditsDrag.addListener(TouchBtn.DRAG_START, onCreditsDragStart);
+		_creditsDrag.addListener(TouchBtn.DRAG_MOVE, onCreditsDragMove);
+		_creditsDrag.addListener(TouchBtn.DRAG_END, onCreditsDragEnd);
 
 	}
 	function initMultitouch() {
@@ -289,17 +390,6 @@ function DetailPanel($wrap) {
 		_touchArea.addListener(MultitouchArea.START, onTouchStart);
 		_touchArea.addListener(MultitouchArea.TOUCHES_CHANGE, onTouchesChange);
 		_touchArea.addListener(MultitouchArea.CANCEL, onTouchesChange);
-
-	}
-	function initBtns() {
-
-		_closeBtn	= new TouchBtn($closeBtn, { enabled: false });
-		_addBtn		= new TouchBtn($addBtn, { enabled: false });
-		_creditsBtn	= new TouchBtn($creditsBtn, { enabled: false });
-
-		_closeBtn.addListener(TouchBtn.TAP, onCloseTap);
-		_addBtn.addListener(TouchBtn.TAP, onAddTap);
-		_creditsBtn.addListener(TouchBtn.TAP, onCreditsExpandCollapseTap);
 
 	}
 
@@ -339,7 +429,7 @@ function DetailPanel($wrap) {
 
 		clearTimeout(_startTimeout);
 
-		_obj.isTransforming	= true;
+		_obj.isTransforming = true;
 		_touchArea.enable();
 
 		_ticker.addListener(TickerEvent.TICK, onFrame);
@@ -352,7 +442,7 @@ function DetailPanel($wrap) {
 		clearTimeout(_startTimeout);
 
 		if (_obj) {
-			_obj.isTransforming	= false;
+			_obj.isTransforming = false;
 		}
 
 		_touchArea.disable();
@@ -450,7 +540,7 @@ function DetailPanel($wrap) {
 
 		_obj.$el.css({
 			"left": _imgPos.x,
-			"top":  _imgPos.y
+			"top":	_imgPos.y
 		})
 
 		_obj.$el.find("img").css({
@@ -475,6 +565,43 @@ function DetailPanel($wrap) {
 
 	}
 
+	function enableCreditsScroll() {
+
+		_creditsDrag.enable();
+
+		updateCreditsOverflow();
+
+	}
+	function disableCreditsScroll() {
+
+		_creditsDrag.enable();
+
+	}
+
+	function updateCreditsOverflow() {
+
+		var maxY	= -5,
+			minY	= $wrapCreditsText.height() - $creditsText.height() + 5;
+
+		$wrapCredits.toggleClass("at-top", _creditsDragTextY >= maxY);
+		$wrapCredits.toggleClass("at-bottom", _creditsDragTextY <= minY);
+
+	}
+
+	function resetCreditsText() {
+
+		$creditsText.css({
+			"transform": "translate(0px, 0px)"
+		});
+
+		_creditsDragTextY	= 0;
+		_creditsDragStartY	= 0;
+		_creditsDragGrabY	= 0;
+
+		updateCreditsOverflow();
+
+	}
+
 
 	// Helpers
 	/////////////////////////////////////////////
@@ -484,7 +611,7 @@ function DetailPanel($wrap) {
 		pad			= bwco.utils.defined(pad) ? pad : 0;
 
 		var minX	= $el.offset().left - pad,
-			minY	= $el.offset().top  - pad,
+			minY	= $el.offset().top	- pad,
 			maxX	= minX + $el.outerWidth()  + (pad * 2),
 			maxY	= minY + $el.outerHeight() + (pad * 2);
 
@@ -547,10 +674,13 @@ function DetailPanel($wrap) {
 	/////////////////////////////////////////////
 
 	initModels();
-	initView();
+	initTemplate();
 	initTicker();
 	initBtns();
+	initCreditsScroll();
 	initMultitouch();
+
+	enableCreditsScroll();
 
 
 }
