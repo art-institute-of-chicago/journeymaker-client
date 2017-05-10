@@ -49,7 +49,7 @@ function App($) {
 	var CONFIG_CUSTOM_PATH			= "config.custom.json";
 	var CONFIG_AUTO_PATH				= "config.auto.json";
 
-	var SFX_SHAPE_ROTATE	= "resources/sfx/sfx-shape-rotate.wav",
+	var SFX_SHAPE_ROTATE	= "resources/sfx/sfx-shape-rotate_artic.wav",
 		MIN_TIME_PER_SFX	= 35;
 
 
