@@ -644,7 +644,10 @@ function ViewBuild($) {
 	}
 	function generateObjEl(id, data) {
 
-		return $($.templates("#template-build-obj").render({
+		return $($.templates({
+			markup: "#template-build-obj"
+		}).render({
+			strings: _appModel.strings,
 			id: id,
 			data: data
 		}));

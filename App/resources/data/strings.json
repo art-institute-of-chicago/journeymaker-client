@@ -52,6 +52,7 @@
 		"buildDetailAddBtn": "Add to My Journey",
 		"buildDetailReplaceBtn": "Replace Current Artwork",
 		"buildHelpAdd": "Select to add this artwork to your journey.",
+		"buildArtworkHelp": "Select an artwork to learn more and to add it to your journey.",
 
 		"printInputDefaultLabel": "Add Your Name Here",
 		"printDefaultName": "Anonymous",
@@ -92,6 +93,9 @@
 		"printHelpNamed-home": "Select to send your Journey Guide to your printer",
 		"printHelpEnd": "You did it! Touch “exit” and go pick up your Journey Guide from the printer mentioned above.",
 		"printHelpEnd-home": "You did it! Click “Download” to open the printable PDF. You may need to disable your browser's pop-up blocker.",
+
+		"journeyGuideActivityLabel": "Look again",
+		"journeyGuideFootnote": "Generous support for JourneyMaker has been provided by the Woman's Board of the Art Institute of Chicago.",
 
 		"unsupportedBrowserMobileTitle": "Sorry! JourneyMaker is not designed for mobile devices",
 		"unsupportedBrowserMobileText": "Please visit again using a laptop or desktop computer",
@@ -145,7 +149,8 @@
 
 		"buildDetailAddBtn": "Dodaj do Wycieczki",
 		"buildDetailReplaceBtn": "Zastąpić obecną grafiki",
-		"buildHelpAdd": "XXXX",
+		"buildHelpAdd": "Wybierz, aby dodać tę grafikę do podróży",
+		"buildArtworkHelp": "Wybierz dzieło sztuki, aby dowiedzieć się więcej i dodać go do podróży.",
 
 		"printInputDefaultLabel": "Tutaj Wpisz Swoje Imię",
 		"printDefaultName": "Anonimowy",
@@ -181,6 +186,9 @@
 		"printHelpKeyboardOn": "Wybierz tutaj po wpisaniu nazwy w celu zakończenia przewodnik",
 		"printHelpNamed": "Wybierz tutaj aby wysłać przewodnik do drukarki",
 		"printHelpEnd": "Zrobiłeś to! Dotknąć „exit” i iść odebrać przewodnik z drukarki wspomnianej powyżej.",
+
+		"journeyGuideActivityLabel": "Spójrz ponownie",
+		"journeyGuideFootnote": "Ogromne poparcie dla JourneyMaker zostało dostarczone przez Woman's Board of the Art Institute of Chicago.",
 
 		"unsupportedBrowserMobileTitle": "Przepraszam! JourneyMaker nie jest przeznaczony dla urządzeń mobilnych",
 		"unsupportedBrowserMobileText": "Proszę odwiedzić ponownie za pomocą laptopa lub komputera stacjonarnego",
@@ -235,6 +243,7 @@
 		"buildDetailAddBtn": "Agregar al Viaje",
 		"buildDetailReplaceBtn": "Sustituir ilustraciones actuales",
 		"buildHelpAdd": "Selecciona esta obra para añadirla a tu viaje.",
+		"buildArtworkHelp": "Selecciona una obra de arte para saber más y añadirla a tu viaje.",
 
 		"printInputDefaultLabel": "Su Nombre Aquí",
 		"printDefaultName": "Anónimo",
@@ -270,6 +279,9 @@
 		"printHelpKeyboardOn": "Seleccione después de ingresar su nombre para terminar de construir su Guía de viaje.",
 		"printHelpNamed": "Seleccione esta opción para enviar su guía de viaje a la impresora",
 		"printHelpEnd": "¡Lo hiciste! Toque 'Salir' y vaya a recoger su Guía de viaje de la impresora mencionada anteriormente.",
+
+		"journeyGuideActivityLabel": "Vuelve a mirar",
+		"journeyGuideFootnote": "JourneyMaker es generosamente apoyado por el Woman's Board of the Art Institute of Chicago.",
 
 		"unsupportedBrowserMobileTitle": "¡Lo siento! JourneyMaker no está diseñado para dispositivos móviles",
 		"unsupportedBrowserMobileText": "Vuelva a visitarlo de nuevo utilizando un ordenador portátil o una computadora de escritorio.",
@@ -324,6 +336,7 @@
 		"buildDetailAddBtn": "添加至旅程",
 		"buildDetailReplaceBtn": "替换当前图稿",
 		"buildHelpAdd": "选择将此作品添加到您的旅程中。",
+		"buildArtworkHelp": "选择艺术品以了解更多信息，并将其添加到您的旅程中.",
 
 		"printInputDefaultLabel": "您的姓名填于此处",
 		"printDefaultName": "匿名",
@@ -359,6 +372,9 @@
 		"printHelpKeyboardOn": "在输入您的名字后选择完成您的旅程指南。",
 		"printHelpNamed": "选择将您的旅程指南发送到打印机",
 		"printHelpEnd": "你做到了！ 触摸“退出”，然后从上述打印机中提取您的旅程指南。",
+
+		"journeyGuideActivityLabel": "再看一遍",
+		"journeyGuideFootnote": "JourneyMaker 慷慨支持 Woman's Board of the Art Institute of Chicago",
 
 		"unsupportedBrowserMobileTitle": "抱歉! JourneyMaker不是为移动设备设计的",
 		"unsupportedBrowserMobileText": "请使用笔记本电脑或台式电脑再次访问",

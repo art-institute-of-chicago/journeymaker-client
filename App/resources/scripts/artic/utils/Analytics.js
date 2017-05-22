@@ -116,6 +116,12 @@ function Analytics() {
 
 		ga("create", id, "auto");
 
+		if (debug) {
+			ga_debug = {
+				trace: true
+			};
+		}
+
 		_created	= true;
 
 	}
