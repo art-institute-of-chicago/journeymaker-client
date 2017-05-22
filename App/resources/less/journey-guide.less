@@ -108,6 +108,10 @@ body {
 			overflow: hidden;
 		}
 
+		p.footnote {
+			display: none;
+		}
+
 	}
 
 	section.page {
@@ -211,6 +215,11 @@ body {
 			text-align: center;
 			max-height: 23px;
 			overflow: hidden;
+
+			span.label {
+				text-transform: uppercase;
+			}
+
 		}
 
 		&#page-1 {
@@ -499,6 +508,21 @@ body {
 	&.home-companion {
 		width: 612px;
 		height: 792px;
+
+		section#cover {
+			p.footnote {
+				display: block;
+				font-family: @idealLight;
+				color: #999999;
+				font-size: 7px;
+				line-height: 1.25em;
+				letter-spacing: -0.015em;
+				position: absolute;
+				left: 95px;
+				top: 357px;
+				width: 160px;
+			}
+		}
 
 		section#instructions {
 			display: block;

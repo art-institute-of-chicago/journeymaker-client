@@ -16,9 +16,7 @@ function ViewAttract($) {
 	// Constants
 	/////////////////////////////////////////////
 
-	var LANG_MENU_TIMEOUT		= 8000,
-		LANG_CHANGE_TIMEOUT		= 1500;
-
+	var LANG_MENU_TIMEOUT		= 8000
 
 	// Elements
 	/////////////////////////////////////////////
@@ -232,7 +230,7 @@ function ViewAttract($) {
 	function resetLangChangeTimeout() {
 
 		clearTimeout(_timeoutLangChange);
-		_timeoutLangChange	= setTimeout(onLangChangeTimeout, LANG_CHANGE_TIMEOUT);
+		_timeoutLangChange	= setTimeout(onLangChangeTimeout, _config.val("languageChangeDelay", 500));
 
 	}
 

@@ -110,6 +110,8 @@ function App($) {
 			_idleModel.timeoutSecs		= _config.val("timeoutSecs", 180);
 		}
 		
+		initAnalytics();
+
 		_appModel.validateLang();
 		loadContentData();
 
@@ -396,7 +398,7 @@ function App($) {
 
 		App.log("App::onIdleTimeout()");
 
-		switch(_appModel.state) {
+		switch (_appModel.state) {
 			case AppState.SPIN:
 				App.trackPage("session/end/timeout/spin");
 				break;
@@ -416,10 +418,15 @@ function App($) {
 					App.trackPage("session/end/timeout/tour");
 				}
 				break;
-
 		}
 
-		_appModel.state	= AppState.ATTRACT;
+		if (_appModel.state != AppState.OFF) {
+ 			if (_appModel.langCode != "en") {
+ 				changeToLangCode("en");
+ 			}
+ 		}
+ 
+ 		_appModel.state	= AppState.ATTRACT;
 
 	}
 	
@@ -434,13 +441,7 @@ function App($) {
 	}
 	function onAttractLanguageChange(e) {
 
-		if (!e.lang || !e.lang.length) return;
-		if (!_appModel.isSupportedLang(e.lang)) return;
-
-		var baseUrl	= window.location.protocol + '//' + window.location.host + window.location.pathname,
-			url	= baseUrl + "?lang=" + e.lang;
-
-		window.location	= url;
+		changeToLangCode(e.lang);
 
 	}
 
@@ -984,8 +985,15 @@ function App($) {
 				prefix	= _config.val("analyticsPrefix", ""),
 				debug	= _config.val("analyticsDebug", false);
 
+			if (_config.val("analyticsTrackLanguage", false)) {
+ 				var lang	= _appModel.langCode;
+ 				if (prefix.charAt(prefix.length - 1) == "/") {
+ 					prefix	+= lang + "/";
+ 				} else {
+ 					prefix	+= "/" + lang + "/";
+ 				}
+ 			}
 			App.analytics.enable(id, prefix, debug);
-
 		}
 
 	}
@@ -1384,6 +1392,7 @@ function App($) {
 				allowCode: true
 			}).render({
 				isHomeCompanion: false,
+				strings: _appModel.strings,
 				theme: sets[i].theme,
 				selections: sets[i].selections,
 				visitorName: sets[i].visitorName
@@ -1445,6 +1454,17 @@ function App($) {
 
 	}
 
+	function changeToLangCode(langCode) {
+ 
+ 		if (!langCode || !langCode.length) return;
+ 		if (!_appModel.isSupportedLang(langCode)) return;
+ 
+ 		var baseUrl			= window.location.protocol + '//' + window.location.host + window.location.pathname,
+ 			url				= baseUrl + "?lang=" + langCode;
+ 
+ 		window.location		= url;
+ 
+ 	}
 
 	// Helpers
 	/////////////////////////////////////////////
@@ -1511,6 +1531,7 @@ function App($) {
 			markup: "#template-tour-journey-guide-pdf",
 			allowCode: true
 		}).render({
+			strings: _appModel.strings,
 			isHomeCompanion: App.isHomeCompanion,
 			isKiosk: App.isKiosk,
 			theme: theme,

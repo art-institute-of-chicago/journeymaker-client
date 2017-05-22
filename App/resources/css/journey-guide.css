@@ -141,6 +141,9 @@ body * {
   max-height: 23px;
   overflow: hidden;
 }
+#journey-guide section.page div.closer-look span.label {
+  text-transform: uppercase;
+}
 #journey-guide section.page#page-1 div.numeral {
   background-color: #089bcf;
 }

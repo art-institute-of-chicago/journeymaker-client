@@ -230,7 +230,7 @@
 			<div data-id="{{:id}}" class="obj unloaded">
 				{{if data.img && data.img.url}}<img src="{{:data.img.url}}">{{/if}}
 				<div class="help-item">
-					<p>Select an artwork to learn more and to add it to your journey.</p>
+					<p>{{:strings.buildArtworkHelp}}</p>
 				</div>
 			</div>
 		</script>
@@ -404,6 +404,9 @@
 							{{:visitorName}}&rsquo;s<br>
 							{{:theme.journey_guide}}
 						</h1>
+						{{if !isKiosk}}
+ 							<p class="footnote">{{:strings.journeyGuideFootnote}}</p>
+ 						{{/if}}
 						</section>
 						{{for selections}}
 						<section id="page-{{:#index+1}}" class="page">
@@ -469,7 +472,7 @@
 								</svg>
 								{{/if}}
 							</div>
-							<div class="closer-look">LOOK AGAIN: {{:artwork.viewingDescription}}</div>
+							<div class="closer-look"><span class="label">{{:~root.strings.journeyGuideActivityLabel}}</span>: {{:artwork.viewingDescription}}</div>
 						</section>
 						{{/for}}
 						<section id="index-a" class="gallery-index">
