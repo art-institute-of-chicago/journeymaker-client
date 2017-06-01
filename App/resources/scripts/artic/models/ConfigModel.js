@@ -36,9 +36,17 @@ function ConfigModel() {
 
 	}
 
-	this.val = function(field) {
+	this.val = function(field, defaultVal) {
 
+		if (bwco.utils.defined(defaultVal)) {
+			if (this.has(field)) {
+				return _data[field];
+			} else {
+				return defaultVal;
+			}
+		} else {
 		return _data[field];
+		}
 
 	}
 
