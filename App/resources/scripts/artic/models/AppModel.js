@@ -367,7 +367,7 @@ function AppModel() {
 
 	function isInPriorityGallery(artwork) {
 
-		var ids	= _config.has("priorityGalleryIds") ? _config.val("priorityGalleryIds") : [ ];
+		var ids	= _config.val("priorityGalleryIds", [ ]);
 
 		for (var i = 0; i < ids.length; i++) {
 			if (artwork.galleryId == ids[i]) {
