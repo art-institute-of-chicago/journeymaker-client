@@ -80,7 +80,7 @@ function init() {
     for (var i = 0; i < JSON_SOURCES.length; i++) {
 
         var source          = JSON_SOURCES[i],
-            localDataPath   = PATH_TO_LOCAL_ASSETS_FOLDER + source.localFilename,
+            localDataPath   = appDir + source.localFilename,
             prevQueueLen    = _downloadQueue.length;
 
         log("\nLoading source " + (i + 1) + "/" + JSON_SOURCES.length + ": " + source.lang);
