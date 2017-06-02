@@ -22,9 +22,9 @@ var _fileQueue      = new _reqFileQueue(1);
 var rootDir   = __dirname.split('/').slice( 0, -1).join('/');
 
 var appDir    = rootDir  + '/App';
-var assetsDir = appDir   + '/assets';
+var assetsDir = appDir   + '/assets/';
 
-var localFilePrefix = assetsDir + '/';
+//var localFilePrefix = assetsDir + '/';
 
 // CUSTOM CONFIG FILE
 var config = JSON.parse(_reqFs.readFileSync( appDir + '/config.custom.json', 'utf8'));
@@ -80,10 +80,10 @@ function init() {
     for (var i = 0; i < JSON_SOURCES.length; i++) {
 
         var source          = JSON_SOURCES[i],
-            localDataPath   = appDir + source.localFilename,
+            localDataPath   = assetsDir + "/" + source.localFilename,
             prevQueueLen    = _downloadQueue.length;
 
-        log("\nLoading source " + (i + 1) + "/" + JSON_SOURCES.length + ": " + source.lang);
+        log("\nLoading source " + (i + 1) + '/' + JSON_SOURCES.length + ": " + source.lang);
         log("  URL: " + source.url);
 
         log("  Loading JSON... ", true);
