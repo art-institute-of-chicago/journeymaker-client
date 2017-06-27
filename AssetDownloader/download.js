@@ -1,187 +1,294 @@
-var fs = require('fs');
-var request = require('request');
-var separateReqPool = {
-	maxSockets: 1
-};
-var FileQueue = require('filequeue');
-var fq = new FileQueue(1);
+// Constants
+/////////////////////////////////////////////
+
+var PREFIX_FILE_IN_JSON         = "http://localhost:8888/assets/";
+
+// Requires
+/////////////////////////////////////////////
+
+var _reqFs          = require('fs'),
+    _reqRequest     = require('request'),
+    _reqXhr         = require("xmlhttprequest"),
+    _reqFileQueue   = require('filequeue');
+
+// Vars
+/////////////////////////////////////////////
+
+var _fileQueue      = new _reqFileQueue(1);
+    _downloadIndex  = 0,
+    _downloadQueue  = [];
 
 // FILE PREFIX ON FOR THE LOCAL FILE SYSTEM
 var rootDir   = __dirname.split('/').slice( 0, -1).join('/');
 
 var appDir    = rootDir  + '/App';
-var assetsDir = appDir   + '/assets';
+var assetsDir = appDir   + '/assets/';
 
-var localFilePrefix = assetsDir + '/';
+//var localFilePrefix = assetsDir + '/';
 
 // CUSTOM CONFIG FILE
-var config = JSON.parse(fs.readFileSync( appDir + '/config.custom.json', 'utf8'));
+var config = JSON.parse(_reqFs.readFileSync( appDir + '/config.custom.json', 'utf8'));
 
-// RETRIEVE CONFIGS
-var JSONURL = config.contentOrigin;
+var JSONURL_EN = config.contentOriginEN,
+		JSONURL_ES = config.contentOriginES,
+		JSONURL_ZH = config.contentOriginZH;
 
 // FILE PREFIX ON THE LOCAL WEB SERVER
 var localURLPrefix =  ( config.baseURL || '' ) + '/assets/';
 
-if(!fs.existsSync( assetsDir ) ) {
-	fs.mkdirSync( assetsDir );
-}
+var JSON_SOURCES    = [
+    {
+        "lang": "en",
+        "url": JSONURL_EN,
+        "localFilename": "data-en.json"
+    },
+    {
+        "lang": "es",
+        "url": JSONURL_ES,
+        "localFilename": "data-es.json"
+    },
+    {
+        "lang": "zh",
+        "url": JSONURL_ZH,
+        "localFilename": "data-zh.json"
+    }
+];
 
-// CLASS FOR ASSETS TO BE DOWNLOADED
+// Classes
+/////////////////////////////////////////////
+
 function MediaAsset(url, filename) {
-	this.url = url;
-	this.filename = filename;
+    this.url        = url;
+    this.filename   = filename;
+    this.localPath  = assetsDir + filename;
 }
 
-// QUEUE FOR ASSETS
-var downloadQueue = [];
 
-// DOWNLOAD
-var download = function(uri, filename, callback) {
-	request.head(uri, function(err, res, body) {
-		if (err) callback(err, filename);
-		else {
-			var stream = request(uri, separateReqPool);
-			stream.pipe(
-					fq.createWriteStream(localFilePrefix+filename)
-					.on('error', function(err) {
-						callback(error, filename);
-						//  stream.read();
-					})
-				)
-				.on('close', function() {
-					callback(filedone, filename);
-				});
-		}
-	});
-};
+// Init
+/////////////////////////////////////////////
 
-// HANDLERS ( NOT QUITE WORKING YET )
-function filedone(filename) {
-	console.log("FILE DONE: " + filename);
+init();
 
-}
 
-function error(err) {
-	console.log("ERROR : " + err);
+// Methods
+/////////////////////////////////////////////
 
-}
+function init() {
 
-// GRAB THE JSON
-function getJSON(url) {
-	var resp;
-	var xmlHttp;
+    log("\nJourneyMaker Asset Downloader");
 
-	resp = '';
-	var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-	xmlHttp = new XMLHttpRequest();
+    for (var i = 0; i < JSON_SOURCES.length; i++) {
 
-	if (xmlHttp != null) {
-		xmlHttp.open("GET", url, false);
-		xmlHttp.send(null);
-		resp = xmlHttp.responseText;
-	}
+        var source          = JSON_SOURCES[i],
+            localDataPath   = assetsDir + "/" + source.localFilename,
+            prevQueueLen    = _downloadQueue.length;
 
-	return resp;
-}
+        log("\nLoading source " + (i + 1) + '/' + JSON_SOURCES.length + ": " + source.lang);
+        log("  URL: " + source.url);
 
-function startDownload() {
-	if (downloadQueue.length > 0) {
-		var assetToDL = downloadQueue.pop();
-		console.log('start downloading ' + assetToDL.filename);
-		download(assetToDL.url, assetToDL.filename, function() {
-			console.log('done downloading ' + assetToDL.filename);
-			startDownload();
-		});
-	}
+        log("  Loading JSON... ", true);
+        var data    = JSON.parse(loadJSON(source.url));
+        log("Complete");
+
+        log("  Adding assets to queue... ", true);
+        addToDownloadQueue(data);
+        log("Complete (" + (_downloadQueue.length - prevQueueLen) + " unique assets added to queue)");
+
+        log("  Writing local data to \"" + source.localFilename + "\"... ", true);
+        _reqFs.writeFile(localDataPath, stringifyJSON(data), 'utf8');
+        log("Complete");
+
+    }
+
+
+    // Download assets
+    /////////////////////////////////////////////
+
+    log("\nDownloading " + _downloadQueue.length + " assets...\n");
+    downloadNextAsset();
 
 }
 
-function getFileExtension(fileExtensionToProcess) {
-	fileExtension = fileExtensionToProcess.split('.').pop();
-	if (fileExtension.indexOf('?') > -1) {
-		var splitName = fileExtension.split('?');
-		return splitName[0];
-	}
-	else if (fileExtension.indexOf('&') > -1) {
-		var splitName = fileExtension.split('&');
-		return splitName[0];
-	}
-	return fileExtension;
-}
+function loadJSON(url) {
 
-var gjson;
+    var response    = "",
+        request     = new _reqXhr.XMLHttpRequest();
 
-gjson = getJSON(JSONURL);
-var jsonParsed = JSON.parse(gjson);
+    if (request) {
+        request.open("GET", url, false);
+        request.send(null);
+        response    = request.responseText;
+    }
 
-
-var i;
-
-
-
-// themes
-for (i = 0; i < jsonParsed.themes.length; i++) {
-
-		var j;
-		var k;
-
-		var urltoDL = jsonParsed.themes[i].icon.url;
-		fileExtension = getFileExtension(urltoDL)
-		jsonParsed.themes[i].icon.url = localURLPrefix + "theme_" + i + "_iconimage." + fileExtension;
-		var asset = new MediaAsset(urltoDL, "theme_" + i + "_iconimage." + fileExtension);
-		downloadQueue.push(asset);
-
-		var urltoDL = jsonParsed.themes[i].guideCoverArt.url;
-		fileExtension = getFileExtension(urltoDL)
-		jsonParsed.themes[i].guideCoverArt.url = localURLPrefix + "theme_" + i + "_guidecoverart." + fileExtension;
-		var asset = new MediaAsset(urltoDL, "theme_" + i + "_guidecoverart." + fileExtension);
-		downloadQueue.push(asset);
-
-		for (j = 0; j < jsonParsed.themes[i].bgs.length; j++) {
-			var urltoDL = jsonParsed.themes[i].bgs[j].url;
-			fileExtension = getFileExtension(urltoDL)
-			jsonParsed.themes[i].bgs[j].url = localURLPrefix + "theme_" + i + "_bg_" + j + "." + fileExtension;
-			var asset = new MediaAsset(urltoDL, "theme_" + i + "_bg_" + j + "." +  fileExtension);
-			downloadQueue.push(asset);
-		}
-
-		for (j = 0; j < jsonParsed.themes[i].prompts.length; j++) {
-			for (k = 0; k < jsonParsed.themes[i].prompts[j].artworks.length; k++) {
-				if (jsonParsed.themes[i].prompts[j].artworks[k].img != null) {
-					var urltoDL = jsonParsed.themes[i].prompts[j].artworks[k].img.url;
-					fileExtension = getFileExtension(urltoDL)
-					jsonParsed.themes[i].prompts[j].artworks[k].img.url = localURLPrefix + "theme_" + i + "_prompt_" + j + "_artwork_" + k +"_image." + fileExtension;
-					var asset = new MediaAsset(urltoDL, "theme_" + i + "_prompt_" + j + "_artwork_" + k +"_image." + fileExtension);
-					downloadQueue.push(asset);
-				}
-			}
-		}
-
-
+    return response;
 
 }
 
-startDownload();
+function addToDownloadQueue(data) {
 
-function JSON_stringify(s, emit_unicode)
-{
-	var json = JSON.stringify(s);
-	return emit_unicode ? json : json.replace(/[\u007f-\uffff]/g,
-		function(c) {
-			return '\\u'+('0000'+c.charCodeAt(0).toString(16)).slice(-4);
-		}
-	);
+    for (var i = 0; i < data.themes.length; i++) {
+        var theme       = data.themes[i];
+
+        addAssetToDownloadQueue(theme.icon, "url", "theme-" + i + "-icon");
+        addAssetToDownloadQueue(theme.guideCoverArt, "url", "theme-" + i + "-guide-cover-art");
+        addAssetToDownloadQueue(theme.guideCoverArtHome, "url", "theme-" + i + "-guide-cover-art-home");
+
+        for (var j = 0; j < theme.bgs.length; j++) {
+            var bg          = theme.bgs[j];
+
+            addAssetToDownloadQueue(bg, "url", "theme-" + i + "-bg-" + j);
+
+        }
+
+        for (var k = 0; k < theme.prompts.length; k++) {
+            var prompt          = theme.prompts[k];
+
+            for (var l = 0; l < prompt.artworks.length; l++) {
+                var artwork         = prompt.artworks[l];
+
+                addAssetToDownloadQueue(artwork.img, "url", "theme-" + i + "-prompt-" + k + "-artwork-" + l);
+
+            }
+        }
+
+    }
+
 }
 
-fs.writeFile(
-	localFilePrefix + "data.json",
-	JSON_stringify(jsonParsed),
-	{
-		encoding: 'utf8',
-		flag: 'w'
-	}, function( err ) {
-		if (err) throw err;
-		console.log('Saved data.json!');
-	}
-);
+function addAssetToDownloadQueue(obj, urlField, fileLabel) {
+
+    if (!obj) return;
+
+    var url         = obj[urlField],
+        filename    = fileLabel + "." + getFileExtension(url),
+        newPath     = PREFIX_FILE_IN_JSON + filename;
+        asset       = new MediaAsset(url, filename);
+
+    if (!assetAlreadyInQueue(asset)) {
+        _downloadQueue.push(asset);
+    }
+
+    obj[urlField]   = newPath;
+
+}
+
+function downloadNextAsset() {
+
+    if (_downloadIndex >= _downloadQueue.length - 1) {
+        log("\nCompleted downloading " + _downloadQueue.length + " assets.");
+        log("You're good to go!\n");
+        return;
+    }
+
+    var asset       = _downloadQueue[_downloadIndex],
+        perc        = _downloadIndex / (_downloadQueue.length - 1),
+        progress    = getProgressString(perc),
+        count       = (_downloadIndex + 1) + "/" + _downloadQueue.length;
+
+    log("  " + progress + " " + count + " (" + asset.filename + ") ", true);
+
+    downloadAsset(asset.url, asset.localPath, onAssetDownloadComplete, onAssetDownloadError);
+
+}
+
+function downloadAsset(url, localPath, onComplete, onError) {
+
+    // I don't know what's going on here exactly, so
+    // I'm not going to mess with it -Scott
+
+    _reqRequest.head(url, function(err, res, body) {
+        if (err) {
+            onError(err);
+        } else {
+            var stream = _reqRequest(url, {
+                maxSockets: 1
+            });
+            stream.pipe(_fileQueue.createWriteStream(localPath).on("error", function(err) {
+                onError(err);
+            })).on("close", function() {
+                onComplete();
+            });
+        }
+    });
+
+}
+
+
+// Event handlers
+/////////////////////////////////////////////
+
+function onAssetDownloadComplete() {
+
+    log("Complete");
+
+    _downloadIndex++;
+    downloadNextAsset();
+
+}
+
+function onAssetDownloadError(err) {
+
+    log("Error loading asset: " + err);
+
+}
+
+
+// Helpers
+/////////////////////////////////////////////
+
+function stringifyJSON(s, emit_unicode) {
+    var json = JSON.stringify(s);
+    return emit_unicode ? json : json.replace(/[\u007f-\uffff]/g,
+        function(c) {
+            return '\\u'+('0000'+c.charCodeAt(0).toString(16)).slice(-4);
+        }
+    );
+}
+
+function assetAlreadyInQueue(asset) {
+
+    for (var i = 0; i < _downloadQueue.length; i++) {
+        if (_downloadQueue[i].filename == asset.filename) {
+            return true;
+        }
+    }
+
+    return false;
+
+}
+
+function getFileExtension(file) {
+
+    var extension   = file.split(".").pop();
+
+    if (extension.indexOf("?") != -1) {
+        return extension.split("?")[0];
+
+    } else if (extension.indexOf("&") != -1) {
+        return extension.split("&")[0];
+    }
+
+    return extension;
+
+}
+
+function getProgressString(perc) {
+
+    var LENGTH          = 20;
+    var completeCount   = Math.floor(perc * LENGTH);
+
+    var string          = "["
+
+    for (var i = 0; i < LENGTH; i++) {
+        string  += (i <= completeCount) ? "■" : " ";
+    }
+
+    return string + "]"
+
+}
+
+function log(msg, omitLinebreak) {
+
+    process.stdout.write(msg + (omitLinebreak ? "" : "\n"));
+
+}
