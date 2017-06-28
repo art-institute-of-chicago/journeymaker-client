@@ -3,8 +3,32 @@
 	"baseURL": "http://localhost:80",
 
 	"isHomeCompanion": false,
-	"contentOrigin": null,
-	"contentPath": null,
+	"contentOriginEN": null,
+
+  "contentOriginES": null,
+
+  "contentOriginZH": null,
+
+	"languages": [
+		{
+			"label": "English",
+			"code": "en",
+			"contentPath": null,
+			"themeIds": null
+		},
+		{
+			"label": "Espa\u00F1ol",
+			"code": "es",
+			"contentPath": null,
+			"themeIds": null
+		},
+		{
+			"label": "\u4E2D\u6587",
+			"code": "zh",
+			"contentPath": null,
+			"themeIds": null
+		}
+	],
 
 	"keyboardLayoutPath": "resources/data/keyboard-layout.json",
 	"spriteSheetsPath": "resources/data/sprite-sheets.json",

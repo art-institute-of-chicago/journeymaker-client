@@ -14,8 +14,8 @@ After you’ve made your selections, print out your personalized Journey Guide, 
 information, activities, and wayfinding directions. Then head into the museum for an art-filled
 adventure!
 
-JourneyMaker launched at the Art Institute of Chicago on July 1, 2016 as six multi-touchscreens in our Ryan 
-Learning Center, along with a [desktop version](http://journeymaker.artic.edu/) available online. It's 
+JourneyMaker launched at the Art Institute of Chicago on July 1, 2016 as six multi-touchscreens in our Ryan
+Learning Center, along with a [desktop version](http://journeymaker.artic.edu/) available online. It's
 still in place today and is being maintained by a team of internal developers.
 
 
@@ -148,10 +148,46 @@ Here is a sample `config.custom.json` explaining the various settings:
     //   assets it downloads. If you change the baseURL, you will have to
     //   re-run the AssetDownloader.
 
+    "isHomeCompanion": true,
+    // The "isHomeCompanion" flag configures various settings in the
+    // case that the app is to run in web mode. If running for kiosk
+    // this should be set to "false".
+
     // IMPORTANT: Change this to point at your JourneyMaker CMS.
     // The webapp mode queries contentOrigin directly on each visit.
     // The kiosk mode's AssetDownloader caches this file.
-    "contentOrigin": "http://journeymaker.your.museum/sites/default/files/json/json.json",
+    // As of this writing JourneyMaker supports and expects files for three
+    //languages, English, Spanish, and Chinese.
+
+    "contentOriginEN":
+    "http://journeymaker.your.museum/sites/default/files/json/data-en.json",
+
+    "contentOriginES":
+    "http://journeymaker.your.museum/sites/default/files/json/data-es.json",
+
+    "contentOriginZH":
+    "http://journeymaker.your.museum/sites/default/files/json/data-zh-hans.json",
+
+    "languages": [
+		{
+			"label": "English",
+			"code": "en",
+			"contentPath": "assets/data-en.json",
+			"themeIds": [  444,  403,  612,  361,  484,  524,  565,  703 ]
+		},
+		{
+			"label": "Espa\u00F1ol",
+			"code": "es",
+			"contentPath": "assets/data-es.json",
+			"themeIds": [ 1841, 1835, 1836, 1834, 1840, 1839, 1838, 1837 ]
+		},
+		{
+			"label": "\u4E2D\u6587",
+			"code": "zh",
+			"contentPath": "assets/data-zh.json",
+			"themeIds": [ 1845, 1843, 1844, 1842, 1846, 1847, 1848, 1849 ]
+		}
+	],
 
     // The interactive will reset if left alone for this many seconds
     "timeoutSecs": 180,
@@ -256,7 +292,7 @@ You may override any setting from `config.defaults.json` in your `config.custom.
 
 ## Contributing
 
-We encourage your contributions. Please fork this repository and make your changes in a separate branch. 
+We encourage your contributions. Please fork this repository and make your changes in a separate branch.
 We like to use [git-flow](https://github.com/nvie/gitflow) to make this process easier.
 
 ```bash
@@ -279,10 +315,10 @@ git flow start feature yourinitials-good-description-issuenumberifapplicable
 git push origin yourinitials-good-description-issuenumberifapplicable
 ```
 
-Then on github.com, create a Pull Request to merge your changes into our 
-`develop` branch. 
+Then on github.com, create a Pull Request to merge your changes into our
+`develop` branch.
 
-This project is released with a Contributor Code of Conduct. By participating in 
+This project is released with a Contributor Code of Conduct. By participating in
 this project you agree to abide by its [terms](CODE_OF_CONDUCT.md).
 
 We also welcome bug reports and questions under GitHub's [Issues](issues).
