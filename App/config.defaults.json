@@ -81,6 +81,8 @@
 	"guideStartFloor": 1,
 	"guideFloorOffsetMeters": 60,
 
+	"spinTutorialIdleDelay": 3,
+
 	"enableAnalytics": false,
 	"analyticsId": null,
 	"analyticsPrefix": null,
