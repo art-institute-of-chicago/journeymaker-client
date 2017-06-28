@@ -96,6 +96,9 @@
 
 		"journeyGuideActivityLabel": "Look again",
 		"journeyGuideFootnote": "Generous support for JourneyMaker has been provided by the Woman's Board of the Art Institute of Chicago.",
+		"journeyGuideFamilyRoomTitle": "Family Room",
+		"journeyGuideFamilyRoomInfo": "Return to the Family Room at the end of your journey for a special reward",
+		"journeyGuideFamilyRoomLocation": "This gallery is in the Modern Wing, which is light green on the museum’s floor plan. If you’re in the Family Room, you’re there!",
 
 		"unsupportedBrowserMobileTitle": "Sorry! JourneyMaker is not designed for mobile devices",
 		"unsupportedBrowserMobileText": "Please visit again using a laptop or desktop computer",
@@ -189,6 +192,9 @@
 
 		"journeyGuideActivityLabel": "Spójrz ponownie",
 		"journeyGuideFootnote": "Ogromne poparcie dla JourneyMaker zostało dostarczone przez Woman's Board of the Art Institute of Chicago.",
+		"journeyGuideFamilyRoomTitle": "Pokój rodzinny",
+		"journeyGuideFamilyRoomInfo": "Wróć do pokoju rodzinnego po zakończeniu podróży, aby otrzymać specjalną nagrodę",
+		"journeyGuideFamilyRoomLocation": "Ta galeria znajduje się w nowoczesnym skrzydle, jasnożółtym na planie salonu muzeum. Jeśli jesteś w pokoju rodzinnym, jesteś tam!",
 
 		"unsupportedBrowserMobileTitle": "Przepraszam! JourneyMaker nie jest przeznaczony dla urządzeń mobilnych",
 		"unsupportedBrowserMobileText": "Proszę odwiedzić ponownie za pomocą laptopa lub komputera stacjonarnego",
@@ -282,6 +288,9 @@
 
 		"journeyGuideActivityLabel": "Vuelve a mirar",
 		"journeyGuideFootnote": "JourneyMaker es generosamente apoyado por el Woman's Board of the Art Institute of Chicago.",
+		"journeyGuideFamilyRoomTitle": "Sala",
+		"journeyGuideFamilyRoomInfo": "Regresa a la sala al final de su viaje para un premio especial.",
+		"journeyGuideFamilyRoomLocation": "Esta galería está en la parte moderna, dónde hay un luz verde en el piso del plan del múseo. Si está en la sala, está allí!",
 
 		"unsupportedBrowserMobileTitle": "¡Lo siento! JourneyMaker no está diseñado para dispositivos móviles",
 		"unsupportedBrowserMobileText": "Vuelva a visitarlo de nuevo utilizando un ordenador portátil o una computadora de escritorio.",
@@ -375,6 +384,9 @@
 
 		"journeyGuideActivityLabel": "再看一遍",
 		"journeyGuideFootnote": "JourneyMaker 慷慨支持 Woman's Board of the Art Institute of Chicago",
+		"journeyGuideFamilyRoomTitle": "亲子活动中心",
+		"journeyGuideFamilyRoomInfo": "请在旅程结束后回到亲子活动中心领取一份特殊奖品。",
+		"journeyGuideFamilyRoomLocation": "此活动室位于现代馆，为博物馆地图上标明的浅绿色部分。如果您现在就在亲子活动中心，那么，就是这了！",
 
 		"unsupportedBrowserMobileTitle": "抱歉! JourneyMaker不是为移动设备设计的",
 		"unsupportedBrowserMobileText": "请使用笔记本电脑或台式电脑再次访问",
