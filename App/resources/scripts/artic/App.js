@@ -1395,7 +1395,8 @@ function App($) {
 				strings: _appModel.strings,
 				theme: sets[i].theme,
 				selections: sets[i].selections,
-				visitorName: sets[i].visitorName
+				visitorName: sets[i].visitorName,
+				lang: _appModel.langCode
 			});
 
 
@@ -1536,7 +1537,8 @@ function App($) {
 			isKiosk: App.isKiosk,
 			theme: theme,
 			selections: selections,
-			visitorName: _appModel.visitorName
+			visitorName: _appModel.visitorName,
+			lang: _appModel.langCode
 		});
 
 		App.log("App::makeJourneyGuideHTML...while start");
