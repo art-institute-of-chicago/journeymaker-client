@@ -402,6 +402,15 @@ body * {
   background-position: center center;
   background-size: contain;
 }
+#journey-guide.home-companion section#instructions.lang-en {
+  background-image: url("../images/journey-guide-instructions-en.png");
+}
+#journey-guide.home-companion section#instructions.lang-es {
+  background-image: url("../images/journey-guide-instructions-es.png");
+}
+#journey-guide.home-companion section#instructions.lang-zh {
+  background-image: url("../images/journey-guide-instructions-zh.png");
+}
 #journey-guide.home-companion section#page-1 {
   left: 0px;
   top: 1188px;
