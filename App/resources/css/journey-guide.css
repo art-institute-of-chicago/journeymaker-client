@@ -60,6 +60,9 @@ body * {
   max-height: 50px;
   overflow: hidden;
 }
+#journey-guide section#cover p.footnote {
+  display: none;
+}
 #journey-guide section.page div.numeral {
   position: absolute;
   top: 18px;
@@ -391,6 +394,18 @@ body * {
 #journey-guide.home-companion {
   width: 612px;
   height: 792px;
+}
+#journey-guide.home-companion section#cover p.footnote {
+  display: block;
+  font-family: "IdealSans-Light";
+  color: #999999;
+  font-size: 7px;
+  line-height: 1.25em;
+  letter-spacing: -0.015em;
+  position: absolute;
+  left: 95px;
+  top: 357px;
+  width: 160px;
 }
 #journey-guide.home-companion section#instructions {
   display: block;
