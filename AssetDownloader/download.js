@@ -174,7 +174,7 @@ function addAssetToDownloadQueue(obj, urlField, fileLabel) {
 
 function downloadNextAsset() {
 
-    if (_downloadIndex >= _downloadQueue.length - 1) {
+    if (_downloadIndex >= _downloadQueue.length) {
         log("\nCompleted downloading " + _downloadQueue.length + " assets.");
         log("You're good to go!\n");
         return;
