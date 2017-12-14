@@ -84,6 +84,7 @@
 	"spinTutorialIdleDelay": 3,
 
 	"enableAnalytics": false,
+	"analyticsTrackLanguage": false,
 	"analyticsId": null,
 	"analyticsPrefix": null,
 	"analyticsDebug": false,
