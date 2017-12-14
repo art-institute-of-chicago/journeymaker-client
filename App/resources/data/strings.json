@@ -382,6 +382,7 @@
 		"printHelpKeyboardOn": "在输入您的名字后选择完成您的旅程指南。",
 		"printHelpNamed": "选择将您的旅程指南发送到打印机",
 		"printHelpEnd": "你做到了！ 触摸“退出”，然后从上述打印机中提取您的旅程指南。",
+		"printHelpEnd-home": "你做到了！点击“下载 ” 来打开可供打印的PDF文件。您可能需要设置您的浏览器允许跳出窗口。",
 
 		"journeyGuideActivityLabel": "再看一遍",
 		"journeyGuideFootnote": "JourneyMaker 慷慨支持 Woman's Board of the Art Institute of Chicago",
