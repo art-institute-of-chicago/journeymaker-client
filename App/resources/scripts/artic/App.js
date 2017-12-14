@@ -424,7 +424,7 @@ function App($) {
 				break;
 		}
 
-		if (_appModel.state != AppState.OFF) {
+		if (!_idleIsFromRestart && (_appModel.state != AppState.OFF)) {
 			if (_appModel.langCode != "en") {
 				changeToLangCode("en");
 			}
