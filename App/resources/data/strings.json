@@ -270,6 +270,7 @@
 		"printBtnRestart": "Comenzar de Nuevo",
 
 		"printProgress": "Su Guía de Viaje Está Imprimiendo...",
+		"printProgress-home": "Creando su guía de viaje en pdf",
 
 		"printResponseSuccess": "Recoja su Guía del Recorrido en La",
 		"printResponseUrl": "Su guía de viaje está lista para imprimir!",
@@ -320,7 +321,7 @@
 		"headerStep4Description": "带上您的家人、旅游指南以及博 物馆门票或会员卡，开始探索美术馆！",
 
 		"headerBtnHelp": "帮助",
-		"headerBtnCredits": "积分",
+		"headerBtnCredits": "鸣谢",
 
 		"creditsTitleA": "JourneyMaker 慷慨支持 Woman's Board of the Art Institute of Chicago。",
 		"creditsTitleB": "JourneyMaker 是由设计和开发的:",
@@ -362,10 +363,10 @@
 		"printBtnEditUnnamed": "添加姓名",
 		"printBtnEditNamed": "编辑名称",
 		"printBtnCreate": "创建指南",
-		"printBtnSubmit": "进入",
+		"printBtnSubmit": "提交",
 		"printBtnRestart": "重新开始",
 
-		"printProgress": "您的旅程指南是印刷...",
+		"printProgress": "您的旅行指南正在打印中...",
 
 		"printResponseSuccess": "从中挑选您的旅程指南",
 		"printResponseUrl": "您的旅程指南已准备好打印!",
