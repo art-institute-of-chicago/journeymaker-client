@@ -109,7 +109,7 @@ function App($) {
 		} else {
 			_idleModel.timeoutSecs		= _config.val("timeoutSecs", 180);
 		}
-		
+
 		initAnalytics();
 
 		_appModel.validateLang();
@@ -124,7 +124,7 @@ function App($) {
 	function onSpriteSheetsDataReady(e) {
 
 		_appModel.spriteSheetsData	= e;
-		
+
 		loadKeyboardLayoutsData();
 
 	}
@@ -152,7 +152,7 @@ function App($) {
 		console.log("Problem loading config.json file.");
 	}
 	function onContentDataError(e) {
-		var lang 	= _appModel.lang,
+		var lang	= _appModel.lang,
 			path	= lang ? lang.contentPath : "undefined";
 
 		console.log("Problem loading content json (" + path + ").");
@@ -236,7 +236,7 @@ function App($) {
 		}
 
 	}
-	
+
 	function onLanguageUpdate(e) {
 
 		var langCodes = _appModel.langCodes;
@@ -425,15 +425,15 @@ function App($) {
 		}
 
 		if (_appModel.state != AppState.OFF) {
- 			if (_appModel.langCode != "en") {
- 				changeToLangCode("en");
- 			}
- 		}
- 
- 		_appModel.state	= AppState.ATTRACT;
+			if (_appModel.langCode != "en") {
+				changeToLangCode("en");
+			}
+		}
+
+		_appModel.state	= AppState.ATTRACT;
 
 	}
-	
+
 	function onAttractBeginTap(e) {
 
 		if (_appModel.state == AppState.ATTRACT) {
@@ -458,7 +458,7 @@ function App($) {
 		_appModel.state			= AppState.BUILD;
 
 	}
-	
+
 	function onSpinGhostSpin(e) {
 
 		_viewPolyhedron.setSpin(e.spinVel);
@@ -545,7 +545,7 @@ function App($) {
 		App.log("App::onFinishExitTap()");
 
 		App.trackPage("tour/exit-btn-tap");
-		
+
 		restartApp();
 
 	}
@@ -990,13 +990,13 @@ function App($) {
 				debug	= _config.val("analyticsDebug", false);
 
 			if (_config.val("analyticsTrackLanguage", false)) {
- 				var lang	= _appModel.langCode;
- 				if (prefix.charAt(prefix.length - 1) == "/") {
- 					prefix	+= lang + "/";
- 				} else {
- 					prefix	+= "/" + lang + "/";
- 				}
- 			}
+				var lang	= _appModel.langCode;
+				if (prefix.charAt(prefix.length - 1) == "/") {
+					prefix	+= lang + "/";
+				} else {
+					prefix	+= "/" + lang + "/";
+				}
+			}
 			App.analytics.enable(id, prefix, debug);
 		}
 
@@ -1447,7 +1447,7 @@ function App($) {
 
 
 	}
-	
+
 	function restartApp() {
 
 		clearTimeout(_timeoutRestartIdle);
@@ -1460,16 +1460,16 @@ function App($) {
 	}
 
 	function changeToLangCode(langCode) {
- 
- 		if (!langCode || !langCode.length) return;
- 		if (!_appModel.isSupportedLang(langCode)) return;
- 
- 		var baseUrl			= window.location.protocol + '//' + window.location.host + window.location.pathname,
- 			url				= baseUrl + "?lang=" + langCode;
- 
- 		window.location		= url;
- 
- 	}
+
+		if (!langCode || !langCode.length) return;
+		if (!_appModel.isSupportedLang(langCode)) return;
+
+		var baseUrl			= window.location.protocol + '//' + window.location.host + window.location.pathname,
+			url				= baseUrl + "?lang=" + langCode;
+
+		window.location		= url;
+
+	}
 
 	// Helpers
 	/////////////////////////////////////////////
