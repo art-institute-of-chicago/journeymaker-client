@@ -139,8 +139,12 @@ function App($) {
 
 		_appModel.stringsData	= e;
 
-		preloadBgImgs();
-		start();
+		if (isMobile() || noWebGL()) {
+			showUnsupportedBrowserMsg();
+		} else {
+			preloadBgImgs();
+			start();
+		}
 
 	}
 
@@ -1568,15 +1572,8 @@ function App($) {
 	// Init
 	/////////////////////////////////////////////
 
-	if (isMobile() || noWebGL()) {
-		showUnsupportedBrowserMsg();
-
-	} else {
-		initModels();
-		loadConfig();
-
-	}
-
+	initModels();
+	loadConfig();
 
 }
 
