@@ -1206,7 +1206,8 @@ function App($) {
 			url: _config.val("webPdfGeneratorPath"),
 			data: { input: guideHtml },
 			success: onWebPDFSuccess,
-			error: onWebPDFError
+			error: onWebPDFError,
+			dataType: "html"
 		});
 
 	}
