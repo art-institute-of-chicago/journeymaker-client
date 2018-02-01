@@ -58,8 +58,8 @@
 		"printDefaultName": "Anonymous",
 		"printDefaultPrinterName": "the Printing Area",
 
-		"printAssemblingTitle": "Creating Your Path...",
-		"printRearrangingTitle": "Creating Your Path...",
+		"printAssemblingTitle": "Creating Your Path…",
+		"printRearrangingTitle": "Creating Your Path…",
 		"printUnnamedTitle": "Personalize Your Journey Guide",
 		"printKeyboardOnTitle": "Personalize Your Journey Guide",
 		"printNamedTitle": "{{name}}’s Journey Guide",
@@ -73,8 +73,8 @@
 		"printBtnCreate-home": "Create Guide",
 		"printBtnRestart": "Start Over",
 
-		"printProgress": "Your Journey Guide is Printing...",
-		"printProgress-home": "Creating your Journey Guide PDF...",
+		"printProgress": "Your Journey Guide is Printing…",
+		"printProgress-home": "Creating your Journey Guide PDF…",
 
 		"printResponseSuccess": "Pick up your Journey Guide from",
 		"printResponseUrl": "Your Journey Guide is ready to print!",
@@ -159,8 +159,8 @@
 		"printDefaultName": "Anonimowy",
 		"printDefaultPrinterName": "Obszar Drukowania",
 
-		"printAssemblingTitle": "Tworzenie Twojej Trasy...",
-		"printRearrangingTitle": "Tworzenie Twojej Trasy...",
+		"printAssemblingTitle": "Tworzenie Twojej Trasy…",
+		"printRearrangingTitle": "Tworzenie Twojej Trasy…",
 		"printUnnamedTitle": "Spersonalizuj Swój Przewodnik",
 		"printKeyboardOnTitle": "Spersonalizuj Swój Przewodnik",
 		"printNamedTitle": "{{name}} – Mój Przewodnik",
@@ -173,7 +173,7 @@
 		"printBtnCreate": "Utwórz Przewodnik",
 		"printBtnRestart": "Zacząć od Nowa",
 
-		"printProgress": "Twój Przewodnik Drukuje...",
+		"printProgress": "Twój Przewodnik Drukuje…",
 
 		"printResponseSuccess": "Weź Przewodnik po Swojej Podróży ze",
 		"printResponseUrl": "Twój przewodnik jest gotowa do drukowania!",
@@ -210,6 +210,7 @@
 		"headerStep1TitleA": "Gire",
 		"headerStep1TitleB": "Para Seleccionar un Tema",
 		"headerStep1Description": "Comience su viaje seleccionando un tema. Deslice la figura para ver opciones.",
+		"headerStep1Description-home": "Comience su viaje eligiendo un tema. Arrastre la figura para ver las opciones.",
 
 		"headerStep2TitleA": "Arme",
 		"headerStep2TitleB": "Un Viaje",
@@ -222,6 +223,8 @@
 		"headerStep4TitleA": "Recorra",
 		"headerStep4TitleB": "Las Galerías",
 		"headerStep4Description": "Reúna a su familia, la Guía de viaje y la entrada al museo o tarjeta de membresía y comience a explorar las galerías.",
+    "headerStep4TitleA": "Visite",
+    "headerStep4TitleB": "el Museo",
 
 		"headerBtnHelp": "Ayuda",
 		"headerBtnCredits": "Créditos",
@@ -241,12 +244,14 @@
 
 		"attractTagline": "Su Viaje Comienza Aquí",
 		"attractBeginBtn": "Toque Para Comenzar",
+		"attractBeginBtn-home": "Comience su viaje",
 		"attractLanguageBtn": "Select Language",
 
 		"spinContinueBtn": "Seleccionar Tema",
 		"spinHelpContinue": "Toca para seleccionar este tema o desliza la forma para explorar otros temas.",
+		"spinHelpContinue-home": "Haga clic para seleccionar este tema o deslice la figura para explorar otros temas.",
 
-		"buildDetailAddBtn": "Agregar al Viaje",
+		"buildDetailAddBtn": "Agregar a mi viaje",
 		"buildDetailReplaceBtn": "Sustituir ilustraciones actuales",
 		"buildHelpAdd": "Selecciona esta obra para añadirla a tu viaje.",
 		"buildArtworkHelp": "Selecciona una obra de arte para saber más y añadirla a tu viaje.",
@@ -255,8 +260,8 @@
 		"printDefaultName": "Anónimo",
 		"printDefaultPrinterName": "El área de impresión",
 
-		"printAssemblingTitle": "Crear el Recorrido...",
-		"printRearrangingTitle": "Crear el Recorrido...",
+		"printAssemblingTitle": "Crear el Recorrido…",
+		"printRearrangingTitle": "Crear el Recorrido…",
 		"printUnnamedTitle": "Personalizar la Guía de Viaje",
 		"printKeyboardOnTitle": "Personalizar la Guía de Viaje",
 		"printNamedTitle": "Guía de Viaje De {{name}}",
@@ -265,11 +270,13 @@
 
 		"printBtnEditUnnamed": "Agregar Nombre",
 		"printBtnEditNamed": "Editar nombre",
-		"printBtnSubmit": "Ingresar",
+		"printBtnSubmit": "Enviar",
 		"printBtnCreate": "Crear Guía",
+		"printBtnCreate-home": "Crear guía",
 		"printBtnRestart": "Comenzar de Nuevo",
 
-		"printProgress": "Su Guía de Viaje Está Imprimiendo...",
+		"printProgress": "Su Guía de Viaje Está Imprimiendo…",
+		"printProgress-home": "Creando su guía de viaje en pdf",
 
 		"printResponseSuccess": "Recoja su Guía del Recorrido en La",
 		"printResponseUrl": "Su guía de viaje está lista para imprimir!",
@@ -285,6 +292,7 @@
 		"printHelpKeyboardOn": "Seleccione después de ingresar su nombre para terminar de construir su Guía de viaje.",
 		"printHelpNamed": "Seleccione esta opción para enviar su guía de viaje a la impresora",
 		"printHelpEnd": "¡Lo hiciste! Toque 'Salir' y vaya a recoger su Guía de viaje de la impresora mencionada anteriormente.",
+		"printHelpEnd-home": "¡Listo! Haga clic en “Descargar” para abrir el PDF para imprimir. Es posible que deba inactivar el bloqueador de ventanas emergentes de su navegador.",
 
 		"journeyGuideActivityLabel": "Vuelve a mirar",
 		"journeyGuideFootnote": "JourneyMaker es generosamente apoyado por el Woman's Board of the Art Institute of Chicago.",
@@ -303,9 +311,10 @@
 
 		"btnLabelClose": "关闭",
 
-		"headerStep1TitleA": "旋转选择一个主题",
+		"headerStep1TitleA": "旋转并选择一个主题",
 		"headerStep1TitleB": "",
 		"headerStep1Description": "选择一个主题，开始您的旅程。滑动形状，查看选项！",
+		"headerStep1Description-home": "选择一个主题，开始您的旅程。拖动形状，查看选项！",
 
 		"headerStep2TitleA": "规划行程",
 		"headerStep2TitleB": "",
@@ -315,12 +324,14 @@
 		"headerStep3TitleB": "",
 		"headerStep3Description": "添加您的姓名，个性化您的旅程指南 然后发送至打印机！",
 
-		"headerStep4TitleA": "参观美术馆",
-		"headerStep4TitleB": "",
+		"headerStep4TitleA": "参观",
+		"headerStep4TitleB": "美术馆",
+    "headerStep4TitleA-home": "探索",
+		"headerStep4TitleB-home": "博物馆",
 		"headerStep4Description": "带上您的家人、旅游指南以及博 物馆门票或会员卡，开始探索美术馆！",
 
 		"headerBtnHelp": "帮助",
-		"headerBtnCredits": "积分",
+		"headerBtnCredits": "鸣谢",
 
 		"creditsTitleA": "JourneyMaker 慷慨支持 Woman's Board of the Art Institute of Chicago。",
 		"creditsTitleB": "JourneyMaker 是由设计和开发的:",
@@ -337,12 +348,14 @@
 
 		"attractTagline": "您的旅程从这里开始",
 		"attractBeginBtn": "点击开始",
+		"attractBeginBtn-home": "开始您的旅程",
 		"attractLanguageBtn": "Select Language",
 
 		"spinContinueBtn": "选择主题",
 		"spinHelpContinue": "触摸即可选择此主题，或滑动形状以探索其他主题。",
+		"spinHelpContinue-home": "点击选择该主题或滑动形状查看其他主题。",
 
-		"buildDetailAddBtn": "添加至旅程",
+		"buildDetailAddBtn": "添加到我的旅程",
 		"buildDetailReplaceBtn": "替换当前图稿",
 		"buildHelpAdd": "选择将此作品添加到您的旅程中。",
 		"buildArtworkHelp": "选择艺术品以了解更多信息，并将其添加到您的旅程中.",
@@ -351,8 +364,8 @@
 		"printDefaultName": "匿名",
 		"printDefaultPrinterName": "打印区",
 
-		"printAssemblingTitle": "创建您的路径...",
-		"printRearrangingTitle": "创建您的路径...",
+		"printAssemblingTitle": "创建您的路径⋯⋯",
+		"printRearrangingTitle": "创建您的路径⋯⋯",
 		"printUnnamedTitle": "个性化旅程指南",
 		"printKeyboardOnTitle": "个性化旅程指南",
 		"printNamedTitle": "{{name}} 的旅程指南",
@@ -362,14 +375,17 @@
 		"printBtnEditUnnamed": "添加姓名",
 		"printBtnEditNamed": "编辑名称",
 		"printBtnCreate": "创建指南",
-		"printBtnSubmit": "进入",
+		"printBtnCreate-home": "创建指南",
+		"printBtnSubmit": "提交",
 		"printBtnRestart": "重新开始",
 
-		"printProgress": "您的旅程指南是印刷...",
+		"printProgress": "您的旅行指南正在打印中⋯⋯",
+		"printProgress-home": "创建PDF版本的旅行指南⋯⋯",
 
 		"printResponseSuccess": "从中挑选您的旅程指南",
 		"printResponseUrl": "您的旅程指南已准备好打印!",
 		"printResponseProblem": "很抱歉，列印时发生问题.",
+		"printResponseProblem-home": "很抱歉，创建PDF旅行指南的过程中出现了错误。",
 
 		"printBtnExit": "退出",
 		"printBtnHomeVisit": "访问",
@@ -380,7 +396,9 @@
 		"printHelpUnnamed": "选择通过添加您的姓名来个性化您的旅程指南。",
 		"printHelpKeyboardOn": "在输入您的名字后选择完成您的旅程指南。",
 		"printHelpNamed": "选择将您的旅程指南发送到打印机",
+		"printHelpNamed": "发送您的旅行指南到打印机",
 		"printHelpEnd": "你做到了！ 触摸“退出”，然后从上述打印机中提取您的旅程指南。",
+		"printHelpEnd-home": "成功完成！点击“下载”打开可打印的 PDF。您需要禁用浏览器的弹窗拦截功能。",
 
 		"journeyGuideActivityLabel": "再看一遍",
 		"journeyGuideFootnote": "JourneyMaker 慷慨支持 Woman's Board of the Art Institute of Chicago",
