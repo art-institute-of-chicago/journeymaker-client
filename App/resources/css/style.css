@@ -3481,7 +3481,7 @@ body.home-companion #wrap-sections section#print div.name-form div.name-field di
 body.home-companion #wrap-sections section#print div.name-form div.name-field div.help-item > div.unnamed,
 body.home-companion #wrap-sections section#print div.name-form div.name-field div.help-item > div.named {
   position: absolute;
-  right: -90px;
+  right: 67px;
   bottom: 107px;
 }
 body.home-companion #wrap-sections section#print div.name-form div.name-field div.help-item > div.unnamed div.stem,
