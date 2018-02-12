@@ -2545,10 +2545,14 @@ body.help-on #wrap-sections section#build div.obj.help-selected .help-item {
 #wrap-sections section#print div.name-form div.name-field div.help-item > div {
   display: none;
 }
-#wrap-sections section#print div.name-form div.name-field div.help-item > div.unnamed,
+#wrap-sections section#print div.name-form div.name-field div.help-item > div.unnamed {
+  position: absolute;
+  right: -95px;
+  bottom: -142px;
+}
 #wrap-sections section#print div.name-form div.name-field div.help-item > div.named {
   position: absolute;
-  right: -110px;
+  right: 60px;
   bottom: -142px;
 }
 #wrap-sections section#print div.name-form div.name-field div.help-item > div.unnamed div.stem,
