@@ -96,9 +96,9 @@
 
 		"journeyGuideActivityLabel": "Look again",
 		"journeyGuideFootnote": "Generous support for JourneyMaker has been provided by the Woman's Board of the Art Institute of Chicago.",
-		"journeyGuideFamilyRoomTitle": "Family Room",
-		"journeyGuideFamilyRoomInfo": "Return to the Family Room at the end of your journey for a special reward",
-		"journeyGuideFamilyRoomLocation": "This gallery is in the Modern Wing, which is light green on the museum’s floor plan. If you’re in the Family Room, you’re there!",
+		"journeyGuideFamilyRoomTitle": "Art Exchange",
+		"journeyGuideFamilyRoomInfo": "Return to the Art Exchange to claim a special prize.",
+		"journeyGuideFamilyRoomLocation": "The Art Exchange is in the Ryan Learning Center, on the first level of the Modern Wing near the admissions desk.",
 
 		"unsupportedBrowserMobileTitle": "Sorry! JourneyMaker is not designed for mobile devices",
 		"unsupportedBrowserMobileText": "Please visit again using a laptop or desktop computer",
