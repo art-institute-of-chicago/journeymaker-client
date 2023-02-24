@@ -95,7 +95,10 @@ function init() {
         log("Complete (" + (_downloadQueue.length - prevQueueLen) + " unique assets added to queue)");
 
         log("  Writing local data to \"" + source.localFilename + "\"... ", true);
-        _reqFs.writeFile(localDataPath, stringifyJSON(data), 'utf8');
+        _reqFs.writeFile(localDataPath, stringifyJSON(data), 'utf8', (err) => {
+            if (err) throw err;
+                log(localDataPath + ' has been saved');
+            });
         log("Complete");
 
     }
