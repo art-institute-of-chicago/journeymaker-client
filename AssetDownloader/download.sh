@@ -8,7 +8,7 @@ echo " We are currently in the '$DIR_DOWNLOADER' path..."
 cd ..
 cd App
 
-mv assets assets_bk_`date +%Y_%m_%d_%H:%M:%S`
+mv assets assets_bk_`date +%Y_%m_%d_%H%M%S`
 mkdir assets
 
 ## Download assets
