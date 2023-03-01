@@ -6,16 +6,14 @@ var PREFIX_FILE_IN_JSON         = "http://localhost:8888/assets/";
 // Requires
 /////////////////////////////////////////////
 
-var _reqFs          = require('fs'),
+var _reqFs          = require('node:fs'),
     _reqRequest     = require('request'),
-    _reqXhr         = require("xmlhttprequest"),
-    _reqFileQueue   = require('filequeue');
+    _reqXhr         = require("xmlhttprequest");
 
 // Vars
 /////////////////////////////////////////////
 
-var _fileQueue      = new _reqFileQueue(1);
-    _downloadIndex  = 0,
+var _downloadIndex  = 0,
     _downloadQueue  = [];
 
 // FILE PREFIX ON FOR THE LOCAL FILE SYSTEM
@@ -95,7 +93,10 @@ function init() {
         log("Complete (" + (_downloadQueue.length - prevQueueLen) + " unique assets added to queue)");
 
         log("  Writing local data to \"" + source.localFilename + "\"... ", true);
-        _reqFs.writeFile(localDataPath, stringifyJSON(data), 'utf8');
+        _reqFs.writeFile(localDataPath, stringifyJSON(data), 'utf8', (err) => {
+            if (err) throw err;
+                log(localDataPath + ' has been saved');
+            });
         log("Complete");
 
     }
@@ -203,7 +204,7 @@ function downloadAsset(url, localPath, onComplete, onError) {
             var stream = _reqRequest(url, {
                 maxSockets: 1
             });
-            stream.pipe(_fileQueue.createWriteStream(localPath).on("error", function(err) {
+            stream.pipe(_reqFs.createWriteStream(localPath).on("error", function(err) {
                 onError(err);
             })).on("close", function() {
                 onComplete();

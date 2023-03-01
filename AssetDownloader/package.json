@@ -2,12 +2,10 @@
   "name": "artic-journeymaker-downloader",
   "version": "1.0.0",
   "engines": {
-    "node": "0.12.7"
+    "node": "19.0.1"
   },
   "dependencies": {
-    "request": "^2.79.0",
-    "filequeue": "0.5.0",
-    "jquery": "1.8.3",
+    "request": "^2.88.2",
     "xmlhttprequest": "1.8.0"
   }
 }
