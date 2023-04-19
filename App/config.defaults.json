@@ -41,7 +41,7 @@
 	"loggingSocketHost": "ws://localhost:8085",
 	"loggingSocketProtocol": "echo-protocol",
 
-	"enableMouse": true,
+	"enableMouse": false,
 
 	"enableTuio": false,
 	"tuioHost": "http://localhost:5000",

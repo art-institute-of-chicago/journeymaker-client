@@ -1030,6 +1030,7 @@ function App($) {
 		}
 
 		if (_config.val("enableMouse")) {
+            document.getElementById("viewport").requestPointerLock();
 			_tuioModel.emulateTouch = true;
 		} else {
 			$body.addClass("hide-mouse")
