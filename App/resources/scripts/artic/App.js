@@ -1029,10 +1029,8 @@ function App($) {
 			_tuioModel.connect(_config.val("tuioHost"));
 		}
 
-		if (_config.val("enableMouse")) {
-            document.getElementById("viewport").requestPointerLock();
-		} else {
-			$body.addClass("hide-mouse")
+		if (!_config.val("enableMouse")) {
+			$body.addClass("hide-mouse");
 		}
 
 	}
