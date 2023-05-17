@@ -28,7 +28,6 @@ DIR_APP="$DIR_ROOT/App"
 DIR_DOWNLOADER="$DIR_ROOT/AssetDownloader"
 DIR_LOGGER="$DIR_ROOT/LogServer"
 DIR_PRINTER="$DIR_ROOT/PrintServer"
-DIR_TUIO="$DIR_ROOT/TUIOServer"
 
 LOG="$DIR_ROOT/install.log"
 
@@ -187,7 +186,6 @@ if [ "$MODE" == "kiosk" ]; then
 	cd "$DIR_DOWNLOADER" && rm -rf "node_modules" >> "$LOG"
 	cd "$DIR_LOGGER" && rm -rf "node_modules" >> "$LOG"
 	cd "$DIR_PRINTER" && rm -rf "node_modules" >> "$LOG"
-	cd "$DIR_TUIO" && rm -rf "node_modules" >> "$LOG"
 
 	# Install npm dependencies
 	echo "${G}Installing AssetDownloader dependencies...${W}"
@@ -198,9 +196,6 @@ if [ "$MODE" == "kiosk" ]; then
 
 	echo "${G}Installing PrintServer dependencies...${W}"
 	cd "$DIR_PRINTER" && npm install >> "$LOG"
-
-	echo "${G}Installing TUIOServer dependencies...${W}"
-	cd "$DIR_TUIO" && npm install >> "$LOG"
 
 	echo "${G}All node_modules downloaded${W}"
 fi
