@@ -67,7 +67,6 @@ echo "${G}Installing in '$MODE' mode...${W}"
 echo "${G}Clearing old install log...${W}"
 rm -f "$LOG"
 touch "$LOG"
-chown $(logname) "$LOG"
 
 if [ ! -f "$DIR_APP/config.custom.json" ]; then
 
@@ -119,7 +118,6 @@ if [ ! -f "$DIR_APP/config.custom.json" ]; then
 	EOF`
 
 	echo "$OPTIONS" > "$DIR_APP/config.custom.json"
-	chown $(logname) "$DIR_APP/config.custom.json"
 
 	echo "${W}Created stub config.custom.json${W}"
 fi
@@ -145,7 +143,6 @@ if [ "$MODE" == "webapp" ]; then
 
 
 	echo "$OPTIONS" > "$DIR_APP/config.auto.json"
-	chown $(logname) "$DIR_APP/config.auto.json"
 
 	echo "${W}Toggled webapp mode in config.auto.json${W}"
 
@@ -177,7 +174,6 @@ if [ "$MODE" == "kiosk" ]; then
 	EOF`
 
 	echo "$OPTIONS" > "$DIR_APP/config.auto.json"
-	chown $(logname) "$DIR_APP/config.auto.json"
 
 	echo "${W}Toggled kiosk mode in config.auto.json${W}"
 
@@ -210,8 +206,8 @@ if [ "$MODE" == "kiosk" ]; then
     echo "${G}Since you've installed in kiosk mode, you need to run the following command to store the${W}"
     echo "${G}CMS assets locally:${W}"
     echo
-    echo "${G}   chmod a+rx $DIR_DOWNLOADER/download_assets.command${W}"
-    echo "${G}   .$DIR_DOWNLOADER/download_assets.command${W}"
+    echo "${G}   chmod a+rx AssetDownloader/download_assets.command${W}"
+    echo "${G}   ./AssetDownloader/download_assets.command${W}"
 fi
 
 echo
