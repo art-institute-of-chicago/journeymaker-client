@@ -57,17 +57,10 @@ nano App/config.custom.json
 # Run the AssetDownloader (requires contentOrigin to be set)
 ./AssetDownloader/download_assets.command
 
-# Enter the App folder
-cd App
-
 # Serve the App folder, e.g. via SimpleHTTPServer
 # After running this command, visit http://localhost:8888
-python3 -m http.server 8888
+python3 -m http.server 8888 --directory App/
 ```
-
-Please note that we have not tested SimpleHTTPServer for long-term stability in kiosk applications.
-
-
 
 ## Configuration
 
