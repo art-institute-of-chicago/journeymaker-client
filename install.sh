@@ -157,9 +157,9 @@ if [ "$MODE" == "kiosk" ]; then
 	command -v npm >/dev/null 2>&1 || { echo >&2 "${R}npm is missing. Aborting.${W}"; exit 1; }
 
 	# Check node version
-	if [[ ! $(node -v) == *"v0.12"* ]]; then
+	if [[ ! $(node -v) == *"v18.16"* ]]; then
 		echo "${Y}You are using node $(node -v). npm install may fail.${W}"
-		echo "${Y}Only node v0.12.x (LTS) is officially supported.${W}"
+		echo "${Y}Only node v18.16.x (LTS) is officially supported.${W}"
 	fi
 
 	# Default options

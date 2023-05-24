@@ -16,8 +16,8 @@ Briefly, here's what the various Node.js apps do:
 
 Kiosk mode requires the following:
 
-1. node v19.1.0
-2. npm 8.19.3 (comes with node)
+1. node v18.16.0
+2. npm 9.5.1 (comes with node)
 3. Xcode (Mac OS X, see [nodejs/node-gyp#569](https://github.com/nodejs/node-gyp/issues/569))
 4. \*nix environment (Linux, Mac OS X, Free BSD, etc.)
 5. Webserver (Apache, nginx, etc.)
