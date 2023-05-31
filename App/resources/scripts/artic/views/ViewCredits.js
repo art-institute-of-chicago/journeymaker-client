@@ -122,5 +122,3 @@ function ViewCredits($view) {
 /////////////////////////////////////////////
 
 bwco.utils.extend(ViewCredits, bwco.events.Dispatcher);
-
-

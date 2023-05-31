@@ -8,8 +8,6 @@ function DetailPanel($view) {
 		Pt				= bwco.geom.Pt,
 		Ticker			= bwco.ticker.Ticker,
 		TickerEvent		= bwco.ticker.TickerEvent,
-		Geom			= bwco.utils.Geom,
-		Random			= bwco.utils.Random,
 		Maths			= bwco.utils.Maths;
 
 

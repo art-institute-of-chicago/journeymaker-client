@@ -4,9 +4,7 @@ function Analytics() {
 	// Imports
 	/////////////////////////////////////////////
 
-	var Dispatcher		= bwco.events.Dispatcher,
-		Geom			= bwco.utils.Geom,
-		Arrays			= bwco.utils.Arrays;
+	var Dispatcher		= bwco.events.Dispatcher;
 
 
 	// Superclass
@@ -28,7 +26,6 @@ function Analytics() {
 
 	var _created		= false,
 		_enabled		= false,
-		_id				= "",
 		_prefix			= "";
 
 
@@ -149,4 +146,3 @@ function Analytics() {
 
 bwco.utils.extend(Analytics, bwco.events.Dispatcher);
 bwco.utils.makeSingleton(Analytics);
-

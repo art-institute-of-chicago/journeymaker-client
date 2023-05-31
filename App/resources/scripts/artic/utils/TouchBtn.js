@@ -4,12 +4,7 @@ function TouchBtn($el, opts) {
 	// Imports
 	/////////////////////////////////////////////
 
-	var Dispatcher		= bwco.events.Dispatcher,
-		Pt				= bwco.geom.Pt,
-		Geom			= bwco.utils.Geom,
-		Maths			= bwco.utils.Maths,
-		Time			= bwco.utils.Time,
-		Random			= bwco.utils.Random;
+	var Dispatcher		= bwco.events.Dispatcher;
 
 	var Sound			= createjs.Sound;
 
@@ -466,4 +461,3 @@ TouchBtn.PRESS_END		= "TouchBtn.PRESS_END";
 TouchBtn.TAP			= "TouchBtn.TAP";
 TouchBtn.DOUBLE_TAP		= "TouchBtn.DOUBLE_TAP";
 TouchBtn.TRIPLE_TAP		= "TouchBtn.TRIPLE_TAP";
-

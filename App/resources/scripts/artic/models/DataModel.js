@@ -4,9 +4,7 @@ function DataModel() {
 	// Imports
 	/////////////////////////////////////////////
 
-	var Dispatcher		= bwco.events.Dispatcher,
-		Geom			= bwco.utils.Geom,
-		Maths			= bwco.utils.Maths;
+	var Dispatcher		= bwco.events.Dispatcher;
 
 
 	// Superclass
@@ -248,15 +246,15 @@ function DataModel() {
 			}
 		}
 
-		for (var i = 0; i < artworksNotOnDisplay.length; i++) { 
+		for (var i = 0; i < artworksNotOnDisplay.length; i++) {
 			console.log("Omitting artwork, not on display: " + artworksNotOnDisplay[i]);
 		}
 
-		for (var i = 0; i < artworksNoImg.length; i++) { 
+		for (var i = 0; i < artworksNoImg.length; i++) {
 			console.log("Omitting artwork, no image defined: " + artworksNoImg[i]);
 		}
 
-		for (var i = 0; i < artworksBadDimensions.length; i++) { 
+		for (var i = 0; i < artworksBadDimensions.length; i++) {
 			console.log("Omitting artwork, bad image dimensions: " + artworksBadDimensions[i]);
 		}
 
@@ -283,5 +281,3 @@ function DataModel() {
 
 bwco.utils.extend(DataModel, bwco.events.Dispatcher);
 bwco.utils.makeSingleton(DataModel);
-
-

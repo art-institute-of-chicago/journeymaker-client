@@ -5,11 +5,9 @@ function SpriteAnim($el, imgUrl, frames, opts) {
 	/////////////////////////////////////////////
 
 	var Dispatcher		= bwco.events.Dispatcher,
-		Geom			= bwco.utils.Geom,
-		Random			= bwco.utils.Random,
 		Ticker			= bwco.ticker.Ticker,
-		Arrays			= bwco.utils.Arrays;
-		Range			= bwco.math.Range;
+        TickerEvent		= bwco.ticker.TickerEvent,
+        Maths			= bwco.utils.Maths;
 
 
 	// Superclass
@@ -42,8 +40,7 @@ function SpriteAnim($el, imgUrl, frames, opts) {
 	var _opts			= _.defaults(opts || { }, DEFAULT_OPTS);
 
 	var _frames			= frames,
-		_frameIndex		= 0,
-		_lastFrameMs	= 0;
+		_frameIndex		= 0;
 
 	var _playing		= false,
 		_on				= true;

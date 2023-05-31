@@ -6,9 +6,7 @@ function MultitouchArea($el, opts) {
 
 	var Dispatcher		= bwco.events.Dispatcher,
 		Pt				= bwco.geom.Pt,
-		Geom			= bwco.utils.Geom,
-		Maths			= bwco.utils.Maths,
-		Random			= bwco.utils.Random;
+		Maths			= bwco.utils.Maths;
 
 
 	// Superclass
@@ -53,8 +51,7 @@ function MultitouchArea($el, opts) {
 
 	var _enabled	= false,
 		_tappable	= false,
-		_active		= false,
-		_dragging	= false;
+		_active		= false;
 
 	var _touches	= [];
 
@@ -485,4 +482,3 @@ MultitouchArea.TAP				= "MultitouchArea.TAP";
 MultitouchArea.CANCEL			= "MultitouchArea.CANCEL";
 
 MultitouchArea.TOUCHES_CHANGE	= "MultitouchArea.TOUCHES_CHANGE";
-
