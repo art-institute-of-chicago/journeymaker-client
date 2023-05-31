@@ -1029,7 +1029,10 @@ function App($) {
 			_tuioModel.connect(_config.val("tuioHost"));
 		}
 
-		if (!_config.val("enableMouse")) {
+		if (_config.val("enableMouse")) {
+            _tuioModel.emulateTouch = true;
+        }
+        else {
 			$body.addClass("hide-mouse");
 		}
 
