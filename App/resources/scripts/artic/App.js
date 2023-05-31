@@ -1020,15 +1020,6 @@ function App($) {
 	}
 	function initTouch() {
 
-		if (_config.val("tuioArea")) {
-			var area		= _config.val("tuioArea");
-			_tuioModel.setCalibration(area.x, area.y, area.width, area.height);
-		}
-
-		if (_config.val("enableTuio")) {
-			_tuioModel.connect(_config.val("tuioHost"));
-		}
-
 		if (_config.val("enableMouse")) {
             _tuioModel.emulateTouch = true;
         }

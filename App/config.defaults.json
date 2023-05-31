@@ -44,13 +44,6 @@
 	"enableMouse": true,
 
 	"enableTuio": false,
-	"tuioHost": "http://localhost:5000",
-	"tuioArea": {
-		"x": 0,
-		"y": 0,
-		"width": 1,
-		"height": 1
-	},
 
 	"enablePrintSocket": false,
 	"printSocketHost": "ws://localhost:8080",
