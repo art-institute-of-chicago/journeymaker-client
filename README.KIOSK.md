@@ -20,7 +20,7 @@ Kiosk mode requires the following:
 2. npm 9.5.1 (comes with node)
 3. Xcode (Mac OS X, see [nodejs/node-gyp#569](https://github.com/nodejs/node-gyp/issues/569))
 4. \*nix environment (Linux, Mac OS X, Free BSD, etc.)
-5. Webserver (Apache, nginx, etc.)
+5. Python3 (only used to run a local web server)
 
 ## Installation
 
@@ -34,7 +34,7 @@ These installation instructions assume that you have read the [main readme](READ
 
 4. Run the AssetDownloader. This will cache the JSON and assets from your JourneyMaker CMS to the kiosk. If installing in a permanent location, this script should be run once on each startup to enable updating of content.
 
-5. Direct your webserver to serve the `App` subfolder. Configuring webservers is beyond the scope of this guide; however, you can try using Python's [SimpleHTTPServer](https://docs.python.org/2/library/simplehttpserver.html) or Mac OS X's built-in Apache.
+5. Direct your webserver to serve the `App` subfolder. Configuring webservers is beyond the scope of this guide; however, you can try using Python's [SimpleHTTPServer](https://docs.python.org/3.5/library/http.server.html#http.server.SimpleHTTPRequestHandler) or Mac OS X's built-in Apache.
 
 Here is a sample sequence of terminal commands to illustrate the process:
 
@@ -57,6 +57,10 @@ nano App/config.custom.json
 # Run the AssetDownloader (requires contentOrigin to be set)
 ./AssetDownloader/download_assets.command
 
+# Run the LogServer and PringServers
+open ./LogServer/StartLogServer.command
+open ./PrintServer/StartPrintServer.command
+
 # Serve the App folder, e.g. via SimpleHTTPServer
 # After running this command, visit http://localhost:8888
 python3 -m http.server 8888 --directory App/
@@ -70,41 +74,12 @@ Please see [main readme](README.md#configuration) for general config options.
 
 ### Configuring the Print Server
 
-JourneyMaker utilizes a Node server to enable silent printing to a set of predefined printers on the local network. By design, all pages are intended to print to 11" x 17" paper. The Art Institute of Chicago additionally utilizes paper that has a pre-printed map on one side to reduce the amount of ink utilized at the time of journey creation.
-
-In Mac OS X, after adding your printers through *System Preferences*, confirm the name of connected printers in Terminal.
-
-```bash
-lpstat -p
-```
-
-Using your text editor of choice, open `config.custom.json`
-
-In the option `printValidPrinters`, change the listed printer names to match the printers installed on the kiosk machine. The display name is used to present users with a dialog directing them to the correct printer at the end of their session in the interactive.
-
-You may also set a preferred printer with `printPreferredPrinter`. If this does not match the name of one of the printers listed in `printValidPrinters` the print server will randomly pick a printer from the `printValidPrinters` list at the end of each user session.
-
-JourneyMaker also saves a copy of each printed JourneyGuide to the local disk for archiving and troubleshooting purposes. You can specify the path of the directory that you would like to save PDF's in the `printOutputPath` var. If left unspecified, PDF's will be saved to `/tmp`.
+JourneyMaker utilizes a Node server to generate printable PDFs to be printed on your local network. You can specify the path of the directory that you would like to save PDF's in the `printOutputPath` var. If left unspecified, PDF's will be saved to `/tmp`. The PrintServer will store these PDFs in a local folder, and AIC uses MacOS automation to print new files writted to that folder. By design, all pages are intended to print to 11" x 17" paper. The Art Institute of Chicago additionally utilizes paper that has a pre-printed map on one side to reduce the amount of ink utilized at the time of journey creation.
 
 ```javascript
 {
 
     "printOutputPath": "/tmp",
-
-    "printValidPrinters": [
-        {
-            "name": "Print_Station_A",
-            "displayName": "Print Station A",
-            "color": "#009bce"
-        },
-        {
-            "name": "Print_Station_B",
-            "displayName": "Print Station B",
-            "color": "#dd4444"
-        }
-    ],
-
-    "printPreferredPrinter": "random",
 
 }
 ```
