@@ -28,7 +28,6 @@ DIR_APP="$DIR_ROOT/App"
 DIR_DOWNLOADER="$DIR_ROOT/AssetDownloader"
 DIR_LOGGER="$DIR_ROOT/LogServer"
 DIR_PRINTER="$DIR_ROOT/PrintServer"
-DIR_TUIO="$DIR_ROOT/TUIOServer"
 
 LOG="$DIR_ROOT/install.log"
 
@@ -68,7 +67,6 @@ echo "${G}Installing in '$MODE' mode...${W}"
 echo "${G}Clearing old install log...${W}"
 rm -f "$LOG"
 touch "$LOG"
-chown $(logname) "$LOG"
 
 if [ ! -f "$DIR_APP/config.custom.json" ]; then
 
@@ -120,7 +118,6 @@ if [ ! -f "$DIR_APP/config.custom.json" ]; then
 	EOF`
 
 	echo "$OPTIONS" > "$DIR_APP/config.custom.json"
-	chown $(logname) "$DIR_APP/config.custom.json"
 
 	echo "${W}Created stub config.custom.json${W}"
 fi
@@ -146,7 +143,6 @@ if [ "$MODE" == "webapp" ]; then
 
 
 	echo "$OPTIONS" > "$DIR_APP/config.auto.json"
-	chown $(logname) "$DIR_APP/config.auto.json"
 
 	echo "${W}Toggled webapp mode in config.auto.json${W}"
 
@@ -161,9 +157,9 @@ if [ "$MODE" == "kiosk" ]; then
 	command -v npm >/dev/null 2>&1 || { echo >&2 "${R}npm is missing. Aborting.${W}"; exit 1; }
 
 	# Check node version
-	if [[ ! $(node -v) == *"v0.12"* ]]; then
+	if [[ ! $(node -v) == *"v18.16"* ]]; then
 		echo "${Y}You are using node $(node -v). npm install may fail.${W}"
-		echo "${Y}Only node v0.12.x (LTS) is officially supported.${W}"
+		echo "${Y}Only node v18.16.x (LTS) is officially supported.${W}"
 	fi
 
 	# Default options
@@ -178,7 +174,6 @@ if [ "$MODE" == "kiosk" ]; then
 	EOF`
 
 	echo "$OPTIONS" > "$DIR_APP/config.auto.json"
-	chown $(logname) "$DIR_APP/config.auto.json"
 
 	echo "${W}Toggled kiosk mode in config.auto.json${W}"
 
@@ -187,7 +182,6 @@ if [ "$MODE" == "kiosk" ]; then
 	cd "$DIR_DOWNLOADER" && rm -rf "node_modules" >> "$LOG"
 	cd "$DIR_LOGGER" && rm -rf "node_modules" >> "$LOG"
 	cd "$DIR_PRINTER" && rm -rf "node_modules" >> "$LOG"
-	cd "$DIR_TUIO" && rm -rf "node_modules" >> "$LOG"
 
 	# Install npm dependencies
 	echo "${G}Installing AssetDownloader dependencies...${W}"
@@ -198,9 +192,6 @@ if [ "$MODE" == "kiosk" ]; then
 
 	echo "${G}Installing PrintServer dependencies...${W}"
 	cd "$DIR_PRINTER" && npm install >> "$LOG"
-
-	echo "${G}Installing TUIOServer dependencies...${W}"
-	cd "$DIR_TUIO" && npm install >> "$LOG"
 
 	echo "${G}All node_modules downloaded${W}"
 fi
@@ -215,8 +206,8 @@ if [ "$MODE" == "kiosk" ]; then
     echo "${G}Since you've installed in kiosk mode, you need to run the following command to store the${W}"
     echo "${G}CMS assets locally:${W}"
     echo
-    echo "${G}   chmod a+rx $DIR_DOWNLOADER/download_assets.command${W}"
-    echo "${G}   .$DIR_DOWNLOADER/download_assets.command${W}"
+    echo "${G}   chmod a+rx AssetDownloader/download_assets.command${W}"
+    echo "${G}   ./AssetDownloader/download_assets.command${W}"
 fi
 
 echo

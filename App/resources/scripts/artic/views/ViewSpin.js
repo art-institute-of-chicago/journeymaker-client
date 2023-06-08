@@ -17,9 +17,6 @@ function ViewSpin($) {
 	// Constants
 	/////////////////////////////////////////////
 
-	var FADE_IN_INFO_DELAY		= 200,
-		FADE_IN_INFO_DURATION	= 350;
-
 	var SPIN_END_DELAY			= 450;
 
 
@@ -28,8 +25,7 @@ function ViewSpin($) {
 
 	var $view					= $("#wrap-sections section#spin");
 
-	var $bg,
-		$continueBtn,
+	var $continueBtn,
 		$panel,
 		$panelBtm,
 		$wrapTitle,
@@ -58,8 +54,7 @@ function ViewSpin($) {
 
 	var _ghostHandAnim,
 		_ghostHandOn	= false,
-		_ghostTimeouts	= {},
-		_ghostVec		= new Pt(0, 0);
+		_ghostTimeouts	= {};
 
 
 	// Getters & setters

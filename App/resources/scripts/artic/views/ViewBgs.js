@@ -240,4 +240,3 @@ function ViewBgs($view) {
 /////////////////////////////////////////////
 
 bwco.utils.extend(ViewBgs, bwco.events.Dispatcher);
-

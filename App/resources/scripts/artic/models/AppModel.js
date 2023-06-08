@@ -5,8 +5,7 @@ function AppModel() {
 	/////////////////////////////////////////////
 
 	var Dispatcher		= bwco.events.Dispatcher,
-		Geom			= bwco.utils.Geom,
-		Arrays			= bwco.utils.Arrays;
+		Geom			= bwco.utils.Geom;
 
 
 	// Superclass
@@ -49,8 +48,7 @@ function AppModel() {
 		_sortedObjs			= [],
 		_visitorName		= "";
 
-	var _spriteSheetData	= {},
-		_keyboardLayouts	= [],
+	var _keyboardLayouts	= [],
 		_strings			= {};
 
 	var _creditsOn			= false;
@@ -527,4 +525,3 @@ function AppModel() {
 
 bwco.utils.extend(AppModel, bwco.events.Dispatcher);
 bwco.utils.makeSingleton(AppModel);
-

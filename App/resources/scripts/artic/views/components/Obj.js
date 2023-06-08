@@ -6,7 +6,6 @@ function Obj(id, $el, objX, objY, promptIndex, isAdded, initDirec) {
 
 	var Dispatcher		= bwco.events.Dispatcher,
 		Geom			= bwco.utils.Geom,
-		Random			= bwco.utils.Random,
 		Range			= bwco.math.Range;
 
 
@@ -679,5 +678,3 @@ function Obj(id, $el, objX, objY, promptIndex, isAdded, initDirec) {
 /////////////////////////////////////////////
 
 bwco.utils.extend(Obj, bwco.events.Dispatcher);
-
-

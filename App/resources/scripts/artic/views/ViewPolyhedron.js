@@ -4,10 +4,7 @@ function ViewPolyhedron($) {
 	// Imports
 	/////////////////////////////////////////////
 
-	var Dispatcher		= bwco.events.Dispatcher,
-		Keys			= bwco.utils.Keys,
-		Random			= bwco.utils.Random,
-		Maths			= bwco.utils.Maths;
+	var Dispatcher		= bwco.events.Dispatcher;
 
 
 	// Superclass
@@ -18,16 +15,6 @@ function ViewPolyhedron($) {
 
 	// Constants
 	/////////////////////////////////////////////
-
-	var WEBGL_CANVAS_ID					= "render-canvas";
-
-	var FACE_COLOR_HEXAGON				= 0xeeeeee,
-		FACE_COLOR_SELECTED				= 0xcccccc,
-		FACE_COLOR_OTHER				= 0xeeeeee;
-
-	var TRUNCATED_OCTAHEDRON			= "truncatedOctahedron",
-		TRUNCATED_ICOSIDODECAHEDRON		= "truncatedIcosidodecahedron",
-		CUBE							= "cube";
 
 	var DRAG_SPEED						= 0.25,
 		DRAG_EASE_AMT					= 1/10,
@@ -62,8 +49,6 @@ function ViewPolyhedron($) {
 		{ norm: [-2, -Math.sqrt(0.5) * 2,  0], turn: 1/12 },	// 7
 		{ norm: [ 0, -1,  Math.sqrt(0.5) * 2], turn: 0 },		// 8
 	];
-
-	var FACE_INDEX_MAPPING				= [ 0, 1, 7, 6, 4, 5, 3, 2 ];
 
 
 	// Elements
@@ -861,4 +846,3 @@ function ViewPolyhedron($) {
 /////////////////////////////////////////////
 
 bwco.utils.extend(ViewPolyhedron, bwco.events.Dispatcher);
-

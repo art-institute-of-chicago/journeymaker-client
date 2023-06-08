@@ -47,7 +47,7 @@ For brevity, throughout the rest of this repo's documentation, "JourneyMaker" re
 
 ## Requirements
 
-JourneyMaker can run in two modes: kiosk or webapp. For webapp mode, any webserver (Apache, nginx, etc.) is sufficient. Kiosk mode, however, requires Node.js v0.12.7: [kiosk mode requirements](README.KIOSK.md#requirements).
+JourneyMaker can run in two modes: kiosk or webapp. For webapp mode, any webserver (Apache, nginx, etc.) is sufficient. Kiosk mode, however, requires Node.js v18.16.0: [kiosk mode requirements](README.KIOSK.md#requirements).
 
 Due to its reliance on shell scripts, JourneyMaker requires a \*NIX environment (Linux, Mac OS X, etc.). On Windows, [Git Bash](https://git-for-windows.github.io/) should work fine, but is not officially supported.
 
