@@ -1590,12 +1590,18 @@ App.logger			= undefined;
 App.logOnlyLevel	= undefined;
 App.log = function(msg, level) {
 
+	level	= bwco.utils.defined(level) ? level : "debug";
+
+	if (App.errorTracking && App.errorTracking.enabled) {
+		App.errorTracking.addBreadcrumb(msg, level);
+	}
+
 	if (!App.loggingEnabled) return;
 	if (bwco.utils.defined(App.logOnlyLevel) && (level != App.logOnlyLevel)) return;
 
 	if (App.logger && App.logger.connected) {
 		App.logger.sendJSON({
-			level: bwco.utils.defined(level) ? level : "debug",
+			level: level,
 			msg: msg
 		});
 	}
