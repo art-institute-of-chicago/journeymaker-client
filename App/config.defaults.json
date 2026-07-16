@@ -82,6 +82,10 @@
 	"analyticsPrefix": null,
 	"analyticsDebug": false,
 
+	"enableSentry": false,
+	"sentryDsn": null,
+	"sentryEnvironment": null,
+
 	"buyTicketsUrl": "javascript:;",
 	"visitUrl": "javascript:;"
 
