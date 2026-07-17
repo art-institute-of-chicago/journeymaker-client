@@ -31,23 +31,29 @@ function ViewPolyhedron($) {
 
 	var MIN_DRAG_VEL					= 1/100;
 
-	var TEXTURE_OUTER					= "resources/images/shape-outer-texture.png",
-		TEXTURE_OUTER_ALPHA				= "resources/images/shape-outer-alpha.png",
-		TEXTURE_INNER					= "resources/images/shape-inner-texture.png",
-		TEXTURE_INNER_ALPHA				= "resources/images/shape-inner-alpha.png";
+	var TEXTURE_OUTER					= "resources/images/truncated-dodecahedron-outer-texture.png",
+		TEXTURE_OUTER_ALPHA				= "resources/images/truncated-dodecahedron-outer-alpha.png",
+		TEXTURE_INNER					= "resources/images/truncated-dodecahedron-inner-texture.png",
+		TEXTURE_INNER_ALPHA				= "resources/images/truncated-dodecahedron-inner-alpha.png";
 
-	var MODEL_SKELETON					= "resources/models/shape-skeleton.dae",
-		MODEL_FACES						= "resources/models/shape-faces.dae";
+	var MODEL_SKELETON					= "resources/models/truncated-dodecahedron-skeleton.dae",
+		MODEL_FACES						= "resources/models/truncated-dodecahedron-faces.dae";
+
+	var OUTER_FACE_COUNT				= 20;
 
 	var FACE_ANGLES						= [
-		{ norm: [ 2,  Math.sqrt(0.5) * 2,  0], turn: 1/12 },	// 1
-		{ norm: [ 0,  1, -Math.sqrt(0.5) * 2], turn: 0 },		// 2
-		{ norm: [ 0, -1, -Math.sqrt(0.5) * 2], turn: 0 },		// 3
-		{ norm: [ 0,  1,  Math.sqrt(0.5) * 2], turn: 0 },		// 4
-		{ norm: [ 2, -Math.sqrt(0.5) * 2,  0], turn: 1/12 },	// 5
-		{ norm: [-2,  Math.sqrt(0.5) * 2,  0], turn: 1/12 },	// 6
-		{ norm: [-2, -Math.sqrt(0.5) * 2,  0], turn: 1/12 },	// 7
-		{ norm: [ 0, -1,  Math.sqrt(0.5) * 2], turn: 0 },		// 8
+		{ norm: [-0.5257311,  0.8506508,  0], turn: 0 },	// 1
+		{ norm: [ 0.5257311,  0.8506508,  0], turn: 0 },	// 2
+		{ norm: [ 0.8506508,  0,  0.5257311], turn: 0 },	// 3
+		{ norm: [ 0.8506508,  0, -0.5257311], turn: 0 },	// 4
+		{ norm: [ 0, -0.5257311, -0.8506508], turn: 0 },	// 5
+		{ norm: [ 0,  0.5257311, -0.8506508], turn: 0 },	// 6
+		{ norm: [ 0.5257311, -0.8506508,  0], turn: 0 },	// 7
+		{ norm: [-0.5257311, -0.8506508,  0], turn: 0 },	// 8
+		{ norm: [-0.8506508,  0, -0.5257311], turn: 0 },	// 9
+		{ norm: [-0.8506508,  0,  0.5257311], turn: 0 },	// 10
+		{ norm: [ 0,  0.5257311,  0.8506508], turn: 0 },	// 11
+		{ norm: [ 0, -0.5257311,  0.8506508], turn: 0 },	// 12
 	];
 
 
@@ -224,10 +230,12 @@ function ViewPolyhedron($) {
 
 	function onFacesModelLoad(collada) {
 
-		_meshOuter	= collada.scene.children[0].children[0];
+		var fullGeom	= collada.scene.children[0].children[0].geometry;
+
+		_meshOuter	= new THREE.Mesh(sliceFaceGeometry(fullGeom, 0, OUTER_FACE_COUNT));
 		_meshOuter.scale.set(FACES_SCALE, FACES_SCALE, FACES_SCALE);
 
-		_meshInner	= _meshOuter.clone();
+		_meshInner	= new THREE.Mesh(sliceFaceGeometry(fullGeom, OUTER_FACE_COUNT, fullGeom.faces.length));
 		_meshInner.scale.set(FACES_SCALE, FACES_SCALE, FACES_SCALE);
 
 		loadSkeletonModel();
@@ -457,7 +465,7 @@ function ViewPolyhedron($) {
 		_meshInner.material		= new THREE.MeshLambertMaterial({
 			map: _textureInner,
 			alphaMap: _alphaMapInner,
-			side: THREE.BackSide,
+			side: THREE.FrontSide,
 			transparent: false
 		});
 
@@ -695,6 +703,18 @@ function ViewPolyhedron($) {
 
 	// Helpers
 	/////////////////////////////////////////////
+
+	function sliceFaceGeometry(sourceGeom, startFace, endFace) {
+
+		var geom		= new THREE.Geometry();
+			geom.vertices			= sourceGeom.vertices;
+			geom.faces				= sourceGeom.faces.slice(startFace, endFace);
+			geom.faceVertexUvs[0]	= sourceGeom.faceVertexUvs[0].slice(startFace, endFace);
+			geom.computeBoundingSphere();
+
+		return geom;
+
+	}
 
 	function calcEndQuat(quat, vel) {
 
