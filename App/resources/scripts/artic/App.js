@@ -92,6 +92,7 @@ function App($) {
 			_idleModel.timeoutSecs		= _config.val("timeoutSecs", 180);
 		}
 
+		initErrorTracking();
 		initAnalytics();
 
 		_appModel.validateLang();
@@ -961,6 +962,19 @@ function App($) {
 
 	}
 
+	function initErrorTracking() {
+
+		App.errorTracking	= ErrorTracking.getInstance();
+
+		if (_config.val("enableSentry", false) && _config.val("sentryDsn")) {
+
+			var environment	= _config.val("sentryEnvironment") || (App.isHomeCompanion ? "home-companion" : "kiosk");
+
+			App.errorTracking.enable(_config.val("sentryDsn"), environment);
+
+		}
+
+	}
 	function initAnalytics() {
 
 		App.analytics	= Analytics.getInstance();
@@ -1576,12 +1590,18 @@ App.logger			= undefined;
 App.logOnlyLevel	= undefined;
 App.log = function(msg, level) {
 
+	level	= bwco.utils.defined(level) ? level : "debug";
+
+	if (App.errorTracking && App.errorTracking.enabled) {
+		App.errorTracking.addBreadcrumb(msg, level);
+	}
+
 	if (!App.loggingEnabled) return;
 	if (bwco.utils.defined(App.logOnlyLevel) && (level != App.logOnlyLevel)) return;
 
 	if (App.logger && App.logger.connected) {
 		App.logger.sendJSON({
-			level: bwco.utils.defined(level) ? level : "debug",
+			level: level,
 			msg: msg
 		});
 	}
