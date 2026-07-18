@@ -473,7 +473,8 @@ function ViewPolyhedron($) {
 			map: _textureOuter,
 			alphaMap: _alphaMapOuter,
 			overdraw: true,
-			transparent: true
+			transparent: true,
+			opacity: 0.5
 		});
 
 		_scene.add(_meshInner);
