@@ -216,13 +216,13 @@ function DataModel() {
 
 					var artworkLabel	= "(id " + artwork.id + ") " + theme.title + ", prompt " + (promptIndex + 1) + ", artwork " + (artworkIndex + 1) + ": " + artwork.title;
 
-					if (noImg || noImgW || noImgH || notOnDisplay) {
+					if (noImg || (noImgW && noImgH) || notOnDisplay) {
 
 						if (notOnDisplay) {
 							artworksNotOnDisplay.push(artworkLabel);
 						} else if (noImg) {
 							artworksNoImg.push(artworkLabel);
-						} else if (noImgW || noImgH) {
+						} else if (noImgW && noImgH) {
 							artworksBadDimensions.push(artworkLabel);
 						}
 
