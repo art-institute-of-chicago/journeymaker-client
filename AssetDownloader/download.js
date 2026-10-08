@@ -116,7 +116,12 @@ function loadJSON(url) {
         request     = new _reqXhr.XMLHttpRequest();
 
     if (request) {
+        var headers = getAuthHeaders();
+
         request.open("GET", url, false);
+        for (var name in headers) {
+            request.setRequestHeader(name, headers[name]);
+        }
         request.send(null);
         response    = request.responseText;
     }
@@ -197,11 +202,14 @@ function downloadAsset(url, localPath, onComplete, onError) {
     // I don't know what's going on here exactly, so
     // I'm not going to mess with it -Scott
 
-    _reqRequest.head(url, function(err, res, body) {
+    var headers = getAuthHeaders();
+
+    _reqRequest.head(url, { headers: headers }, function(err, res, body) {
         if (err) {
             onError(err);
         } else {
             var stream = _reqRequest(url, {
+                headers: headers,
                 maxSockets: 1
             });
             stream.pipe(_reqFs.createWriteStream(localPath).on("error", function(err) {
@@ -244,6 +252,19 @@ function stringifyJSON(s, emit_unicode) {
             return '\\u'+('0000'+c.charCodeAt(0).toString(16)).slice(-4);
         }
     );
+}
+
+function getAuthHeaders() {
+
+    var headers = {};
+
+    if (config.zerotrust_client_id && config.zerotrust_client_secret) {
+        headers["CF-Access-Client-Id"]     = config.zerotrust_client_id;
+        headers["CF-Access-Client-Secret"] = config.zerotrust_client_secret;
+    }
+
+    return headers;
+
 }
 
 function assetAlreadyInQueue(asset) {
