@@ -385,15 +385,21 @@ function ViewFooter($) {
 					}
 
 					var trayMaxW	= App.isKiosk ? ViewFooter.THM_MAX_W : ViewFooter.THM_MAX_W_HOME,
-						rect		= Geom.getFitRect(obj.img.width, obj.img.height, 0, 0, trayMaxW, ViewFooter.THM_MAX_H),
-						imgW		= rect.width,
-						imgH		= rect.height;
+						hasDims		= obj.img.width > 0 && obj.img.height > 0,
+						$img		= $("<img>").attr("src", obj.img.url);
 
-					$closeBtn.css({
-						"left": imgW / 2
-					});
+					if (hasDims) {
+						var rect = Geom.getFitRect(obj.img.width, obj.img.height, 0, 0, trayMaxW, ViewFooter.THM_MAX_H);
+						$img.attr({ width: rect.width, height: rect.height });
+						$closeBtn.css({ "left": rect.width / 2 });
+					} else {
+						$img.css({ "max-width": trayMaxW, "max-height": ViewFooter.THM_MAX_H });
+						$img.one("load", function() {
+							$closeBtn.css({ "left": $img.width() / 2 });
+						});
+					}
 
-					$imgWrap.html("<img src=\"" + obj.img.url + "\" width=\"" + imgW + "\" height=\"" + imgH + "\">");
+					$imgWrap.empty().append($img);
 
 					setTimeout(function() {
 						$trayItem.removeClass("adding");
@@ -497,4 +503,3 @@ ViewFooter.THM_MAX_W_HOME	= 140;
 /////////////////////////////////////////////
 
 bwco.utils.extend(ViewFooter, bwco.events.Dispatcher);
-
